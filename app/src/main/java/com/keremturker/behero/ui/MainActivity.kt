@@ -1,18 +1,17 @@
 package com.keremturker.behero.ui
 
-import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.keremturker.behero.R
+import com.keremturker.behero.base.BaseActivity
+import com.keremturker.behero.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding, MainVM>() {
 
-    private val viewModel: MainVM by viewModels()
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+    override val viewModel: MainVM by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
+    override fun onActivityCreated() {}
+
+    override fun observe() {}
 }
