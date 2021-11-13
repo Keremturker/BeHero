@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BeHero">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
