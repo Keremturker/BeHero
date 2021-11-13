@@ -9,7 +9,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
@@ -25,51 +24,8 @@ enum class SelectedNavGraph {
 @AndroidEntryPoint
 class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>() {
 
-    var currentNavController: NavController? = null
-    var isFirstCallOfFirstTab = true
-
-    private val mOnNavigationItemSelectedListener =
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
-
-            val previousNavController = currentNavController
-            val selectedNavGraph: SelectedNavGraph?
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    currentNavController = findNavController(R.id.sectionMain)
-                    selectedNavGraph = SelectedNavGraph.Home
-                }
-                R.id.navigation_search -> {
-
-                    currentNavController = findNavController(R.id.sectionDonationSearch)
-                    selectedNavGraph = SelectedNavGraph.Search
-                }
-                R.id.navigation_donation -> {
-
-                    currentNavController = findNavController(R.id.sectionMyDonation)
-                    selectedNavGraph = SelectedNavGraph.Donation
-                }
-                R.id.navigation_user -> {
-
-                    currentNavController = findNavController(R.id.sectionUser)
-                    selectedNavGraph = SelectedNavGraph.User
-                }
-                else -> {
-                    currentNavController = null
-                    selectedNavGraph = null
-                }
-            }
-            showNavigationFragment(selectedNavGraph)
-            onReselected(item.itemId, previousNavController)
-            currentNavController?.addOnDestinationChangedListener(::onFragmentChanged)
-            if (isFirstCallOfFirstTab && item.itemId == R.id.navigation_home) {
-                reSelectOfferTab()
-                isFirstCallOfFirstTab = false
-            }
-            return@OnNavigationItemSelectedListener when (currentNavController) {
-                null -> false
-                else -> true
-            }
-        }
+    private var currentNavController: NavController? = null
+    private var isFirstCallOfFirstTab = true
 
 
     override fun getViewBinding() = ActivityMainScreenBinding.inflate(layoutInflater)
@@ -87,10 +43,46 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     private fun setupBottomNavBar() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.sectionSplash)
         currentNavController = (navHostFragment as NavHostFragment).navController
-        binding.navigationView.setOnNavigationItemSelectedListener(
-            mOnNavigationItemSelectedListener
-        )
+        binding.navigationView.setOnItemSelectedListener { item ->
+            val previousNavController = currentNavController
+            val selectedNavGraph: SelectedNavGraph?
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    currentNavController = findNavController(R.id.sectionMain)
+                    selectedNavGraph = SelectedNavGraph.Home
+                }
+                R.id.navigation_search -> {
+                    currentNavController = findNavController(R.id.sectionDonationSearch)
+                    selectedNavGraph = SelectedNavGraph.Search
+                }
+                R.id.navigation_donation -> {
+                    currentNavController = findNavController(R.id.sectionMyDonation)
+                    selectedNavGraph = SelectedNavGraph.Donation
+                }
+                R.id.navigation_user -> {
+                    currentNavController = findNavController(R.id.sectionUser)
+                    selectedNavGraph = SelectedNavGraph.User
+                }
+                else -> {
+                    currentNavController = null
+                    selectedNavGraph = null
+                }
+            }
+            showNavigationFragment(selectedNavGraph)
+            onReselected(item.itemId, previousNavController)
+            currentNavController?.addOnDestinationChangedListener(::onFragmentChanged)
+            if (isFirstCallOfFirstTab && item.itemId == R.id.navigation_home) {
+                reSelectOfferTab()
+                isFirstCallOfFirstTab = false
+            }
+            when (currentNavController) {
+                null -> false
+                else -> true
+            }
+
+        }
     }
+
     override fun supportNavigateUpTo(upIntent: Intent) {
         currentNavController?.navigateUp()
     }
@@ -110,11 +102,12 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             R.id.mainFragment,
             R.id.donationSearchFragment,
             R.id.myDonationsFragment,
-            R.id.userFragment-> false
+            R.id.userFragment -> false
             else -> true
         }
         showOnBackButton(isAOneOfMainFragments)
     }
+
     private fun showOnBackButton(isAOneOfMainFragments: Boolean) {
         supportActionBar?.setDisplayHomeAsUpEnabled(isAOneOfMainFragments)
     }
@@ -131,19 +124,19 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         when (graph) {
             SelectedNavGraph.Home -> {
                 currentNavController = findNavController(R.id.sectionMain)
-               // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_GROUP_TITLE_FRAGMENT
+                // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_GROUP_TITLE_FRAGMENT
             }
             SelectedNavGraph.Search -> {
-               // binding.actionBar.txtToolbarTitle.text = SETTING_FRAGMENT
+                // binding.actionBar.txtToolbarTitle.text = SETTING_FRAGMENT
             }
             SelectedNavGraph.Donation -> {
-               // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_APP_FRAGMENT
+                // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_APP_FRAGMENT
             }
             SelectedNavGraph.User -> {
                 // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_APP_FRAGMENT
             }
             SelectedNavGraph.Splash -> {
-               // binding.actionBar.txtToolbarTitle.text = ""
+                // binding.actionBar.txtToolbarTitle.text = ""
             }
         }
     }
