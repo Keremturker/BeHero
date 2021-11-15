@@ -10,4 +10,15 @@
         android:name="com.keremturker.behero.ui.fragment.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.keremturker.behero.ui.fragment.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
+    <action
+        android:id="@+id/nav_action_loginFragment_global"
+        app:destination="@id/loginFragment" />
+
 </navigation>

@@ -7,9 +7,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.13541666666666666" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.2930253623188406" />
-        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.34427083333333336" />
       </map>

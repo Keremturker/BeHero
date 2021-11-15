@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
 import com.keremturker.behero.ui.activity.SelectedNavGraph
@@ -38,8 +39,15 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         showNavigationView(onNavigationViewShow)
         onFragmentCreated()
         observe()
+        observeActions()
 
         return binding.root
+    }
+
+    private fun observeActions() {
+        viewModel.navigateFragmentDetection.observeThis {
+            baseActivity?.navigateFragment(it)
+        }
     }
 
 
@@ -86,4 +94,11 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     }
 
 
+    fun <T> LiveData<T>.observeThis(function: (T) -> Unit) {
+        observe(viewLifecycleOwner) {
+            it?.let {
+                function(it)
+            }
+        }
+    }
 }

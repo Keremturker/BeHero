@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
+import com.keremturker.behero.model.NavigateFragmentParams
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -190,5 +191,15 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     interface OnReselectedDelegate {
         fun onReselected()
+    }
+
+    override fun navigateFragment(params: NavigateFragmentParams) {
+        currentNavController?.navigate(
+            params.navAction,
+            params.bundle,
+            params.navOptions,
+            params.extras
+        )
+
     }
 }
