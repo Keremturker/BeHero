@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="CustomEdittext">
         <attr name="leftImage" format="integer" />
         <attr name="android:inputType" />
@@ -12,5 +11,4 @@
         <attr name="android:singleLine" />
         <attr name="android:enabled" />
     </declare-styleable>
-
 </resources>

@@ -79,7 +79,6 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
             0
         )
         if (inputTypeOptions != 0) inputText.inputType = inputTypeOptions
-
     }
 
     private fun setLeftImageFromAttr(attributeSet: TypedArray) {
