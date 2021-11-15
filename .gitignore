@@ -83,3 +83,14 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+features/login/build.gradle
+features/login/consumer-rules.pro
+features/login/src/androidTest/java/com/login/ExampleInstrumentedTest.kt
+features/login/src/main/AndroidManifest.xml
+features/login/src/main/java/com/login/LoginFragment.kt
+features/login/src/main/java/com/login/LoginVM.kt
+features/login/src/main/res/layout/fragment_login.xml
+features/login/src/test/java/com/login/ExampleUnitTest.kt
+features/splash/.gitignore
+features/splash/proguard-rules.pro
+.idea/
