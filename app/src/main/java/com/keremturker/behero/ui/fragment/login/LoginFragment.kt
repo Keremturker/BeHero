@@ -1,6 +1,7 @@
 package com.keremturker.behero.ui.fragment.login
 
 import androidx.fragment.app.viewModels
+import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentLoginBinding
 import com.keremturker.behero.utils.extension.makeClickableText
@@ -12,9 +13,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
 
     override fun onFragmentCreated() {
 
-        binding.txtTitle.makeClickableText(fullText = "Dare To Donate",multiColorArray = arrayOf("Dare","Donate"))
+        binding.txtTitle.makeClickableText(fullText = getString(R.string.logo_title_full_text),multiColorArray = arrayOf(getString(R.string.logo_title_part1),getString(R.string.logo_title_part2)))
 
-        binding.txtRegister.makeClickableText("Don’t have an account? Register Now.",multiColorArray = arrayOf("Register Now"))
+        binding.txtRegister.makeClickableText(getString(R.string.register_title_full_text),clickableTextArray = arrayOf(getString(R.string.register_title_clickable_text)),functionArray = arrayOf({viewModel.goToRegister()}),multiColorArray = arrayOf(getString(R.string.register_title_clickable_text)))
     }
 
 }

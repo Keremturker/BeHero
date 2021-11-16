@@ -1,7 +1,17 @@
 <resources>
 
     <string name="splash_screen_text">Dear To Donate</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_title_full_text">Dare To Donate</string>
+    <string name="logo_title_part1">Dare</string>
+    <string name="logo_title_part2">Donate</string>
+    <string name="register_title_full_text">Don’t have an account? Register Now.</string>
+    <string name="register_title_clickable_text">Register Now</string>
+    <string name="login_title_full_text">Already have an account? Log In.</string>
+    <string name="login_title_clickable_text">Log In</string>
+    <string name="forget_password">Forgot Password?</string>
+
+    <!-- Button Text-->
+    <string name="login_button_text">LOG IN</string>
+    <string name="register_button_text">REGISTER</string>
 
 </resources>

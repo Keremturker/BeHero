@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.login
+package com.keremturker.behero.ui.fragment.register
 
 import android.app.Application
 import com.keremturker.behero.R
@@ -7,10 +7,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginVM @Inject constructor(app: Application) : BaseViewModel(app){
+class RegisterVM @Inject constructor(app: Application) : BaseViewModel(app){
 
 
-    fun goToRegister(){
-        navigateFragment(R.id.nav_action_registerFragment_global)
+    fun goToLogin(){
+        navigateFragment(R.id.nav_action_loginFragment_global)
     }
 }
