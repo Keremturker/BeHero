@@ -8,8 +8,7 @@
         android:id="@+id/bloodGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        multi_line_radio_group:default_button="A+"
-        multi_line_radio_group:max_in_row="4"
-        multi_line_radio_group:radio_buttons="@array/blood_group"
+         multi_line_radio_group:max_in_row="4"
+        multi_line_radio_group:radio_buttons="@array/gender"
         multi_line_radio_group:tintColor="@color/red_500" />
 </RelativeLayout>

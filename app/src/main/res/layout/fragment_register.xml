@@ -7,27 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.login.LoginFragment">
 
-    <ImageView
-        android:id="@+id/imgLogo"
-        android:layout_width="80dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/logo_red"
-        app:layout_constraintDimensionRatio="2:3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center_horizontal"
-        android:textSize="30sp"
-        app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
 
     <ScrollView
@@ -36,12 +16,37 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle">
+       app:layout_constraintTop_toTopOf="parent">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingBottom="8dp">
+
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/logo_red"
+                app:layout_constraintDimensionRatio="2:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_horizontal"
+                android:textSize="30sp"
+                app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
 
             <com.keremturker.behero.commons.CustomEdittext
@@ -50,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="textEmailAddress"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
 
             <com.keremturker.behero.commons.CustomEdittext
@@ -80,14 +85,69 @@
                 app:layout_constraintTop_toBottomOf="@id/edtPassword"
                 app:leftImage="@drawable/ic_phone" />
 
+            <com.keremturker.behero.commons.CustomEdittext
+                android:id="@+id/edtBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginTop="4dp"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                app:layout_constraintTop_toBottomOf="@id/edtPhone"
+                app:leftImage="@drawable/ic_date"
+                tools:layout_editor_absoluteX="8dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clGender"
+                android:background="@drawable/edittext_radius_bg"
+                android:paddingVertical="8dp"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/edtBirthday"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/leftImageGender"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_gender"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/verticalLineGender"
+                    android:layout_width="2dp"
+                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/leftImageGender"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="0dp"/>
+
+                <include
+                    android:id="@+id/genderLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    layout="@layout/custom_gender_layout"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/verticalLineGender"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clBloodGroup"
                 android:background="@drawable/edittext_radius_bg"
                 android:paddingVertical="8dp"
                 android:layout_margin="8dp"
-
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/edtPhone"
+                app:layout_constraintTop_toBottomOf="@id/clGender"
                 android:layout_height="wrap_content">
 
 

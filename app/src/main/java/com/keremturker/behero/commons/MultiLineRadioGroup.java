@@ -118,6 +118,7 @@ public class MultiLineRadioGroup extends RadioGroup {
                     R.styleable.multi_line_radio_group_radio_buttons);
             addButtons(color, radioButtonStrings);
 
+            checkAt(0);
 
             // gets the default button and checks it if presents.
             String string = typedArray.getString(R.styleable.multi_line_radio_group_default_button);

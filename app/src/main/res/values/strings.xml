@@ -14,7 +14,7 @@
     <string name="login_button_text">LOG IN</string>
     <string name="register_button_text">REGISTER</string>
 
-    <string-array name="radio_buttons">
+    <string-array name="blood_group">
         <item>A+</item>
         <item>A-</item>
         <item>B+</item>
@@ -23,6 +23,12 @@
         <item>O-</item>
         <item>AB+</item>
         <item>AB-</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Non</item>
     </string-array>
 
 </resources>
