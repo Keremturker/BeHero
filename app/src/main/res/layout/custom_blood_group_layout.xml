@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:multi_line_radio_group="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.keremturker.behero.commons.MultiLineRadioGroup
+        android:id="@+id/bloodGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        multi_line_radio_group:default_button="A+"
+        multi_line_radio_group:max_in_row="4"
+        multi_line_radio_group:radio_buttons="@array/radio_buttons"
+        multi_line_radio_group:tintColor="@color/red_500" />
+</RelativeLayout>

@@ -11,4 +11,12 @@
         <attr name="android:singleLine" />
         <attr name="android:enabled" />
     </declare-styleable>
+
+
+    <declare-styleable name="multi_line_radio_group">
+        <attr name="max_in_row" format="integer" />
+        <attr name="radio_buttons" format="reference" />
+        <attr name="default_button" format="string" />
+        <attr name="tintColor" format="color" />
+    </declare-styleable>
 </resources>

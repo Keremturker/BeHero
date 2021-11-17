@@ -80,14 +80,52 @@
                 app:layout_constraintTop_toBottomOf="@id/edtPassword"
                 app:leftImage="@drawable/ic_phone" />
 
-            <com.keremturker.behero.commons.CustomEdittext
-                android:id="@+id/edtBlood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBloodGroup"
+                android:background="@drawable/edittext_radius_bg"
+                android:paddingVertical="8dp"
                 android:layout_margin="8dp"
-                android:inputType="textNoSuggestions|textVisiblePassword"
+
+                android:layout_width="match_parent"
                 app:layout_constraintTop_toBottomOf="@id/edtPhone"
-                app:leftImage="@drawable/ic_blood" />
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/leftImage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/ic_blood"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/verticalLine"
+                    android:layout_width="2dp"
+                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/leftImage"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="0dp"/>
+
+                <include
+                    android:id="@+id/bloodLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    layout="@layout/custom_blood_group_layout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/verticalLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtAddress"
@@ -95,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="textNoSuggestions|textVisiblePassword"
-                app:layout_constraintTop_toBottomOf="@id/edtBlood"
+                app:layout_constraintTop_toBottomOf="@id/clBloodGroup"
                 app:leftImage="@drawable/ic_location" />
 
 

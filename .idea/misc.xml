@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -17,6 +18,9 @@
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
+        <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />
+        <entry key="app/src/main/res/layout/table_row.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.34427083333333336" />
       </map>
     </option>

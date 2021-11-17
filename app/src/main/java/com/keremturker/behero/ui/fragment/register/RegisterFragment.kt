@@ -1,6 +1,7 @@
 package com.keremturker.behero.ui.fragment.register
 
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
@@ -27,6 +28,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             functionArray = arrayOf({ viewModel.goToLogin() }),
             multiColorArray = arrayOf(getString(R.string.login_title_clickable_text))
         )
+
+        //  binding.bloodLayout.bloodGroup.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button -> })
+
+        binding.btnRegister.setOnClickListener {
+
+            val text = binding.bloodLayout.bloodGroup.checkedRadioButtonText
+
+            Log.d("test123", text.toString())
+        }
     }
 
 }
