@@ -31,7 +31,6 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     private lateinit var mMap: GoogleMap
     private var currentLocation: Location? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
-    private val REQUEST_CODE = 101
 
 
     override val viewModel: MapsVM by viewModels()
@@ -43,16 +42,20 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
 
-
         requestPermission(PERMISSION_LOCATION, *permissionLocation)
-
+        binding.imgCurrentLocation.setOnClickListener {
+            fetchLocation()
+        }
     }
 
 
-    @SuppressLint("MissingPermission")
     override fun onPermissionGranted(permissions: Array<String>) {
-        val task = fusedLocationProviderClient!!.lastLocation
+        fetchLocation()
+    }
 
+    @SuppressLint("MissingPermission")
+    fun fetchLocation() {
+        val task = fusedLocationProviderClient!!.lastLocation
         task.addOnSuccessListener { location ->
             if (location != null) {
                 currentLocation = location
@@ -86,6 +89,7 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.clear()
 
         val latLng = LatLng(currentLocation!!.latitude, currentLocation!!.longitude)
         moveMarket(latLng)
@@ -114,8 +118,11 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     }
 
     private fun moveMarket(latLng: LatLng) {
-        val markerOptions = MarkerOptions().position(latLng).title("I am here")
-            .snippet(getTheAddress(latLng.latitude, latLng.longitude)).draggable(true)
+
+        val address = getTheAddress(latLng.latitude, latLng.longitude)
+        val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
+            .snippet(address)*/.draggable(true)
+        binding.txtCurrentAddress.text = address
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         currentMarker = mMap.addMarker(markerOptions)
