@@ -13,6 +13,7 @@
     <!-- Button Text-->
     <string name="login_button_text">LOG IN</string>
     <string name="register_button_text">REGISTER</string>
+    <string name="permission_denied">Permission Denied</string>
 
     <string-array name="blood_group">
         <item>A+</item>

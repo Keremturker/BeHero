@@ -23,12 +23,21 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
 
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.keremturker.behero.ui.fragment.maps.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
     <action
         android:id="@+id/nav_action_loginFragment_global"
         app:destination="@id/loginFragment" />
     <action
         android:id="@+id/nav_action_registerFragment_global"
         app:destination="@id/registerFragment" />
+    <action
+        android:id="@+id/nav_action_mapsFragment_global"
+        app:destination="@id/mapsFragment" />
 
 
 </navigation>

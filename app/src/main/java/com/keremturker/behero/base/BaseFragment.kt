@@ -11,7 +11,6 @@ import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
 import com.keremturker.behero.ui.activity.SelectedNavGraph
-import com.keremturker.behero.utils.Constants.PERMISSION_EXTERNAL_STORAGE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -55,11 +54,11 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         baseActivity?.onNewBackPress = onBackPress
     }
 
-    fun requestPermission(vararg permission: String?) {
+    fun requestPermission(requestCode: Int, vararg permission: String?) {
         val arr = arrayOf(*permission)
         activity?.let {
             if (Build.VERSION.SDK_INT > 23) {
-                requestPermissions(arr, PERMISSION_EXTERNAL_STORAGE)
+                requestPermissions(arr, requestCode)
             }
         }
     }

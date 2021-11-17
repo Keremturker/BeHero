@@ -13,4 +13,8 @@ class RegisterVM @Inject constructor(app: Application) : BaseViewModel(app){
     fun goToLogin(){
         navigateFragment(R.id.nav_action_loginFragment_global)
     }
+
+    fun  goToMaps(){
+        navigateFragment(R.id.nav_action_mapsFragment_global)
+    }
 }

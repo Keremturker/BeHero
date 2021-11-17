@@ -1,11 +1,13 @@
 package com.keremturker.behero.ui.fragment.register
 
 
-import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentRegisterBinding
+import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
+import com.keremturker.behero.utils.Constants.permissionLocation
 import com.keremturker.behero.utils.extension.makeClickableText
 
 
@@ -31,12 +33,28 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
 
         //  binding.bloodLayout.bloodGroup.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button -> })
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener {}
 
-            val text = binding.bloodLayout.bloodGroup.checkedRadioButtonText
-
-            Log.d("test123", text.toString())
+        binding.txtAddress.setOnClickListener {
+            requestPermission(PERMISSION_LOCATION, *permissionLocation)
         }
+
+
     }
 
+    override fun onPermissionGranted(permissions: Array<String>) {
+        viewModel.goToMaps()
+    }
+
+    override fun onPermissionDenied(permissions: Array<String>) {
+        val showRationale = shouldShowRequestPermissionRationale(permissions[0])
+        //check never ask again
+        if (!showRationale) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.permission_denied),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 }
