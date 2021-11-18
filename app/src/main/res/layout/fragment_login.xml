@@ -26,7 +26,7 @@
         android:layout_marginTop="@dimen/space_med"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
     <View
@@ -41,6 +41,7 @@
     <com.keremturker.behero.commons.CustomEdittext
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
         android:layout_margin="@dimen/space_small"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@id/viewMiddle"
@@ -49,6 +50,7 @@
     <com.keremturker.behero.commons.CustomEdittext
         android:id="@+id/edtPassword"
         android:layout_width="match_parent"
+        android:fontFamily="@font/poppins_regular"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_small"
         android:inputType="textNoSuggestions|textVisiblePassword"
@@ -73,7 +75,7 @@
         android:gravity="center_horizontal"
         android:text="@string/forget_password"
         android:textColor="@color/red_500"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
     <TextView
@@ -83,7 +85,7 @@
         android:layout_margin="@dimen/space_small"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

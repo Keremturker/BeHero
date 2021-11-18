@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lineColor">#D6D6D6</color>
     <color name="edittext_bg_color">#F8F8F8</color>
+    <color name="dark_gry">#272A2F</color>
+    <color name="gry_color">#7E7E7E</color>
 </resources>

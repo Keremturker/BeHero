@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -15,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+
+import androidx.core.content.res.ResourcesCompat;
 
 import com.keremturker.behero.R;
 
@@ -351,6 +354,8 @@ public class MultiLineRadioGroup extends RadioGroup {
             radioButton.setButtonTintList(ColorStateList.valueOf(color));
             radioButton.setMinimumHeight(0);
             radioButton.setMinimumWidth(0);
+            Typeface font = ResourcesCompat.getFont(radioButton.getContext(), R.font.poppins_regular);
+            radioButton.setTypeface(font);
             radioButton.setId(generateId());
             buttons[i] = radioButton;
         }
@@ -363,7 +368,7 @@ public class MultiLineRadioGroup extends RadioGroup {
         // for API 17 or higher
         return View.generateViewId();
 
-        // for API lower than 17
+
     }
 
     /**

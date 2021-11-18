@@ -10,22 +10,24 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+ import androidx.core.content.res.ResourcesCompat
 import com.keremturker.behero.R
 
+
 class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
-    ConstraintLayout(context,attributeSet) {
+    ConstraintLayout(context, attributeSet) {
 
-        private var inputText:EditText
-        private var leftImage:ImageView
+    private var inputText: EditText
+    private var leftImage: ImageView
 
 
-        init {
-            View.inflate(context, R.layout.custom_edittext,this)
-            inputText=findViewById(R.id.inputText)
-            leftImage=findViewById(R.id.leftImage)
+    init {
+        View.inflate(context, R.layout.custom_edittext, this)
+        inputText = findViewById(R.id.inputText)
+        leftImage = findViewById(R.id.leftImage)
 
-            R.styleable.CustomEdittext.applyAttributes(attributeSet)
-        }
+        R.styleable.CustomEdittext.applyAttributes(attributeSet)
+    }
 
     private fun IntArray.applyAttributes(attrs: AttributeSet?) {
         context.theme.obtainStyledAttributes(attrs, this, 0, 0).apply {
@@ -38,11 +40,13 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
                 setSingleLineFromAttr(this)
                 setEnabledFromAttr(this)
                 setDigitsFromAttr(this)
+                setFontFamily( this)
             } finally {
                 recycle()
             }
         }
     }
+
 
     private fun setImeOptionsFromAttr(attributeSet: TypedArray) {
         val imeOption = attributeSet.getInt(
@@ -69,7 +73,7 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
 
     private fun setSingleLineFromAttr(attributeSet: TypedArray) {
         val singleLine =
-            attributeSet.getBoolean(R.styleable.CustomEdittext_android_singleLine, true)
+            attributeSet.getBoolean(com.keremturker.behero.R.styleable.CustomEdittext_android_singleLine, true)
         inputText.isSingleLine = singleLine
     }
 
@@ -99,6 +103,14 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
 
         digits?.let {
             inputText.keyListener = DigitsKeyListener.getInstance(it)
+        }
+    }
+
+    private fun setFontFamily( attributeSet: TypedArray) {
+        val fontFamilyId: Int =
+            attributeSet.getResourceId(R.styleable.CustomEdittext_android_fontFamily, 0)
+        if (fontFamilyId > 0) {
+            inputText.setTypeface(ResourcesCompat.getFont(context, fontFamilyId))
         }
     }
 }

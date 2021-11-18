@@ -10,6 +10,7 @@
         <attr name="android:maxLength" />
         <attr name="android:singleLine" />
         <attr name="android:enabled" />
+        <attr name="android:fontFamily" />
     </declare-styleable>
 
 

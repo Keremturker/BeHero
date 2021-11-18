@@ -42,7 +42,7 @@
                 android:layout_marginTop="@dimen/space_med"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
 
@@ -51,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
+                android:fontFamily="@font/poppins_regular"
                 android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
@@ -60,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
+                android:fontFamily="@font/poppins_regular"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtName"
                 app:leftImage="@drawable/ic_mail" />
@@ -69,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
+                android:fontFamily="@font/poppins_regular"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtMail"
                 app:leftImage="@drawable/ic_password" />
@@ -78,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
+                android:fontFamily="@font/poppins_regular"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtPassword"
                 app:leftImage="@drawable/ic_phone" />
@@ -88,6 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
+                android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/edittext_radius_bg"
                 android:paddingVertical="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/edtPhone">
@@ -119,6 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
                     android:paddingVertical="@dimen/space_small"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/dark_gry"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
                     app:layout_constraintTop_toTopOf="parent"
@@ -253,6 +260,7 @@
                 <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/poppins_regular"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
                     android:paddingVertical="@dimen/space_small"
@@ -270,7 +278,7 @@
                 android:id="@+id/btnRegister"
                 style="@style/Button.Main"
                 android:layout_marginTop="@dimen/space_small"
-                 android:text="@string/register_button_text"
+                android:text="@string/register_button_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -283,7 +291,7 @@
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
