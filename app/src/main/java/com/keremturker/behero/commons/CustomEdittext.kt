@@ -110,7 +110,7 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
         val fontFamilyId: Int =
             attributeSet.getResourceId(R.styleable.CustomEdittext_android_fontFamily, 0)
         if (fontFamilyId > 0) {
-            inputText.setTypeface(ResourcesCompat.getFont(context, fontFamilyId))
+            inputText.typeface = ResourcesCompat.getFont(context, fontFamilyId)
         }
     }
 }

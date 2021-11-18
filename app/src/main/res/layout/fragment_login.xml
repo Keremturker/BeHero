@@ -41,31 +41,31 @@
     <com.keremturker.behero.commons.CustomEdittext
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
         android:layout_margin="@dimen/space_small"
+        android:fontFamily="@font/poppins_regular"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@id/viewMiddle"
         app:leftImage="@drawable/ic_mail" />
 
-    <com.keremturker.behero.commons.CustomEdittext
-        android:id="@+id/edtPassword"
+
+
+    <include
+        android:id="@+id/clPassword"
+        layout="@layout/edittext_password"
         android:layout_width="match_parent"
-        android:fontFamily="@font/poppins_regular"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_small"
-        android:inputType="textNoSuggestions|textVisiblePassword"
-        app:layout_constraintTop_toBottomOf="@id/viewMiddle"
-        app:leftImage="@drawable/ic_password" />
+        app:layout_constraintTop_toBottomOf="@id/viewMiddle" />
 
     <Button
         android:id="@+id/btnLogin"
         style="@style/Button.Main"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/space_med"
-         android:text="@string/login_button_text"
+        android:text="@string/login_button_text"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clPassword" />
 
     <TextView
         android:layout_width="match_parent"

@@ -66,15 +66,13 @@
                 app:layout_constraintTop_toBottomOf="@id/edtName"
                 app:leftImage="@drawable/ic_mail" />
 
-            <com.keremturker.behero.commons.CustomEdittext
-                android:id="@+id/edtPassword"
+            <include
+                android:id="@+id/clPassword"
+                android:layout_margin="@dimen/space_small"
+                layout="@layout/edittext_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_small"
-                android:fontFamily="@font/poppins_regular"
-                android:inputType="textNoSuggestions|textVisiblePassword"
-                app:layout_constraintTop_toBottomOf="@id/edtMail"
-                app:leftImage="@drawable/ic_password" />
+                app:layout_constraintTop_toBottomOf="@id/edtMail" />
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtPhone"
@@ -83,7 +81,7 @@
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
                 android:inputType="textNoSuggestions|textVisiblePassword"
-                app:layout_constraintTop_toBottomOf="@id/edtPassword"
+                app:layout_constraintTop_toBottomOf="@id/clPassword"
                 app:leftImage="@drawable/ic_phone" />
 
 
@@ -92,8 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
-                android:fontFamily="@font/poppins_regular"
                 android:background="@drawable/edittext_radius_bg"
+                android:fontFamily="@font/poppins_regular"
                 android:paddingVertical="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/edtPhone">
 
@@ -123,8 +121,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
-                    android:paddingVertical="@dimen/space_small"
                     android:fontFamily="@font/poppins_regular"
+                    android:paddingVertical="@dimen/space_small"
                     android:textColor="@color/dark_gry"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
@@ -260,9 +258,9 @@
                 <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
-                    android:fontFamily="@font/poppins_regular"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
+                    android:fontFamily="@font/poppins_regular"
                     android:paddingVertical="@dimen/space_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineAddress"
