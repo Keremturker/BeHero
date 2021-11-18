@@ -6,8 +6,10 @@ import androidx.fragment.app.viewModels
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentRegisterBinding
+import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
+import com.keremturker.behero.utils.extension.getNavigationResult
 import com.keremturker.behero.utils.extension.makeClickableText
 
 
@@ -55,6 +57,15 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 getString(R.string.permission_denied),
                 Toast.LENGTH_SHORT
             ).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val address = this.getNavigationResult(ADDRESS)
+
+        address?.value?.let {
+            binding.txtAddress.text = it
         }
     }
 }

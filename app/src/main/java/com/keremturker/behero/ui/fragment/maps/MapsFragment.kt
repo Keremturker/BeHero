@@ -6,6 +6,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,8 +19,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentMapsBinding
+import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
+import com.keremturker.behero.utils.extension.setNavigationResult
 import java.io.IOException
 import java.util.*
 
@@ -27,7 +30,7 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
 
     var currentMarker: Marker? = null
-
+    var currentAddress = ""
     private lateinit var mMap: GoogleMap
     private var currentLocation: Location? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
@@ -45,6 +48,11 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
         requestPermission(PERMISSION_LOCATION, *permissionLocation)
         binding.imgCurrentLocation.setOnClickListener {
             fetchLocation()
+        }
+
+        binding.btnPick.setOnClickListener {
+            this.setNavigationResult(currentAddress, ADDRESS)
+            findNavController().navigateUp()
         }
     }
 
@@ -119,10 +127,10 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
     private fun moveMarket(latLng: LatLng) {
 
-        val address = getTheAddress(latLng.latitude, latLng.longitude)
+        currentAddress = getTheAddress(latLng.latitude, latLng.longitude)
         val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
             .snippet(address)*/.draggable(true)
-        binding.txtCurrentAddress.text = address
+        binding.txtCurrentAddress.text = currentAddress
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         currentMarker = mMap.addMarker(markerOptions)
