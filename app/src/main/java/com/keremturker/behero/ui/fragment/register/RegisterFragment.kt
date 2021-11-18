@@ -11,6 +11,7 @@ import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
 import com.keremturker.behero.utils.extension.getNavigationResult
 import com.keremturker.behero.utils.extension.makeClickableText
+import com.keremturker.behero.utils.showDatePicker
 
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
@@ -41,7 +42,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             requestPermission(PERMISSION_LOCATION, *permissionLocation)
         }
 
-
+        binding.txtBirthday.setOnClickListener {
+            requireContext().showDatePicker(binding.txtBirthday.text.toString()) {
+                binding.txtBirthday.text = it
+            }
+        }
     }
 
     override fun onPermissionGranted(permissions: Array<String>) {

@@ -10,19 +10,20 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.TextView
+import java.util.*
 
 fun TextView.makeClickableText(
     fullText: String,
     clickableTextArray: Array<String> = arrayOf(),
     functionArray: Array<() -> Unit> = arrayOf(),
     boldTextArray: Array<String> = arrayOf(),
-    multiColorArray:Array<String> = arrayOf(),
+    multiColorArray: Array<String> = arrayOf(),
     underLine: Boolean = false
 ) {
     try {
         val spannableString = SpannableString(fullText)
         clickableTextArray.forEachIndexed { index, it ->
-            spannableString.withClickableSpan(it, functionArray[index],underLine)
+            spannableString.withClickableSpan(it, functionArray[index], underLine)
         }
         boldTextArray.let {
             boldTextArray.forEachIndexed { index, it ->
@@ -53,7 +54,7 @@ fun SpannableString.withClickableSpan(
 
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
-            ds.bgColor=Color.parseColor("#FFFFFF")
+            ds.bgColor = Color.parseColor("#FFFFFF")
             ds.isUnderlineText = underLine
         }
     }
@@ -101,4 +102,26 @@ fun SpannableString.setColorChange(
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     return this
+}
+
+fun String.getDateSplit(splitChar: String = "-"): ArrayList<Int> {
+
+    val list = arrayListOf<Int>()
+    try {
+        val dateList = this.split(splitChar)
+        list.add(dateList[0].toInt())
+        list.add(dateList[1].toInt() - 1)
+        list.add(dateList[2].toInt())
+    } catch (e: java.lang.Exception) {
+        list.clear()
+        val calendar: Calendar? = Calendar.getInstance()
+        val year = calendar!!.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        list.add(dayOfMonth)
+        list.add(month)
+        list.add(year)
+    }
+    return list
 }
