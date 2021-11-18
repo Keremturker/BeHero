@@ -6,13 +6,16 @@
         <entry key="app/src/main/res/drawable/button_radius_bg.xml" value="0.2703125" />
         <entry key="app/src/main/res/drawable/edittext_custom_cursor.xml" value="0.2703125" />
         <entry key="app/src/main/res/drawable/edittext_radius_bg.xml" value="0.18425925925925926" />
+        <entry key="app/src/main/res/drawable/ic_analysis.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/drawable/ic_blood.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_date.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_gender.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.44731182795698926" />
         <entry key="app/src/main/res/layout/custom_gender_layout.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -26,6 +29,7 @@
         <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_row.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.34427083333333336" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.23333333333333334" />
       </map>
     </option>
   </component>

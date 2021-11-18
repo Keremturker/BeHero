@@ -20,14 +20,14 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="@dimen/space_small">
 
 
             <ImageView
                 android:id="@+id/imgLogo"
-                android:layout_width="80dp"
+                android:layout_width="@dimen/space_large_5"
                 android:layout_height="0dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/space_med"
                 android:background="@drawable/logo_red"
                 app:layout_constraintDimensionRatio="2:3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,8 +38,8 @@
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="@dimen/space_small"
+                android:layout_marginTop="@dimen/space_med"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:textSize="30sp"
@@ -50,7 +50,7 @@
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
@@ -59,7 +59,7 @@
                 android:id="@+id/edtMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtName"
                 app:leftImage="@drawable/ic_mail" />
@@ -68,7 +68,7 @@
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtMail"
                 app:leftImage="@drawable/ic_password" />
@@ -77,7 +77,7 @@
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/edtPassword"
                 app:leftImage="@drawable/ic_phone" />
@@ -85,19 +85,19 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clBirthDay"
-                app:layout_constraintTop_toBottomOf="@id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:background="@drawable/edittext_radius_bg"
-                android:paddingVertical="8dp">
+                android:paddingVertical="@dimen/space_small"
+                app:layout_constraintTop_toBottomOf="@id/edtPhone">
 
 
                 <ImageView
                     android:id="@+id/leftImageBirthDay"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_width="@dimen/space_large"
+                    android:layout_height="@dimen/space_large"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     android:background="@drawable/ic_date"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,10 +105,10 @@
 
                 <View
                     android:id="@+id/verticalLineBirthDay"
-                    android:layout_width="2dp"
+                    android:layout_width="@dimen/space_small_3"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:background="@color/lineColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/leftImageBirthDay"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -117,8 +117,8 @@
                     android:id="@+id/txtBirthday"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:paddingVertical="@dimen/space_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
                     app:layout_constraintTop_toTopOf="parent"
@@ -129,22 +129,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:background="@drawable/edittext_radius_bg"
-                android:paddingVertical="8dp"
+                android:paddingVertical="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/clBirthDay">
 
 
                 <ImageView
                     android:id="@+id/leftImageGender"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_width="@dimen/space_large"
+                    android:layout_height="@dimen/space_large"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     android:background="@drawable/ic_gender"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,10 +151,10 @@
 
                 <View
                     android:id="@+id/verticalLineGender"
-                    android:layout_width="2dp"
+                    android:layout_width="@dimen/space_small_3"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:background="@color/lineColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/leftImageGender"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -165,7 +164,7 @@
                     layout="@layout/custom_gender_layout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineGender"
                     app:layout_constraintTop_toTopOf="parent"
@@ -179,17 +178,17 @@
                 android:id="@+id/clBloodGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:background="@drawable/edittext_radius_bg"
-                android:paddingVertical="8dp"
+                android:paddingVertical="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/clGender">
 
 
                 <ImageView
                     android:id="@+id/leftImage"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_width="@dimen/space_large"
+                    android:layout_height="@dimen/space_large"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     android:background="@drawable/ic_blood"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -197,10 +196,10 @@
 
                 <View
                     android:id="@+id/verticalLine"
-                    android:layout_width="2dp"
+                    android:layout_width="@dimen/space_small_3"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:background="@color/lineColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/leftImage"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -210,7 +209,7 @@
                     layout="@layout/custom_blood_group_layout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLine"
                     app:layout_constraintTop_toTopOf="parent"
@@ -225,17 +224,17 @@
                 android:id="@+id/clAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:background="@drawable/edittext_radius_bg"
-                android:paddingVertical="8dp"
+                android:paddingVertical="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/clBloodGroup">
 
 
                 <ImageView
                     android:id="@+id/leftImageAddress"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_width="@dimen/space_large"
+                    android:layout_height="@dimen/space_large"
+                    android:layout_marginHorizontal="@dimen/space_small"
                     android:background="@drawable/ic_location"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -243,10 +242,10 @@
 
                 <View
                     android:id="@+id/verticalLineAddress"
-                    android:layout_width="2dp"
+                    android:layout_width="@dimen/space_small_3"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="8dp"
-                    android:background="#D6D6D6"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:background="@color/lineColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/leftImageAddress"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -255,8 +254,8 @@
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:paddingVertical="8dp"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:paddingVertical="@dimen/space_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineAddress"
                     app:layout_constraintTop_toTopOf="parent"
@@ -269,20 +268,19 @@
 
             <Button
                 android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="16dp"
-                android:background="@drawable/button_radius_bg"
-                android:text="@string/register_button_text"
+                style="@style/Button.Main"
+                android:layout_marginTop="@dimen/space_small"
+                 android:text="@string/register_button_text"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/clAddress" />
 
             <TextView
                 android:id="@+id/txtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:textSize="18sp"

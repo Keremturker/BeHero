@@ -1,13 +1,13 @@
 <shape
     xmlns:android="http://schemas.android.com/apk/res/android">
     <solid
-        android:color="#F8F8F8">
+        android:color="@color/edittext_bg_color">
     </solid>
 
     <corners
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"
-        android:bottomLeftRadius="10dp"
-        android:bottomRightRadius="10dp">
+        android:topLeftRadius="@dimen/space_small"
+        android:topRightRadius="@dimen/space_small"
+        android:bottomLeftRadius="@dimen/space_small"
+        android:bottomRightRadius="@dimen/space_small">
     </corners>
 </shape>

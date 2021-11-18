@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red_700"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp"
+        android:paddingHorizontal="@dimen/space_med"
+        android:paddingVertical="@dimen/space_med"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/imgCurrentLocation"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/space_large"
+            android:layout_height="@dimen/space_large"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_my_location_24" />
@@ -56,22 +56,20 @@
             style="@style/Textview.Base.Semi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             android:layout_centerVertical="true"
-            android:layout_marginStart="8dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/space_small"
             android:layout_toStartOf="@id/btnPick"
-            android:paddingVertical="8dp"
+            android:paddingVertical="@dimen/space_small"
             android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btnPick"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            style="@style/Button.Main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="8dp"
-            android:background="@drawable/button_radius_bg"
-            android:text="@string/pick_button_text"  />
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/pick_button_text" />
 
 
     </RelativeLayout>
