@@ -10,9 +10,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
     override val viewModel: UserVM by viewModels()
 
-    override fun getViewBinding() = FragmentUserBinding .inflate(layoutInflater)
+    override fun getViewBinding() = FragmentUserBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {}
 
+    override fun onReselected() {
+        super.onReselected()
+    }
 
 }

@@ -11,6 +11,6 @@ class SplashVM @Inject constructor(app: Application) : BaseViewModel(app){
 
 
     fun navToLogin(){
-        navigateFragment(R.id.nav_action_loginFragment_global)
+        navigateFragment(R.id.nav_action_RemoveLoginFragment_global)
     }
 }

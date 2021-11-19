@@ -10,13 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
+import com.keremturker.behero.ui.activity.MainScreenActivity.OnReselectedDelegate
 import com.keremturker.behero.ui.activity.SelectedNavGraph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
 abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewModel> :
-    Fragment() {
+    Fragment(), OnReselectedDelegate {
 
     private val baseActivity by lazy { activity as BaseActivity<*, *>? }
     open var onNavigationViewShow = false
@@ -100,4 +102,6 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
             }
         }
     }
+    override fun onReselected() {}
+
 }

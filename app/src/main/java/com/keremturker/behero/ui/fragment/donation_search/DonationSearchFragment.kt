@@ -13,4 +13,7 @@ class DonationSearchFragment : BaseFragment<FragmentDonationSearchBinding, Donat
 
     override fun onFragmentCreated() {}
 
+    override fun onReselected() {
+        super.onReselected()
+    }
 }

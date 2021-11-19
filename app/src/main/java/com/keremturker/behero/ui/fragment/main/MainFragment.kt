@@ -12,4 +12,9 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {}
+
+    override fun onReselected() {
+        super.onReselected()
+    }
+
 }

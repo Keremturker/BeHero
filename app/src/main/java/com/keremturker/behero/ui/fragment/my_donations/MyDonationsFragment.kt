@@ -12,4 +12,9 @@ class MyDonationsFragment : BaseFragment<FragmentMyDonationsBinding, MyDonations
     override fun getViewBinding() = FragmentMyDonationsBinding.inflate(layoutInflater)
 
     override fun onFragmentCreated() {}
+
+    override fun onReselected() {
+        super.onReselected()
+    }
+
 }
