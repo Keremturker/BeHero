@@ -21,7 +21,6 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     Fragment(), OnReselectedDelegate {
 
     private val baseActivity by lazy { activity as BaseActivity<*, *>? }
-    open var onNavigationViewShow = false
 
 
     lateinit var binding: BindingType
@@ -37,7 +36,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding()
-        showNavigationView(onNavigationViewShow)
+        showNavigationView()
         onFragmentCreated()
         observe()
         observeActions()
@@ -81,16 +80,18 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
 
     open fun onPermissionGranted(permissions: Array<String>) {}
 
-    open fun onPermissionDenied(permissions: Array<String>) { }
+    open fun onPermissionDenied(permissions: Array<String>) {}
 
 
     fun showNavigationFragment(selectedNavGraph: SelectedNavGraph) {
         (activity as MainScreenActivity?)?.showNavigationFragment(selectedNavGraph)
     }
 
-    fun showNavigationView(isShow: Boolean) {
+    fun showNavigationView() {
         GlobalScope.launch(Dispatchers.Main) {
-            (activity as MainScreenActivity?)?.setNavigationView(isShow)
+            (activity as MainScreenActivity?)?.setNavigationView(
+                baseActivity?.onNavigationViewShow ?: true
+            )
         }
     }
 
@@ -102,6 +103,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
             }
         }
     }
+
     override fun onReselected() {}
 
 }
