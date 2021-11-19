@@ -19,8 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:paddingBottom="@dimen/space_small">
+            android:layout_height="0dp" >
 
 
             <ImageView
@@ -39,15 +38,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/space_small"
-                android:layout_marginTop="@dimen/space_med"
+                android:layout_marginTop="@dimen/space_small"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
                 android:textSize="24sp"
                 app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
-
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtName"
+                android:hint="@string/name_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
@@ -58,6 +57,7 @@
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtMail"
+                android:hint="@string/email_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
@@ -77,13 +77,13 @@
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
+                android:hint="@string/phone_hint_text"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
                 android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/clPassword"
                 app:leftImage="@drawable/ic_phone" />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clBirthDay"
@@ -119,10 +119,11 @@
                 <TextView
                     android:id="@+id/txtBirthday"
                     android:layout_width="0dp"
+                    android:text="@string/birthday_hint_text"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
                     android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="@dimen/space_small"
+                    android:paddingVertical="@dimen/space_small_1"
                     android:textColor="@color/dark_gry"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
@@ -132,7 +133,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clGender"
@@ -224,7 +224,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clAddress"
                 android:layout_width="match_parent"
@@ -258,10 +257,12 @@
                 <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
+                    android:text="@string/address_hint_text"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
                     android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="@dimen/space_small"
+                    android:paddingVertical="@dimen/space_small_1"
+                    android:textColor="@color/dark_gry"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineAddress"
                     app:layout_constraintTop_toTopOf="parent"
@@ -271,18 +272,17 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <Button
                 android:id="@+id/btnRegister"
                 style="@style/Button.Main"
-                android:layout_marginTop="@dimen/space_small"
-                android:text="@string/register_button_text"
+                 android:text="@string/register_button_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/clAddress" />
 
             <TextView
+                android:text="sadas"
                 android:id="@+id/txtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -293,7 +293,6 @@
                 app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </ScrollView>
 

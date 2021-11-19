@@ -11,6 +11,12 @@
     <string name="forget_password">Forgot Password?</string>
     <string name="select_location_text">Select Current Position</string>
     <string name="permission_denied">Permission Denied</string>
+    <string name="name_hint_text">Name</string>
+    <string name="email_hint_text">Email</string>
+    <string name="password_hint_text">Password</string>
+    <string name="phone_hint_text">Phone</string>
+    <string name="birthday_hint_text">Select your birthday</string>
+    <string name="address_hint_text">Select your address</string>
 
     <!-- Button Text-->
     <string name="login_button_text">LOG IN</string>

@@ -13,9 +13,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
 
     override fun onFragmentCreated() {
 
-        binding.txtTitle.makeClickableText(fullText = getString(R.string.logo_title_full_text),multiColorArray = arrayOf(getString(R.string.logo_title_part1),getString(R.string.logo_title_part2)))
+        binding.txtTitle.makeClickableText(
+            fullText = getString(R.string.logo_title_full_text),
+            multiColorArray = arrayOf(
+                getString(R.string.logo_title_part1),
+                getString(R.string.logo_title_part2)
+            )
+        )
 
-        binding.txtRegister.makeClickableText(getString(R.string.register_title_full_text),clickableTextArray = arrayOf(getString(R.string.register_title_clickable_text)),functionArray = arrayOf({viewModel.goToRegister()}),multiColorArray = arrayOf(getString(R.string.register_title_clickable_text)))
+        binding.txtRegister.makeClickableText(
+            getString(R.string.register_title_full_text),
+            clickableTextArray = arrayOf(getString(R.string.register_title_clickable_text)),
+            functionArray = arrayOf({ viewModel.goToRegister() }),
+            multiColorArray = arrayOf(getString(R.string.register_title_clickable_text))
+        )
     }
-
 }

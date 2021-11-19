@@ -12,22 +12,35 @@
         android:layout_width="@dimen/space_large_5"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/space_med"
+        android:layout_marginBottom="@dimen/space_small"
         android:background="@drawable/logo_red"
+        app:layout_constraintBottom_toTopOf="@id/txtTitle"
         app:layout_constraintDimensionRatio="2:3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/space_small"
-        android:layout_marginTop="@dimen/space_med"
+        android:layout_marginBottom="@dimen/space_large_1"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center_horizontal"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/imgLogo" />
+        app:layout_constraintBottom_toTopOf="@id/edtMail"
+        app:layout_goneMarginBottom="@dimen/space_med" />
+
+    <com.keremturker.behero.commons.CustomEdittext
+        android:id="@+id/edtMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_small"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="@string/email_hint_text"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@id/viewMiddle"
+        app:leftImage="@drawable/ic_mail" />
 
     <View
         android:id="@+id/viewMiddle"
@@ -37,17 +50,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.keremturker.behero.commons.CustomEdittext
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_small"
-        android:fontFamily="@font/poppins_regular"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@id/viewMiddle"
-        app:leftImage="@drawable/ic_mail" />
-
-
 
     <include
         android:id="@+id/clPassword"
@@ -68,6 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/clPassword" />
 
     <TextView
+        android:id="@+id/txtForgetPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_small"
