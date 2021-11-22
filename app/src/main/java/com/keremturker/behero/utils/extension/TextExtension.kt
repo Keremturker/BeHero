@@ -8,6 +8,7 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import java.util.*
@@ -125,3 +126,6 @@ fun String.getDateSplit(splitChar: String = "-"): ArrayList<Int> {
     }
     return list
 }
+
+fun String?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+

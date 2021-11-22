@@ -9,6 +9,9 @@ object Constants {
     //Messages
     const val ERROR_MESSAGE = "Unexpected error!"
 
+    //References
+    const val USERS_REF = "users"
+
     val permissionLocation = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION

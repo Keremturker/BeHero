@@ -1,12 +1,14 @@
 package com.keremturker.behero.ui.fragment.register
 
 
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentRegisterBinding
 import com.keremturker.behero.model.Response.*
+import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
@@ -39,7 +41,18 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
         //  binding.bloodLayout.bloodGroup.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button -> })
 
         binding.btnRegister.setOnClickListener {
-            viewModel.signUpWithMail()
+            val name = binding.edtName.getText()
+            val mail = binding.edtMail.getText()
+            val passWord = binding.clPassword.edtPassword.text.toString()
+            val birthDay = binding.txtBirthday.text.toString()
+            val address = binding.txtAddress.text.toString()
+            viewModel.signUpWithMail(
+                name = name,
+                mail = mail,
+                passWord = passWord,
+                birthDay = birthDay,
+                address = address
+            )
         }
 
         binding.txtAddress.setOnClickListener {
@@ -58,9 +71,26 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             when (response) {
                 is Loading -> viewModel.loadingDetection.postValue(true)
                 is Success -> {
+                    viewModel.createUserInFirestore(createUserDate(response.data.uid))
+                }
+                is Failure -> {
+                    Log.d("test123", "signup" + response.errorMessage)
+                    viewModel.loadingDetection.postValue(false)
+                }
+            }
+        }
+
+        viewModel.createUser.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Loading -> {
+                }
+                is Success -> {
+                    Log.d("test123", "başarılı")
+
                     viewModel.loadingDetection.postValue(false)
                 }
                 is Failure -> {
+                    Log.d("test123", "create " + response.errorMessage)
                     viewModel.loadingDetection.postValue(false)
                 }
             }
@@ -91,4 +121,24 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
         }
     }
 
+    private fun createUserDate(uUid: String): Users {
+        val name = binding.edtName.getText()
+        val mail = binding.edtMail.getText()
+        val phone = binding.edtPhone.getText()
+        val birthDay = binding.txtBirthday.text.toString()
+        val gender = binding.genderLayout.genderGroup.checkedRadioButtonText.toString()
+        val bloodGroup = binding.bloodLayout.bloodGroup.checkedRadioButtonText.toString()
+        val address = binding.txtAddress.text.toString()
+
+        return Users(
+            uuid = uUid,
+            name = name,
+            mail = mail,
+            birthDay = birthDay,
+            gender = gender,
+            bloodGroup = bloodGroup,
+            address = address,
+            phone = phone
+        )
+    }
 }

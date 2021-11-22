@@ -51,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
-                android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
 
@@ -62,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
-                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/edtName"
                 app:leftImage="@drawable/ic_mail" />
 
@@ -81,7 +80,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
-                android:inputType="textNoSuggestions|textVisiblePassword"
                 app:layout_constraintTop_toBottomOf="@id/clPassword"
                 app:leftImage="@drawable/ic_phone" />
 

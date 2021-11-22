@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <com.keremturker.behero.commons.MultiLineRadioGroup
-        android:id="@+id/bloodGroup"
+        android:id="@+id/genderGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
          multi_line_radio_group:max_in_row="4"

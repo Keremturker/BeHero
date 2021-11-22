@@ -10,7 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
- import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.res.ResourcesCompat
 import com.keremturker.behero.R
 
 
@@ -40,13 +40,14 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
                 setSingleLineFromAttr(this)
                 setEnabledFromAttr(this)
                 setDigitsFromAttr(this)
-                setFontFamily( this)
+                setFontFamily(this)
             } finally {
                 recycle()
             }
         }
     }
 
+    fun getText() = inputText.text.toString()
 
     private fun setImeOptionsFromAttr(attributeSet: TypedArray) {
         val imeOption = attributeSet.getInt(
@@ -73,7 +74,10 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
 
     private fun setSingleLineFromAttr(attributeSet: TypedArray) {
         val singleLine =
-            attributeSet.getBoolean(com.keremturker.behero.R.styleable.CustomEdittext_android_singleLine, true)
+            attributeSet.getBoolean(
+                com.keremturker.behero.R.styleable.CustomEdittext_android_singleLine,
+                true
+            )
         inputText.isSingleLine = singleLine
     }
 
@@ -106,7 +110,7 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
         }
     }
 
-    private fun setFontFamily( attributeSet: TypedArray) {
+    private fun setFontFamily(attributeSet: TypedArray) {
         val fontFamilyId: Int =
             attributeSet.getResourceId(R.styleable.CustomEdittext_android_fontFamily, 0)
         if (fontFamilyId > 0) {
