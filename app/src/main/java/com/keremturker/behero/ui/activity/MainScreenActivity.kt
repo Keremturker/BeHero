@@ -13,14 +13,11 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
 import com.keremturker.behero.model.NavigateFragmentParams
+import com.keremturker.behero.utils.SelectedNavGraph
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
-enum class SelectedNavGraph {
-    Splash, Home, Search, Donation, User
-}
 
 @AndroidEntryPoint
 class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>() {
@@ -28,14 +25,12 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     private var currentNavController: NavController? = null
     private var isFirstCallOfFirstTab = true
 
-
     override fun getViewBinding() = ActivityMainScreenBinding.inflate(layoutInflater)
     override val viewModel: MainScreenVM by viewModels()
 
+
     override fun onActivityCreated() {
-
         setupBottomNavBar()
-
     }
 
     override fun observe() {}
@@ -201,5 +196,9 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             params.extras
         )
 
+    }
+
+    override fun showHideProgress(isShow: Boolean) {
+        binding.pbLoading.visibleIf(isShow)
     }
 }

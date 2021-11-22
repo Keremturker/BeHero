@@ -6,14 +6,16 @@ import androidx.fragment.app.viewModels
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentRegisterBinding
+import com.keremturker.behero.model.Response.*
 import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
 import com.keremturker.behero.utils.extension.getNavigationResult
 import com.keremturker.behero.utils.extension.makeClickableText
 import com.keremturker.behero.utils.showDatePicker
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override val viewModel: RegisterVM by viewModels()
 
@@ -36,7 +38,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
 
         //  binding.bloodLayout.bloodGroup.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button -> })
 
-        binding.btnRegister.setOnClickListener {}
+        binding.btnRegister.setOnClickListener {
+            viewModel.signUpWithMail()
+        }
 
         binding.txtAddress.setOnClickListener {
             requestPermission(PERMISSION_LOCATION, *permissionLocation)
@@ -45,6 +49,20 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
         binding.txtBirthday.setOnClickListener {
             requireContext().showDatePicker(binding.txtBirthday.text.toString()) {
                 binding.txtBirthday.text = it
+            }
+        }
+    }
+
+    override fun observe() {
+        viewModel.signUpUser.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Loading -> viewModel.loadingDetection.postValue(true)
+                is Success -> {
+                    viewModel.loadingDetection.postValue(false)
+                }
+                is Failure -> {
+                    viewModel.loadingDetection.postValue(false)
+                }
             }
         }
     }
@@ -68,9 +86,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override fun onResume() {
         super.onResume()
         val address = this.getNavigationResult(ADDRESS)
-
         address?.value?.let {
             binding.txtAddress.text = it
         }
     }
+
 }

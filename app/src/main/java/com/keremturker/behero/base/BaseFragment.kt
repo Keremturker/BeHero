@@ -11,7 +11,7 @@ import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
 import com.keremturker.behero.ui.activity.MainScreenActivity.OnReselectedDelegate
-import com.keremturker.behero.ui.activity.SelectedNavGraph
+import com.keremturker.behero.utils.SelectedNavGraph
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -47,6 +47,9 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     private fun observeActions() {
         viewModel.navigateFragmentDetection.observeThis {
             baseActivity?.navigateFragment(it)
+        }
+        viewModel.loadingDetection.observeThis {
+            baseActivity?.showHideProgress(it)
         }
     }
 

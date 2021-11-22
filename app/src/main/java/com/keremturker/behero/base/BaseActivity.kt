@@ -6,7 +6,7 @@ import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.R
 import com.keremturker.behero.model.NavigateFragmentParams
 import com.keremturker.behero.ui.activity.MainScreenActivity
-import com.keremturker.behero.ui.activity.SelectedNavGraph
+import com.keremturker.behero.utils.SelectedNavGraph
 
 abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewModel> :
     AppCompatActivity() {
@@ -16,6 +16,7 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun observe()
     abstract fun navigateFragment(params: NavigateFragmentParams)
     abstract fun getViewBinding(): BindingType
+    abstract fun showHideProgress(isShow:Boolean)
     protected abstract val viewModel: ViewModelType
     open var onNavigationViewShow = false
 
@@ -51,5 +52,4 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
             navigateFragment(params)
         }
     }
-
 }

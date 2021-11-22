@@ -11,6 +11,7 @@ import com.keremturker.behero.utils.SingleLiveEvent
 abstract class BaseViewModel(app: Application) : AndroidViewModel(app) {
 
     val navigateFragmentDetection by lazy { SingleLiveEvent<NavigateFragmentParams>() }
+    val loadingDetection by lazy { SingleLiveEvent<Boolean>() }
 
     fun navigateFragment(
         navAction: Int,

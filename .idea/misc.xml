@@ -17,7 +17,7 @@
         <entry key="app/src/main/res/drawable/splash_image.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12129629629629629" />
-        <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_gender_layout.xml" value="0.17481884057971014" />
