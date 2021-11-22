@@ -2,7 +2,6 @@ package com.keremturker.behero.ui.fragment.register
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
@@ -10,6 +9,7 @@ import com.keremturker.behero.base.BaseViewModel
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.repository.AuthRepository
+import com.keremturker.behero.utils.SingleLiveEvent
 import com.keremturker.behero.utils.extension.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -22,10 +22,10 @@ class RegisterVM @Inject constructor(
     val app: Application
 ) : BaseViewModel(app) {
 
-    private val _signUpUser = MutableLiveData<Response<FirebaseUser>>()
+    private val _signUpUser = SingleLiveEvent<Response<FirebaseUser>>()
     val signUpUser: LiveData<Response<FirebaseUser>> = _signUpUser
 
-    private val _createUser = MutableLiveData<Response<Void>>()
+    private val _createUser = SingleLiveEvent<Response<Void>>()
     val createUser: LiveData<Response<Void>> = _createUser
 
     fun goToLogin() {
@@ -40,15 +40,13 @@ class RegisterVM @Inject constructor(
         name: String,
         mail: String,
         passWord: String,
-        birthDay: String,
-        address: String
+        birthDay: String
     ) {
         if (signUpValidation(
                 name = name,
                 mail = mail,
                 passWord = passWord,
-                birthDay = birthDay,
-                address = address
+                birthDay = birthDay
             )
         ) {
             viewModelScope.launch {
@@ -63,8 +61,6 @@ class RegisterVM @Inject constructor(
 
         } else if (passWord.isEmpty()) {
             _signUpUser.postValue(Response.Failure("Şifre Boş"))
-        } else if (address == app.getString(R.string.address_hint_text)) {
-            _signUpUser.postValue(Response.Failure("Adres Boş"))
         } else if (birthDay == app.getString(R.string.birthday_hint_text)) {
             _signUpUser.postValue(Response.Failure("Doğum günü seç"))
         }
@@ -83,11 +79,10 @@ class RegisterVM @Inject constructor(
         name: String,
         mail: String,
         passWord: String,
-        birthDay: String,
-        address: String
+        birthDay: String
     ): Boolean {
         return !(name.isEmpty() || !mail.isValidEmail() || passWord.isEmpty() || birthDay == app.getString(
             R.string.birthday_hint_text
-        ) || address == app.getString(R.string.address_hint_text))
+        ))
     }
 }

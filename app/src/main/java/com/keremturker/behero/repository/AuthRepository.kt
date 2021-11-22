@@ -25,12 +25,12 @@ class AuthRepository @Inject constructor(
             val authResult = auth.createUserWithEmailAndPassword(mail, password).await()
             if (authResult.user != null) {
                 emit(Response.Success(authResult.user!!))
-                auth.signOut()
             } else {
                 emit(Failure(ERROR_MESSAGE))
             }
         } catch (e: Exception) {
             emit(Failure(e.message ?: ERROR_MESSAGE))
+            auth.signOut()
         }
     }
 
@@ -45,6 +45,7 @@ class AuthRepository @Inject constructor(
             }
         } catch (e: Exception) {
             emit(Failure(e.message ?: ERROR_MESSAGE))
+            auth.signOut()
         }
     }
 }

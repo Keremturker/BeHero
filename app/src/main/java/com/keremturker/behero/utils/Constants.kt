@@ -4,7 +4,7 @@ import android.Manifest
 
 object Constants {
     const val PERMISSION_LOCATION = 0
-    const val ADDRESS="ADDRESS"
+    const val ADDRESS = "ADDRESS"
 
     //Messages
     const val ERROR_MESSAGE = "Unexpected error!"
@@ -17,4 +17,5 @@ object Constants {
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
 
+    fun emptyText() = ""
 }
