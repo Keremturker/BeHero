@@ -53,7 +53,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 edtName.apply { showError(getText().isEmpty()) }
                 edtMail.apply { showError(!getText().isValidEmail()) }
                 clPassword.apply { underLine.visibleIf(edtPassword.text.toString().isEmpty()) }
-                birthDayLine.visibleIf(txtBirthday.text==getText(R.string.birthday_hint_text))
+                birthDayLine.visibleIf(txtBirthday.text == getText(R.string.birthday_hint_text))
             }
             viewModel.signUpWithMail(
                 name = name,
@@ -98,12 +98,23 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 is Loading -> {
                 }
                 is Success -> {
+                    viewModel.sendActivationMail()
+                }
+                is Failure -> {
+                    viewModel.loadingDetection.postValue(false)
+                    response.errorMessage.showAsDialog(requireContext())
+                }
+            }
+        }
+        viewModel.activationMail.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Loading -> { }
+                is Success -> {
                     viewModel.loadingDetection.postValue(false)
                     clearView()
-                    getString(R.string.account_activation).showAsDialog(requireContext()){
+                    getString(R.string.account_activation).showAsDialog(requireContext()) {
                         viewModel.goToLogin()
                     }
-
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)

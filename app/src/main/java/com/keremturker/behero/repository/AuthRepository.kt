@@ -40,7 +40,6 @@ class AuthRepository @Inject constructor(
             auth.currentUser?.apply {
                 usersRef.document(uid).set(user).await().also {
                     emit(Response.Success(it))
-                    auth.signOut()
                 }
             }
         } catch (e: Exception) {

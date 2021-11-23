@@ -3,6 +3,7 @@ package com.keremturker.behero.ui.fragment.register
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseViewModel
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterVM @Inject constructor(
     private val repository: AuthRepository,
+    private val auth: FirebaseAuth,
     val app: Application
 ) : BaseViewModel(app) {
 
@@ -27,6 +29,11 @@ class RegisterVM @Inject constructor(
 
     private val _createUser = SingleLiveEvent<Response<Void>>()
     val createUser: LiveData<Response<Void>> = _createUser
+
+
+    private val _activationMail = SingleLiveEvent<Response<Boolean>>()
+    val activationMail: LiveData<Response<Boolean>> = _activationMail
+
 
     fun goToLogin() {
         navigateFragment(R.id.nav_action_RemoveRegisterFragment_global)
@@ -64,6 +71,20 @@ class RegisterVM @Inject constructor(
         viewModelScope.launch {
             repository.createUserInFirestore(user).collect {
                 _createUser.postValue(it)
+            }
+        }
+    }
+
+    fun sendActivationMail() {
+        _activationMail.postValue(Response.Loading)
+
+        auth.currentUser?.sendEmailVerification()?.addOnCompleteListener {
+            auth.signOut()
+            if (it.isSuccessful) {
+                _activationMail.postValue(Response.Success(true))
+
+            } else {
+                _activationMail.postValue(Response.Failure(it.exception?.message ?: ""))
             }
         }
     }
