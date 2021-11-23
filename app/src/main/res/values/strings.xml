@@ -23,6 +23,8 @@
     <string name="login_button_text">LOG IN</string>
     <string name="register_button_text">REGISTER</string>
     <string name="pick_button_text">PICK</string>
+    <string name="ok">OKEY</string>
+    <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>
 
     <string-array name="blood_group">
         <item>A+</item>

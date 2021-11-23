@@ -4,7 +4,6 @@ package com.keremturker.behero.ui.fragment.register
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
@@ -15,13 +14,9 @@ import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.Constants.permissionLocation
-import com.keremturker.behero.utils.extension.getNavigationResult
-import com.keremturker.behero.utils.extension.isValidEmail
-import com.keremturker.behero.utils.extension.makeClickableText
-import com.keremturker.behero.utils.extension.visibleIf
+import com.keremturker.behero.utils.extension.*
 import com.keremturker.behero.utils.showDatePicker
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
@@ -30,9 +25,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
     var birthDay = ""
-
-    @Inject
-    lateinit var auth: FirebaseAuth
 
     override fun onFragmentCreated() {
         binding.txtTitle.makeClickableText(
@@ -96,8 +88,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    Toast.makeText(requireContext(),response.errorMessage,Toast.LENGTH_SHORT).show()
-
+                    response.errorMessage.showAsDialog(requireContext())
                 }
             }
         }
@@ -109,9 +100,14 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 is Success -> {
                     viewModel.loadingDetection.postValue(false)
                     clearView()
+                    getString(R.string.account_activation).showAsDialog(requireContext()){
+                        viewModel.goToLogin()
+                    }
+
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
+                    response.errorMessage.showAsDialog(requireContext())
                 }
             }
         }
