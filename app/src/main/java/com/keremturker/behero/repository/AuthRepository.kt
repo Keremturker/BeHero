@@ -30,7 +30,6 @@ class AuthRepository @Inject constructor(
             }
         } catch (e: Exception) {
             emit(Failure(e.message ?: ERROR_MESSAGE))
-            auth.signOut()
         }
     }
 
@@ -41,6 +40,7 @@ class AuthRepository @Inject constructor(
             auth.currentUser?.apply {
                 usersRef.document(uid).set(user).await().also {
                     emit(Response.Success(it))
+                    auth.signOut()
                 }
             }
         } catch (e: Exception) {

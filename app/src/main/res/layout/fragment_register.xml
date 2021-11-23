@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" >
+            android:layout_height="0dp">
 
 
             <ImageView
@@ -46,40 +46,40 @@
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtName"
-                android:hint="@string/name_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
+                android:hint="@string/name_hint_text"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtMail"
-                android:hint="@string/email_hint_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
+                android:hint="@string/email_hint_text"
                 android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/edtName"
                 app:leftImage="@drawable/ic_mail" />
 
             <include
                 android:id="@+id/clPassword"
-                android:layout_margin="@dimen/space_small"
                 layout="@layout/edittext_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
                 app:layout_constraintTop_toBottomOf="@id/edtMail" />
 
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
-                android:hint="@string/phone_hint_text"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
+                android:hint="@string/phone_hint_text"
                 app:layout_constraintTop_toBottomOf="@id/clPassword"
                 app:leftImage="@drawable/ic_phone" />
 
@@ -94,41 +94,64 @@
                 app:layout_constraintTop_toBottomOf="@id/edtPhone">
 
 
-                <ImageView
-                    android:id="@+id/leftImageBirthDay"
-                    android:layout_width="@dimen/space_large"
-                    android:layout_height="@dimen/space_large"
-                    android:layout_marginHorizontal="@dimen/space_small"
-                    android:background="@drawable/ic_date"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/leftImageBirthDay"
+                        android:layout_width="@dimen/space_large"
+                        android:layout_height="@dimen/space_large"
+                        android:layout_marginHorizontal="@dimen/space_small"
+                        android:background="@drawable/ic_date"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/verticalLineBirthDay"
+                        android:layout_width="@dimen/space_small_3"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="@dimen/space_small"
+                        android:background="@color/lineColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/leftImageBirthDay"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtBirthday"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_small"
+                        android:fontFamily="@font/poppins_regular"
+                        android:paddingVertical="@dimen/space_small_1"
+                        android:text="@string/birthday_hint_text"
+                        android:textColor="@color/dark_gry"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
-                    android:id="@+id/verticalLineBirthDay"
-                    android:layout_width="@dimen/space_small_3"
-                    android:layout_height="0dp"
-                    android:layout_marginHorizontal="@dimen/space_small"
-                    android:background="@color/lineColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/leftImageBirthDay"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtBirthday"
+                    android:id="@+id/birthDayLine"
                     android:layout_width="0dp"
-                    android:text="@string/birthday_hint_text"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/space_small"
-                    android:fontFamily="@font/poppins_regular"
-                    android:paddingVertical="@dimen/space_small_1"
-                    android:textColor="@color/dark_gry"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="@dimen/space_small_2"
+                    android:layout_marginEnd="@dimen/space_small"
+                    android:background="@color/red_500"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/verticalLineBirthDay"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    />
-
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -255,11 +278,11 @@
                 <TextView
                     android:id="@+id/txtAddress"
                     android:layout_width="0dp"
-                    android:text="@string/address_hint_text"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/space_small"
                     android:fontFamily="@font/poppins_regular"
                     android:paddingVertical="@dimen/space_small_1"
+                    android:text="@string/address_hint_text"
                     android:textColor="@color/dark_gry"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/verticalLineAddress"
@@ -273,20 +296,20 @@
             <Button
                 android:id="@+id/btnRegister"
                 style="@style/Button.Main"
-                 android:text="@string/register_button_text"
+                android:text="@string/register_button_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/clAddress" />
 
             <TextView
-                android:text="sadas"
                 android:id="@+id/txtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
+                android:text="sadas"
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 

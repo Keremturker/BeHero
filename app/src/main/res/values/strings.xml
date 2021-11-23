@@ -17,6 +17,7 @@
     <string name="phone_hint_text">Phone</string>
     <string name="birthday_hint_text">Select your birthday</string>
     <string name="address_hint_text">Select your address</string>
+    <string name="required_filed_text">Please fill in all the required fields</string>
 
     <!-- Button Text-->
     <string name="login_button_text">LOG IN</string>

@@ -6,37 +6,62 @@
     android:background="@drawable/edittext_radius_bg"
     android:paddingVertical="@dimen/space_small">
 
-    <ImageView
-        android:id="@+id/leftImage"
-        android:layout_width="@dimen/space_large"
-        android:layout_height="@dimen/space_large"
-        android:layout_marginHorizontal="@dimen/space_small"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/leftImage"
+            android:layout_width="@dimen/space_large"
+            android:layout_height="@dimen/space_large"
+            android:layout_marginHorizontal="@dimen/space_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/verticalLine"
+            android:layout_width="@dimen/space_small_3"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/space_small"
+            android:layout_marginStart="4dp"
+            android:background="@color/lineColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/leftImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_small"
+            android:background="@null"
+            android:paddingVertical="@dimen/space_small_3"
+            android:textColor="@color/dark_gry"
+            android:textCursorDrawable="@drawable/edittext_custom_cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/verticalLine"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <View
-        android:id="@+id/verticalLine"
-        android:layout_width="@dimen/space_small_3"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/space_small"
-        android:background="@color/lineColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/leftImage"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/inputText"
+        android:id="@+id/underLine"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_small"
-        android:background="@null"
-        android:paddingVertical="@dimen/space_small_3"
-        android:textColor="@color/dark_gry"
-        android:textCursorDrawable="@drawable/edittext_custom_cursor"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="@dimen/space_small_2"
+        android:layout_marginEnd="@dimen/space_small"
+        android:background="@color/red_500"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/verticalLine"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

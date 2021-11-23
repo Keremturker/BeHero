@@ -54,15 +54,8 @@ class RegisterVM @Inject constructor(
                     _signUpUser.postValue(it)
                 }
             }
-        } else if (name.isEmpty()) {
-            _signUpUser.postValue(Response.Failure("isim boş"))
-        } else if (!mail.isValidEmail()) {
-            _signUpUser.postValue(Response.Failure("Mail doğru değil"))
-
-        } else if (passWord.isEmpty()) {
-            _signUpUser.postValue(Response.Failure("Şifre Boş"))
-        } else if (birthDay == app.getString(R.string.birthday_hint_text)) {
-            _signUpUser.postValue(Response.Failure("Doğum günü seç"))
+        } else {
+            _signUpUser.postValue(Response.Failure(app.getString(R.string.required_filed_text)))
         }
     }
 

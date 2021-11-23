@@ -2,6 +2,7 @@ package com.keremturker.behero.ui.fragment.register
 
 
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -15,7 +16,9 @@ import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.Constants.permissionLocation
 import com.keremturker.behero.utils.extension.getNavigationResult
+import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
+import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -53,6 +56,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             val mail = binding.edtMail.getText()
             val passWord = binding.clPassword.edtPassword.text.toString()
             val birthDay = binding.txtBirthday.text.toString()
+
+            binding.apply {
+                edtName.apply { showError(getText().isEmpty()) }
+                edtMail.apply { showError(!getText().isValidEmail()) }
+                clPassword.apply { underLine.visibleIf(edtPassword.text.toString().isEmpty()) }
+                birthDayLine.visibleIf(txtBirthday.text==getText(R.string.birthday_hint_text))
+            }
             viewModel.signUpWithMail(
                 name = name,
                 mail = mail,
@@ -69,7 +79,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             requireContext().showDatePicker(binding.txtBirthday.text.toString()) {
                 binding.txtBirthday.text = it
                 birthDay = it
+                binding.birthDayLine.visibleIf(false)
             }
+        }
+        binding.clPassword.edtPassword.addTextChangedListener {
+            binding.clPassword.underLine.visibleIf(false)
         }
     }
 
@@ -82,6 +96,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
+                    Toast.makeText(requireContext(),response.errorMessage,Toast.LENGTH_SHORT).show()
+
                 }
             }
         }
@@ -93,7 +109,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 is Success -> {
                     viewModel.loadingDetection.postValue(false)
                     clearView()
-                    auth.signOut()
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)

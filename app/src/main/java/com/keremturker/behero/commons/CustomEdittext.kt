@@ -15,9 +15,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.addTextChangedListener
 import com.keremturker.behero.R
 import com.keremturker.behero.utils.extension.restoreChildViewStates
 import com.keremturker.behero.utils.extension.saveChildViewStates
+import com.keremturker.behero.utils.extension.visibleIf
 
 
 class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
@@ -25,6 +27,7 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
 
     private var inputText: EditText
     private var leftImage: ImageView
+    private var underLine: View
 
     companion object {
         private const val SPARSE_STATE_KEY = "SPARSE_STATE_KEY"
@@ -66,8 +69,13 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
         View.inflate(context, R.layout.custom_edittext, this)
         inputText = findViewById(R.id.inputText)
         leftImage = findViewById(R.id.leftImage)
+        underLine = findViewById(R.id.underLine)
 
         R.styleable.CustomEdittext.applyAttributes(attributeSet)
+
+        inputText.addTextChangedListener {
+            underLine.visibleIf(false)
+        }
     }
 
     private fun IntArray.applyAttributes(attrs: AttributeSet?) {
@@ -91,6 +99,8 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
     fun getText() = inputText.text.toString()
     fun setText(text: String) = inputText.setText(text)
     fun clearText() = inputText.setText("")
+    fun showError(isShow: Boolean) = underLine.visibleIf(isShow)
+
 
     private fun setImeOptionsFromAttr(attributeSet: TypedArray) {
         val imeOption = attributeSet.getInt(
