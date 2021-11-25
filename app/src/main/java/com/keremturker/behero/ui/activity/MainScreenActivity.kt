@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.auth.FirebaseAuth
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
@@ -18,6 +19,7 @@ import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>() {
@@ -28,9 +30,23 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     override fun getViewBinding() = ActivityMainScreenBinding.inflate(layoutInflater)
     override val viewModel: MainScreenVM by viewModels()
 
+    @Inject
+    lateinit var auth: FirebaseAuth
 
     override fun onActivityCreated() {
+        checkUser()
         setupBottomNavBar()
+
+      /*  if (viewModel.isUserLogin()){
+            Log.d("test123","login")
+            showNavigationFragment(SelectedNavGraph.Home)
+
+        }else{
+            Log.d("test123","login değil")
+            showNavigationFragment(SelectedNavGraph.Splash)
+
+        }*/
+
     }
 
     override fun observe() {}
@@ -200,5 +216,17 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     override fun showHideProgress(isShow: Boolean) {
         binding.pbLoading.visibleIf(isShow)
+    }
+
+    private fun checkUser() {
+        val user = auth.currentUser != null
+        if (user) {
+            onNavigationViewShow = true
+            (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
+            (this as MainScreenActivity?)?.setNavigationView(true)
+        } else {
+            val params = NavigateFragmentParams(R.id.nav_action_RemoveLoginFragment_global)
+            navigateFragment(params)
+        }
     }
 }

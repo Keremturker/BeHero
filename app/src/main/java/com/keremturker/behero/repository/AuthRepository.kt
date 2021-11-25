@@ -33,6 +33,25 @@ class AuthRepository @Inject constructor(
         }
     }
 
+    suspend fun firebaseSignInWithMail(mail: String, password: String) = flow {
+
+        try {
+            emit(Loading)
+            val authResult = auth.signInWithEmailAndPassword(mail, password).await()
+
+            if (authResult.user != null) {
+                emit(Response.Success(authResult.user!!))
+            } else {
+                emit(Failure(ERROR_MESSAGE))
+            }
+
+        } catch (e: Exception) {
+            emit(Failure(e.message ?: ERROR_MESSAGE))
+        }
+    }
+
+    fun firebaseSignOut() = auth.signOut()
+
 
     suspend fun createUserInFirestore(user: Users) = flow {
         try {

@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.1" />
         <entry key="app/src/main/res/layout/custom_gender_layout.xml" value="0.17481884057971014" />
+        <entry key="app/src/main/res/layout/custom_mail_verified_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/layout/edittext.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/edittext_password.xml" value="0.13448534936138243" />
         <entry key="app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25416666666666665" />

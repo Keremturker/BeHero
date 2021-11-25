@@ -18,10 +18,15 @@
     <string name="birthday_hint_text">Select your birthday</string>
     <string name="address_hint_text">Select your address</string>
     <string name="required_filed_text">Please fill in all the required fields</string>
+    <string name="not_verified_mail_text">We\'ve sent email to %1$s to verify your email address and active your account.</string>
+    <string name="send_mail_clickable_text">Click here</string>
+    <string name="send_mail_full_text">Click here if you did not receive the email verification mail.</string>
+    <string name="sent_mail_text">A verification link has been sent to your email account</string>
 
     <!-- Button Text-->
     <string name="login_button_text">LOG IN</string>
     <string name="register_button_text">REGISTER</string>
+    <string name="send_button_text">SEND</string>
     <string name="pick_button_text">PICK</string>
     <string name="ok">OKEY</string>
     <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>

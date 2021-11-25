@@ -1,10 +1,7 @@
 package com.keremturker.behero.utils.extension
 
-import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.ColorDrawable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
@@ -13,10 +10,7 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.View
-import android.view.Window
-import android.widget.Button
 import android.widget.TextView
-import com.keremturker.behero.R
 import java.util.*
 
 fun TextView.makeClickableText(
@@ -135,23 +129,4 @@ fun String.getDateSplit(splitChar: String = "-"): ArrayList<Int> {
 
 fun String?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
-fun String.showAsDialog(
-    context: Context,
-    function: (() -> Unit)? = null
-) {
-    val dialog = Dialog(context)
-    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-    dialog.setContentView(R.layout.fragment_custom_dialog)
-    dialog.setCanceledOnTouchOutside(true)
-    val t: TextView = dialog.findViewById(R.id.txtMessage)
-    t.text = this
-    val btnAction: Button = dialog.findViewById(R.id.btnAction)
 
-    btnAction.setOnClickListener {
-        dialog.dismiss()
-        function?.invoke()
-    }
-    dialog.setCancelable(false)
-    dialog.show()
-}

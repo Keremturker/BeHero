@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.R
 import com.keremturker.behero.model.NavigateFragmentParams
-import com.keremturker.behero.ui.activity.MainScreenActivity
-import com.keremturker.behero.utils.SelectedNavGraph
 
 abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewModel> :
     AppCompatActivity() {
@@ -16,13 +14,14 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun observe()
     abstract fun navigateFragment(params: NavigateFragmentParams)
     abstract fun getViewBinding(): BindingType
-    abstract fun showHideProgress(isShow:Boolean)
+    abstract fun showHideProgress(isShow: Boolean)
     protected abstract val viewModel: ViewModelType
     open var onNavigationViewShow = false
 
     var onNewBackPress: (() -> Unit)? = null
 
-    val user = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +30,7 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
         setContentView(binding.root)
         onActivityCreated()
         observe()
-        checkUser()
+
     }
 
     override fun onBackPressed() {
@@ -42,14 +41,5 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
-    private fun checkUser() {
-        if (user) {
-            onNavigationViewShow = true
-            (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
-            (this as MainScreenActivity?)?.setNavigationView(true)
-        } else {
-            val params = NavigateFragmentParams(R.id.nav_action_RemoveLoginFragment_global)
-            navigateFragment(params)
-        }
-    }
+
 }

@@ -14,7 +14,11 @@ import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.Constants.permissionLocation
-import com.keremturker.behero.utils.extension.*
+import com.keremturker.behero.utils.extension.getNavigationResult
+import com.keremturker.behero.utils.extension.isValidEmail
+import com.keremturker.behero.utils.extension.makeClickableText
+import com.keremturker.behero.utils.extension.visibleIf
+import com.keremturker.behero.utils.showAsDialog
 import com.keremturker.behero.utils.showDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 
