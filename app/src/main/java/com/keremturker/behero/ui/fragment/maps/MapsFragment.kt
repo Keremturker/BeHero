@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentMapsBinding
+import com.keremturker.behero.model.Address
 import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
@@ -30,7 +31,7 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
 
     var currentMarker: Marker? = null
-    var currentAddress = ""
+    var currentAddress = Address()
     private lateinit var mMap: GoogleMap
     private var currentLocation: Location? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
@@ -127,10 +128,10 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
     private fun moveMarket(latLng: LatLng) {
 
-        currentAddress = getTheAddress(latLng.latitude, latLng.longitude)
+        currentAddress = Address(getTheAddress(latLng.latitude, latLng.longitude),latLng.latitude,latLng.longitude)
         val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
             .snippet(address)*/.draggable(true)
-        binding.txtCurrentAddress.text = currentAddress
+        binding.txtCurrentAddress.text = currentAddress.description
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         currentMarker = mMap.addMarker(markerOptions)

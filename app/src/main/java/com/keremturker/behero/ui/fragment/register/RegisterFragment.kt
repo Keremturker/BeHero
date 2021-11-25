@@ -8,13 +8,14 @@ import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentRegisterBinding
+import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Response.*
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.Constants.permissionLocation
-import com.keremturker.behero.utils.extension.getNavigationResult
+import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
 import com.keremturker.behero.utils.extension.visibleIf
@@ -29,7 +30,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
     var birthDay = ""
-
+      var selectedAddress=Address()
     override fun onFragmentCreated() {
         binding.txtTitle.makeClickableText(
             fullText = getString(R.string.logo_title_full_text), multiColorArray = arrayOf(
@@ -112,7 +113,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
         }
         viewModel.activationMail.observe(viewLifecycleOwner) { response ->
             when (response) {
-                is Loading -> { }
+                is Loading -> {
+                }
                 is Success -> {
                     viewModel.loadingDetection.postValue(false)
                     clearView()
@@ -146,9 +148,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
 
     override fun onResume() {
         super.onResume()
-        val address = this.getNavigationResult(ADDRESS)
+        val address = this.getNavigationResultLiveData<Address>(ADDRESS)
+
         address?.value?.let {
-            binding.txtAddress.text = it
+            selectedAddress = it
+            binding.txtAddress.text = it.description
         }
         if (birthDay != "") {
             binding.txtBirthday.text = birthDay
@@ -181,7 +185,9 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             bloodGroup = bloodGroup,
             address = address,
             phone = phone,
-            timestamp = FieldValue.serverTimestamp()
+            timestamp = FieldValue.serverTimestamp(),
+            latitude = selectedAddress.latitude,
+            longitude = selectedAddress.longitude
         )
     }
 

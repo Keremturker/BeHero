@@ -80,6 +80,7 @@
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_regular"
                 android:hint="@string/phone_hint_text"
+                android:inputType="phone"
                 app:layout_constraintTop_toBottomOf="@id/clPassword"
                 app:leftImage="@drawable/ic_phone" />
 
