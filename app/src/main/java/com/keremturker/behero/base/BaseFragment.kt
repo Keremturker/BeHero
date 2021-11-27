@@ -90,7 +90,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         (activity as MainScreenActivity?)?.showNavigationFragment(selectedNavGraph)
     }
 
-    fun showNavigationView() {
+    private fun showNavigationView() {
         GlobalScope.launch(Dispatchers.Main) {
             (activity as MainScreenActivity?)?.setNavigationView(
                 baseActivity?.onNavigationViewShow ?: true
@@ -98,8 +98,24 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
+    fun setToolbar(
+        isBackIcon: Boolean = false,
+        title: String = "",
+        rightIcon: Int = 0,
+        rightIconFunction: (() -> Unit)? = null
+    ) {
+        GlobalScope.launch(Dispatchers.Main) {
+            (activity as MainScreenActivity?)?.setToolbar(
+                isBackIcon,
+                title,
+                rightIcon,
+                rightIconFunction
+            )
+        }
+    }
 
-    fun <T> LiveData<T>.observeThis(function: (T) -> Unit) {
+
+    private fun <T> LiveData<T>.observeThis(function: (T) -> Unit) {
         observe(viewLifecycleOwner) {
             it?.let {
                 function(it)

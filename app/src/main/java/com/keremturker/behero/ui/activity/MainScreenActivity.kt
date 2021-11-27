@@ -2,7 +2,6 @@ package com.keremturker.behero.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -15,6 +14,8 @@ import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
 import com.keremturker.behero.model.NavigateFragmentParams
 import com.keremturker.behero.utils.SelectedNavGraph
+import com.keremturker.behero.utils.extension.getBitmapFromVectorDrawable
+import com.keremturker.behero.utils.extension.setImage
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -34,19 +35,9 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     lateinit var auth: FirebaseAuth
 
     override fun onActivityCreated() {
+        setSupportActionBar(binding.actionBar.root)
         checkUser()
         setupBottomNavBar()
-
-      /*  if (viewModel.isUserLogin()){
-            Log.d("test123","login")
-            showNavigationFragment(SelectedNavGraph.Home)
-
-        }else{
-            Log.d("test123","login değil")
-            showNavigationFragment(SelectedNavGraph.Splash)
-
-        }*/
-
     }
 
     override fun observe() {}
@@ -126,7 +117,9 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     fun showNavigationFragment(graph: SelectedNavGraph?) {
         binding.navigationView.visibleIf(graph != SelectedNavGraph.Splash)
-        // binding.actionBar.root.visibleIf(graph != SelectedNavGraph.Splash)
+        binding.actionBar.root.visibleIf(graph != SelectedNavGraph.Splash)
+        //binding.actionBar.root.visibleIf(graph != SelectedNavGraph.Home)
+
         binding.sectionWrapperSplash.visibleIf(graph == SelectedNavGraph.Splash)
         binding.sectionWrapperMain.visibleIf(graph == SelectedNavGraph.Home)
         binding.sectionWrapperDonationSearch.visibleIf(graph == SelectedNavGraph.Search)
@@ -178,17 +171,16 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         currentNavController?.graph?.startDestination?.let { currentNavController?.navigate(it) }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun reSelectOfferTab() {
+    /*  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+          when (item.itemId) {
+              android.R.id.home -> {
+                  onBackPressed()
+                  return true
+              }
+          }
+          return super.onOptionsItemSelected(item)
+      }
+  */    private fun reSelectOfferTab() {
         lifecycleScope.launch {
             delay(250)
             onReselected(R.id.navigation_home, null)
@@ -229,4 +221,30 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             navigateFragment(params)
         }
     }
+
+    fun setToolbar(
+        isBackIcon: Boolean = false,
+        title: String = "",
+        rightIcon: Int = 0,
+        rightIconFunction: (() -> Unit)? = null
+    ) {
+        binding.actionBar.apply {
+            txtToolbarTitle.text = title
+            if (isBackIcon) {
+                val icon =
+                    this@MainScreenActivity.getBitmapFromVectorDrawable(R.drawable.ic_left_arrow)
+                icon?.let {
+                    imgToolbarIcon.setImage(it)
+                }
+            }
+            val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
+            icon?.let {
+                imgRightIcon.setImage(it)
+                imgRightIcon.setOnClickListener {
+                    rightIconFunction?.invoke()
+                }
+            }
+        }
+    }
+
 }
