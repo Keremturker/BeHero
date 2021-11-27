@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/space_small"
             android:background="@null"
+            android:fontFamily="@font/poppins_regular"
             android:paddingVertical="@dimen/space_small_3"
             android:textColor="@color/dark_gry"
             android:textCursorDrawable="@drawable/edittext_custom_cursor"

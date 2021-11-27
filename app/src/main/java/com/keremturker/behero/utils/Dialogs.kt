@@ -9,9 +9,12 @@ import android.view.Window
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
+import com.keremturker.behero.commons.CustomEdittext
 import com.keremturker.behero.utils.extension.getDateSplit
+import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
 import java.util.*
 
@@ -80,6 +83,40 @@ fun Context.showMailVerifiedDialog(
         }),
         multiColorArray = arrayOf(getString(R.string.send_mail_clickable_text))
     )
+    dialog.setCancelable(false)
+    dialog.show()
+}
+
+fun Context.showResetPasswordDialog(
+    function: ((String, () -> Unit) -> Unit)
+) {
+    val dialog = Dialog(this)
+    dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    dialog.setContentView(R.layout.custom_password_change_dialog)
+    dialog.setCanceledOnTouchOutside(true)
+    val imgClose: ImageButton = dialog.findViewById(R.id.imgClose)
+
+    imgClose.setOnClickListener {
+        dialog.dismiss()
+    }
+
+
+    val btnSendMail: Button = dialog.findViewById(R.id.btnSendMail)
+    val edtMail: CustomEdittext = dialog.findViewById(R.id.edtMail)
+
+    btnSendMail.setOnClickListener {
+        edtMail.apply { showError(!getText().isValidEmail()) }
+
+        if (edtMail.getText().isValidEmail()) {
+            function.invoke(edtMail.getText()) { dialog.dismiss() }
+
+        } else {
+            Toast.makeText(
+                this, getString(R.string.required_filed_text), Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
     dialog.setCancelable(false)
     dialog.show()
 }

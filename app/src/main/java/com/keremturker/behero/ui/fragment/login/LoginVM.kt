@@ -4,6 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseViewModel
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginVM @Inject constructor(
     private val repository: AuthRepository,
+    private val auth: FirebaseAuth,
     val app: Application
 ) : BaseViewModel(app) {
 
@@ -50,6 +52,21 @@ class LoginVM @Inject constructor(
                     app.getText(R.string.sent_mail_text),
                     Toast.LENGTH_SHORT
                 ).show()
+            } else {
+                Toast.makeText(app.baseContext, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun sendResetPassword(mail: String, function: (() -> Unit)) {
+        auth.sendPasswordResetEmail(mail).addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(
+                    app.baseContext,
+                    app.getText(R.string.sent_password_text),
+                    Toast.LENGTH_SHORT
+                ).show()
+                function.invoke()
             } else {
                 Toast.makeText(app.baseContext, it.exception?.message, Toast.LENGTH_SHORT).show()
             }

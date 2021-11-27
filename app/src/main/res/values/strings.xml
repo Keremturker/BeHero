@@ -22,6 +22,8 @@
     <string name="send_mail_clickable_text">Click here</string>
     <string name="send_mail_full_text">Click here if you did not receive the email verification mail.</string>
     <string name="sent_mail_text">A verification link has been sent to your email account</string>
+    <string name="sent_reset_password_text">Enter your email address and we\'ll email you instructions on how to reset your password</string>
+    <string name="sent_password_text">An email has been sent your rescue email address. Follow the directions in the email to reset your password.</string>
 
     <!-- Button Text-->
     <string name="login_button_text">LOG IN</string>

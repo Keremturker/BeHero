@@ -12,6 +12,7 @@ import com.keremturker.behero.utils.extension.makeClickableText
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import com.keremturker.behero.utils.showMailVerifiedDialog
+import com.keremturker.behero.utils.showResetPasswordDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,6 +49,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         }
         binding.clPassword.edtPassword.addTextChangedListener {
             binding.clPassword.underLine.visibleIf(false)
+        }
+
+        binding.txtForgetPassword.setOnClickListener {
+            requireContext().showResetPasswordDialog { email, dissmis ->
+
+                viewModel.sendResetPassword(email,dissmis)
+            }
         }
     }
 

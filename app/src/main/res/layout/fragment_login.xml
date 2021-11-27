@@ -36,7 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_small"
-        android:fontFamily="@font/poppins_regular"
         android:hint="@string/email_hint_text"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@id/viewMiddle"

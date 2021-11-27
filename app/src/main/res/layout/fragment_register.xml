@@ -49,7 +49,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
-                android:fontFamily="@font/poppins_regular"
                 android:hint="@string/name_hint_text"
                 app:layout_constraintTop_toBottomOf="@id/txtTitle"
                 app:leftImage="@drawable/ic_user_red" />
@@ -59,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
-                android:fontFamily="@font/poppins_regular"
                 android:hint="@string/email_hint_text"
                 android:inputType="textEmailAddress"
                 app:layout_constraintTop_toBottomOf="@id/edtName"
@@ -78,7 +76,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
-                android:fontFamily="@font/poppins_regular"
                 android:hint="@string/phone_hint_text"
                 android:inputType="phone"
                 app:layout_constraintTop_toBottomOf="@id/clPassword"
@@ -310,7 +307,6 @@
                 android:layout_margin="@dimen/space_small"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center_horizontal"
-                android:text="sadas"
                 android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/btnRegister" />
 

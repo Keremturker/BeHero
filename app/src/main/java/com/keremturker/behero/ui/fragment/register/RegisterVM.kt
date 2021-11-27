@@ -82,7 +82,6 @@ class RegisterVM @Inject constructor(
             auth.signOut()
             if (it.isSuccessful) {
                 _activationMail.postValue(Response.Success(true))
-
             } else {
                 _activationMail.postValue(Response.Failure(it.exception?.message ?: ""))
             }
