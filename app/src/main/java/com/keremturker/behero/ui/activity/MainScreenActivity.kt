@@ -14,9 +14,7 @@ import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
 import com.keremturker.behero.model.NavigateFragmentParams
 import com.keremturker.behero.utils.SelectedNavGraph
-import com.keremturker.behero.utils.extension.getBitmapFromVectorDrawable
-import com.keremturker.behero.utils.extension.setImage
-import com.keremturker.behero.utils.extension.visibleIf
+import com.keremturker.behero.utils.extension.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -245,9 +243,9 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     ) {
         binding.actionBar.apply {
             txtToolbarTitle.text = title
-            imgToolbarIcon.visibleIf(isBackIcon)
 
             if (isBackIcon) {
+                imgToolbarIcon.setVisible()
                 val icon =
                     this@MainScreenActivity.getBitmapFromVectorDrawable(R.drawable.ic_left_arrow)
                 icon?.let {
@@ -257,15 +255,22 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
                 imgToolbarIcon.setOnClickListener {
                     onBackPressed()
                 }
+            } else {
+                imgToolbarIcon.setInvisible()
             }
-            imgRightIcon.visibleIf(rightIcon != 0)
-            val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
-            icon?.let {
-                imgRightIcon.setImage(it)
-                imgRightIcon.setOnClickListener {
-                    rightIconFunction?.invoke()
+            if (rightIcon == 0) {
+                imgRightIcon.setInvisible()
+            } else {
+                imgRightIcon.setVisible()
+                val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
+                icon?.let {
+                    imgRightIcon.setImage(it)
+                    imgRightIcon.setOnClickListener {
+                        rightIconFunction?.invoke()
+                    }
                 }
             }
+
 
             if (!isBackIcon && title.isEmpty() && rightIcon == 0) {
                 this.root.visibleIf(false)
