@@ -193,7 +193,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
           }
           return super.onOptionsItemSelected(item)
       }
-  */    private fun reSelectOfferTab() {
+  */      fun reSelectOfferTab() {
         lifecycleScope.launch {
             delay(250)
             onReselected(R.id.navigation_home, null)

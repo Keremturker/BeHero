@@ -30,7 +30,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
     var birthDay = ""
-      var selectedAddress=Address()
+    var selectedAddress = Address()
     override fun onFragmentCreated() {
         binding.txtTitle.makeClickableText(
             fullText = getString(R.string.logo_title_full_text), multiColorArray = arrayOf(
@@ -175,6 +175,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             } else {
                 binding.txtAddress.text.toString()
             }
+        val shortAddress = selectedAddress.shortAddress
 
         return Users(
             uuid = uUid,
@@ -184,10 +185,11 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             gender = gender,
             bloodGroup = bloodGroup,
             address = address,
+            shortAddress = shortAddress,
             phone = phone,
             timestamp = FieldValue.serverTimestamp(),
             latitude = selectedAddress.latitude,
-            longitude = selectedAddress.longitude
+            longitude = selectedAddress.longitude,
         )
     }
 

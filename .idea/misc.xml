@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_gender.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/drawable/ic_location.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_splash_logo.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/drawable/splash_image.xml" value="0.18981481481481483" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.371868978805395" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_row.xml" value="0.17980072463768115" />

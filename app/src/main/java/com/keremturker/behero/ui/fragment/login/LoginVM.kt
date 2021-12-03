@@ -9,7 +9,9 @@ import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseViewModel
 import com.keremturker.behero.model.Response
+import com.keremturker.behero.model.Users
 import com.keremturker.behero.repository.AuthRepository
+import com.keremturker.behero.repository.ProfileRepository
 import com.keremturker.behero.utils.SingleLiveEvent
 import com.keremturker.behero.utils.extension.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,13 +21,18 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginVM @Inject constructor(
-    private val repository: AuthRepository,
+    private val authRepository: AuthRepository,
+    private val profileRepository: ProfileRepository,
     private val auth: FirebaseAuth,
     val app: Application
 ) : BaseViewModel(app) {
 
     private val _signInUser = SingleLiveEvent<Response<FirebaseUser>>()
     val signInUser: LiveData<Response<FirebaseUser>> = _signInUser
+
+    private val _getUser = SingleLiveEvent<Response<Users>>()
+    val getUser: LiveData<Response<Users>> = _getUser
+
 
     fun goToRegister() {
         navigateFragment(R.id.nav_action_registerFragment_global)
@@ -35,12 +42,20 @@ class LoginVM @Inject constructor(
         if (mail.isValidEmail() && passWord.isNotEmpty()
         ) {
             viewModelScope.launch {
-                repository.firebaseSignInWithMail(mail, passWord).collect {
+                authRepository.firebaseSignInWithMail(mail, passWord).collect {
                     _signInUser.postValue(it)
                 }
             }
         } else {
             _signInUser.postValue(Response.Failure(app.getString(R.string.required_filed_text)))
+        }
+    }
+
+    fun getUser() {
+        viewModelScope.launch {
+            profileRepository.getUserFromFirestore().collect {
+                _getUser.postValue(it)
+            }
         }
     }
 
@@ -74,6 +89,6 @@ class LoginVM @Inject constructor(
     }
 
     fun singOut() {
-        repository.firebaseSignOut()
+        authRepository.firebaseSignOut()
     }
 }

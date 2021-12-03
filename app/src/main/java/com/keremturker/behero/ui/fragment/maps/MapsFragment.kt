@@ -128,27 +128,32 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
     private fun moveMarket(latLng: LatLng) {
 
-        currentAddress = Address(getTheAddress(latLng.latitude, latLng.longitude),latLng.latitude,latLng.longitude)
+        val selectedAddress = getTheAddress(latLng.latitude, latLng.longitude)
+        selectedAddress?.let {
+            currentAddress = Address(
+                description = it.getAddressLine(0),
+                latitude = latLng.latitude,
+                longitude = latLng.longitude,
+                shortAddress = it.adminArea + "," + it.countryName
+            )
+            binding.txtCurrentAddress.text = currentAddress.description
+        }
         val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
             .snippet(address)*/.draggable(true)
-        binding.txtCurrentAddress.text = currentAddress.description
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
         currentMarker = mMap.addMarker(markerOptions)
         currentMarker?.showInfoWindow()
     }
 
-    private fun getTheAddress(latitude: Double, longitude: Double): String {
-        var retVal = ""
+    private fun getTheAddress(latitude: Double, longitude: Double): android.location.Address? {
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        try {
+        return try {
             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-            retVal = addresses[0].getAddressLine(0)
-
+            addresses[0]
         } catch (e: IOException) {
-            e.printStackTrace()
+            null
         }
-        return retVal
     }
 
 

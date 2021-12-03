@@ -8,12 +8,14 @@ import android.util.SparseArray
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.keremturker.behero.R
+import com.keremturker.behero.base.BaseFragment
 
 fun View.setVisible() {
     visibility = VISIBLE
@@ -64,6 +66,14 @@ fun Context.getBitmapFromVectorDrawable(drawableId: Int): Bitmap? {
         bitmap
     } catch (e: Exception) {
         null
+    }
+}
+
+fun BaseFragment<*, *>?.hideKeyboard() {
+    this?.let {
+        val imm =
+            ContextCompat.getSystemService(it.requireContext(), InputMethodManager::class.java)
+        imm?.hideSoftInputFromWindow(binding.root.rootView?.windowToken, 0)
     }
 }
 

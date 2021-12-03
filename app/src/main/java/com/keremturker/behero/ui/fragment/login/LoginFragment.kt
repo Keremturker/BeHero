@@ -6,17 +6,19 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentLoginBinding
 import com.keremturker.behero.model.Response
-import com.keremturker.behero.utils.SelectedNavGraph
+import com.keremturker.behero.ui.activity.MainScreenActivity
+import com.keremturker.behero.utils.*
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
 import com.keremturker.behero.utils.extension.visibleIf
-import com.keremturker.behero.utils.showAsDialog
-import com.keremturker.behero.utils.showMailVerifiedDialog
-import com.keremturker.behero.utils.showResetPasswordDialog
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
+
+    @Inject
+    lateinit var sharedHelper: SharedHelper
     override val viewModel: LoginVM by viewModels()
 
     override fun getViewBinding() = FragmentLoginBinding.inflate(layoutInflater)
@@ -54,7 +56,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
         binding.txtForgetPassword.setOnClickListener {
             requireContext().showResetPasswordDialog { email, dissmis ->
 
-                viewModel.sendResetPassword(email,dissmis)
+                viewModel.sendResetPassword(email, dissmis)
             }
         }
     }
@@ -65,20 +67,37 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
 
                 is Response.Success -> {
-                    viewModel.loadingDetection.postValue(false)
                     if (!response.data.isEmailVerified) {
+                        viewModel.loadingDetection.postValue(false)
 
                         requireContext().showMailVerifiedDialog(response.data) {
                             viewModel.sendMailVerified(response.data)
                         }
                         viewModel.singOut()
                     } else {
-                        showNavigationFragment(SelectedNavGraph.Home)
-
+                        viewModel.getUser()
                     }
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
+                    response.errorMessage.showAsDialog(requireContext())
+                }
+            }
+        }
+
+        viewModel.getUser.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Response.Loading -> {}
+
+                is Response.Success -> {
+                    viewModel.loadingDetection.postValue(false)
+                    sharedHelper.syncUsers = response.data
+                    showNavigationFragment(SelectedNavGraph.Home)
+                    (activity as MainScreenActivity?)?.reSelectOfferTab()
+                }
+                is Response.Failure -> {
+                    viewModel.loadingDetection.postValue(false)
+                    viewModel.singOut()
                     response.errorMessage.showAsDialog(requireContext())
                 }
             }

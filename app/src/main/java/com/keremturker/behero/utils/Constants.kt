@@ -3,6 +3,8 @@ package com.keremturker.behero.utils
 import android.Manifest
 
 object Constants {
+    const val BASE_SHARED_PREF_KEY = "BASE_SHARED_PREF_KEY"
+
     const val PERMISSION_LOCATION = 0
     const val ADDRESS = "ADDRESS"
 
