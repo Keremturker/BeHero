@@ -106,7 +106,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             R.id.donationSearchFragment,
             R.id.myDonationsFragment,
             R.id.userFragment -> false
-            else -> true
+            else -> false
         }
         showOnBackButton(isAOneOfMainFragments)
     }
@@ -118,7 +118,6 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     fun showNavigationFragment(graph: SelectedNavGraph?) {
         binding.navigationView.visibleIf(graph != SelectedNavGraph.Splash)
         binding.actionBar.root.visibleIf(graph != SelectedNavGraph.Splash)
-        //binding.actionBar.root.visibleIf(graph != SelectedNavGraph.Home)
 
         binding.sectionWrapperSplash.visibleIf(graph == SelectedNavGraph.Splash)
         binding.sectionWrapperMain.visibleIf(graph == SelectedNavGraph.Home)
@@ -130,15 +129,31 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             SelectedNavGraph.Home -> {
                 currentNavController = findNavController(R.id.sectionMain)
                 // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_GROUP_TITLE_FRAGMENT
+                setToolbar()
             }
             SelectedNavGraph.Search -> {
                 // binding.actionBar.txtToolbarTitle.text = SETTING_FRAGMENT
+                setToolbar()
+
             }
             SelectedNavGraph.Donation -> {
+                setToolbar()
                 // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_APP_FRAGMENT
             }
             SelectedNavGraph.User -> {
                 // binding.actionBar.txtToolbarTitle.text = NOTIFICATION_APP_FRAGMENT
+                setToolbar(
+                    title = getString(R.string.profile_title),
+                    rightIcon = R.drawable.ic_edit
+                ) {
+                    val params = NavigateFragmentParams(
+                        R.id.nav_action_profileEditFragment_global,
+                        null,
+                        null,
+                        null
+                    )
+                    navigateFragment(params)
+                }
             }
             SelectedNavGraph.Splash -> {
                 // binding.actionBar.txtToolbarTitle.text = ""
@@ -230,19 +245,30 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     ) {
         binding.actionBar.apply {
             txtToolbarTitle.text = title
+            imgToolbarIcon.visibleIf(isBackIcon)
+
             if (isBackIcon) {
                 val icon =
                     this@MainScreenActivity.getBitmapFromVectorDrawable(R.drawable.ic_left_arrow)
                 icon?.let {
                     imgToolbarIcon.setImage(it)
                 }
+
+                imgToolbarIcon.setOnClickListener {
+                    onBackPressed()
+                }
             }
+            imgRightIcon.visibleIf(rightIcon != 0)
             val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
             icon?.let {
                 imgRightIcon.setImage(it)
                 imgRightIcon.setOnClickListener {
                     rightIconFunction?.invoke()
                 }
+            }
+
+            if (!isBackIcon && title.isEmpty() && rightIcon == 0) {
+                this.root.visibleIf(false)
             }
         }
     }
