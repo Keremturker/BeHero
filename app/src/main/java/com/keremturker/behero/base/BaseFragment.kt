@@ -36,8 +36,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding()
-        showNavigationView()
-        onFragmentCreated()
+         onFragmentCreated()
         observe()
         observeActions()
 
@@ -90,13 +89,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         (activity as MainScreenActivity?)?.showNavigationFragment(selectedNavGraph)
     }
 
-    private fun showNavigationView() {
-        GlobalScope.launch(Dispatchers.Main) {
-            (activity as MainScreenActivity?)?.setNavigationView(
-                baseActivity?.onNavigationViewShow ?: true
-            )
-        }
-    }
+
 
     fun setToolbar(
         isBackIcon: Boolean = false,

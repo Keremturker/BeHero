@@ -201,9 +201,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         }
     }
 
-    fun setNavigationView(isShow: Boolean = false) {
-        binding.navigationView.visibleIf(isShow)
-    }
+
 
     interface OnReselectedDelegate {
         fun onReselected()
@@ -226,10 +224,8 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     private fun checkUser() {
         val user = auth.currentUser != null
         if (user) {
-            onNavigationViewShow = true
-            (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
-            (this as MainScreenActivity?)?.setNavigationView(true)
-        } else {
+             (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
+         } else {
             val params = NavigateFragmentParams(R.id.nav_action_RemoveLoginFragment_global)
             navigateFragment(params)
         }
