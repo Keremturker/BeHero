@@ -13,4 +13,5 @@
     <color name="normal_gry">#7E7E7E</color>
     <color name="soft_gry">#7C7C7C</color>
     <color name="soft_green">#689593</color>
+    <color name="background">#F5F5F5</color>
 </resources>

@@ -35,6 +35,12 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             }
         }
 
+        binding.layoutBloodType.txtTitle.text = getString(R.string.blood_type)
+        binding.layoutBloodType.txtContent.text = user?.bloodGroup
+
+        binding.layoutRequest.txtTitle.text = getString(R.string.requested)
+        binding.layoutRequest.txtContent.text = "200"
+
     }
 
     override fun onReselected() {

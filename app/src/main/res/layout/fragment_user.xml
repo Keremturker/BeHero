@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:paddingHorizontal="@dimen/space_med"
     android:paddingVertical="@dimen/space_small"
     tools:context=".ui.fragment.user.UserFragment">
@@ -64,5 +64,139 @@
         app:layout_constraintTop_toBottomOf="@id/llShortAddress"
         app:text="@string/request" />
 
+    <LinearLayout
+        android:id="@+id/llShortInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRequest">
 
+        <include
+            android:id="@+id/layoutBloodType"
+            layout="@layout/custom_block_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space_small"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/layoutRequest"
+            layout="@layout/custom_block_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAvailableDonate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:background="@drawable/layout_radius_bg"
+        android:paddingHorizontal="@dimen/space_small"
+        app:layout_constraintTop_toBottomOf="@id/llShortInfo">
+
+        <ImageView
+            android:id="@+id/imgDonate"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:text="Available for donate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/scDonate"
+            app:layout_constraintStart_toEndOf="@id/imgDonate"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/scDonate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbTint="@color/white"
+            app:trackTint="@drawable/swicth_checker_track" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clInviteFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:background="@drawable/layout_radius_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/space_small"
+        android:paddingVertical="@dimen/space_med_small"
+        app:layout_constraintTop_toBottomOf="@id/clAvailableDonate">
+
+        <ImageView
+            android:id="@+id/imgInvite"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:text="Invite a friend"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgInvite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:background="@drawable/layout_radius_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/space_small"
+        android:paddingVertical="@dimen/space_med_small"
+        app:layout_constraintTop_toBottomOf="@id/clInviteFriends">
+
+        <ImageView
+            android:id="@+id/imgSignOut"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:text="Sign out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgSignOut"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
