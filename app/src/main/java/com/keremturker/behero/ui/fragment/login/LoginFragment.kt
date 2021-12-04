@@ -91,6 +91,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
 
                 is Response.Success -> {
                     viewModel.loadingDetection.postValue(false)
+                    binding.edtMail.clearText()
+                    binding.clPassword.edtPassword.setText("")
                     sharedHelper.syncUsers = response.data
                     showNavigationFragment(SelectedNavGraph.Home)
                     (activity as MainScreenActivity?)?.reSelectOfferTab()

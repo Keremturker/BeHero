@@ -16,10 +16,12 @@ import com.keremturker.behero.model.NavigateFragmentParams
 import com.keremturker.behero.utils.SelectedNavGraph
 import com.keremturker.behero.utils.extension.*
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>() {
 
@@ -34,11 +36,20 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     override fun onActivityCreated() {
         setSupportActionBar(binding.actionBar.root)
-        checkUser()
+        viewModel.getAuthState()
         setupBottomNavBar()
     }
 
-    override fun observe() {}
+    override fun observe() {
+        viewModel.isLoginUser.observe(this) { isUserSignedOut ->
+            if (isUserSignedOut) {
+                (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Splash)
+            } else {
+                (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
+
+            }
+        }
+    }
 
 
     private fun setupBottomNavBar() {
@@ -202,7 +213,6 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     }
 
 
-
     interface OnReselectedDelegate {
         fun onReselected()
     }
@@ -221,15 +231,6 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         binding.pbLoading.visibleIf(isShow)
     }
 
-    private fun checkUser() {
-        val user = auth.currentUser != null
-        if (user) {
-             (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
-         } else {
-            val params = NavigateFragmentParams(R.id.nav_action_RemoveLoginFragment_global)
-            navigateFragment(params)
-        }
-    }
 
     fun setToolbar(
         isBackIcon: Boolean = false,

@@ -23,6 +23,10 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         }
         setView()
 
+        binding.clSignOut.setOnClickListener {
+            viewModel.signOut()
+        }
+
     }
 
     private fun setView() {

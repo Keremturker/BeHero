@@ -55,7 +55,7 @@ fun SpannableString.withClickableSpan(
 
         override fun updateDrawState(ds: TextPaint) {
             super.updateDrawState(ds)
-            ds.bgColor = Color.parseColor("#FFFFFF")
+            ds.bgColor = Color.parseColor("#F5F5F5")
             ds.isUnderlineText = underLine
         }
     }

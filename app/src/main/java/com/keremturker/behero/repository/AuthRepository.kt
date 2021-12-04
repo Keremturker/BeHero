@@ -3,11 +3,15 @@ package com.keremturker.behero.repository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.keremturker.behero.model.Response
+
 import com.keremturker.behero.model.Response.Failure
 import com.keremturker.behero.model.Response.Loading
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.ERROR_MESSAGE
 import com.keremturker.behero.utils.Constants.USERS_REF
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -52,6 +56,17 @@ class AuthRepository @Inject constructor(
 
     fun firebaseSignOut() = auth.signOut()
 
+
+    @ExperimentalCoroutinesApi
+    fun getFirebaseAuthState() = callbackFlow  {
+        val authStateListener = FirebaseAuth.AuthStateListener { auth ->
+            trySend(auth.currentUser == null)
+        }
+        auth.addAuthStateListener(authStateListener)
+        awaitClose {
+            auth.removeAuthStateListener(authStateListener)
+        }
+    }
 
     suspend fun createUserInFirestore(user: Users) = flow {
         try {
