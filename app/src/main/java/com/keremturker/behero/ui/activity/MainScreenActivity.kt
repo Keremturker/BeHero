@@ -239,6 +239,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     ) {
         binding.actionBar.apply {
             txtToolbarTitle.text = title
+            binding.viewLine.visibleIf(true)
 
             if (isBackIcon) {
                 imgToolbarIcon.setVisible()
@@ -270,6 +271,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
             if (!isBackIcon && title.isEmpty() && rightIcon == 0) {
                 this.root.visibleIf(false)
+                binding.viewLine.visibleIf(false)
             }
         }
     }

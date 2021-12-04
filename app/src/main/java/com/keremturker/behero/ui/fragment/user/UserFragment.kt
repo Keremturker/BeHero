@@ -22,6 +22,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             viewModel.navToProfileEdit()
         }
         setView()
+
     }
 
     private fun setView() {
@@ -30,7 +31,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         user?.let {
             binding.apply {
                 txtName.text = it.name
-                txtShortAddress.text=it.shortAddress
+                txtShortAddress.text = it.shortAddress
             }
         }
 

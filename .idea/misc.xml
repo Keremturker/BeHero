@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.375" />
         <entry key="app/src/main/res/layout/custom_actionbar.xml" value="0.6760752688172043" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/custom_button.xml" value="0.6487935656836461" />
         <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.5" />
         <entry key="app/src/main/res/layout/custom_gender_layout.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/custom_mail_verified_dialog.xml" value="0.5" />
@@ -37,9 +38,10 @@
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.33853354134165364" />
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/fragment_profile_edit.xml" value="0.2966485507246377" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.371868978805395" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.4723618090452261" />
         <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_row.xml" value="0.17980072463768115" />

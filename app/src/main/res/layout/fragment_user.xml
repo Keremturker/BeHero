@@ -23,6 +23,7 @@
         tools:text="Kerem Türker" />
 
     <LinearLayout
+        android:id="@+id/llShortAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_small_2"
@@ -49,6 +50,19 @@
             android:textSize="16sp"
             tools:text="Kerem Türker" />
     </LinearLayout>
+
+
+    <com.keremturker.behero.commons.CustomButton
+        android:id="@+id/btnRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        app:backgroundColor="@color/red_500"
+        app:image="@drawable/ic_request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llShortAddress"
+        app:text="@string/request" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
