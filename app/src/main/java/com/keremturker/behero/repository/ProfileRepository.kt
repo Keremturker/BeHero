@@ -17,7 +17,7 @@ import javax.inject.Singleton
 class ProfileRepository @Inject constructor(
     private val auth: FirebaseAuth,
     @Named(USERS_REF) private val usersRef: CollectionReference,
-    val sharedHelper: SharedHelper
+    private val sharedHelper: SharedHelper
 ) {
 
     fun getUserFromFirestore() = flow {

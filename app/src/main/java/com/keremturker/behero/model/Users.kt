@@ -15,5 +15,6 @@ data class Users(
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,
     var availableDonate: Boolean = false,
-    val timestamp: Any? = null
+    val createTime: Any? = null,
+    val updateTime: Any? = null
 ) : Serializable

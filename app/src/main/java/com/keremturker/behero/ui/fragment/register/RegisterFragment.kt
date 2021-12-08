@@ -186,7 +186,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             address = address,
             shortAddress = shortAddress,
             phone = phone,
-            timestamp = FieldValue.serverTimestamp(),
+            createTime = FieldValue.serverTimestamp(),
+            updateTime = FieldValue.serverTimestamp(),
             latitude = selectedAddress.latitude,
             longitude = selectedAddress.longitude,
             availableDonate = true
