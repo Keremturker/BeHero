@@ -41,5 +41,11 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
-
+    fun reloadActivity() {
+        overridePendingTransition(0, 0)
+        finish()
+        overridePendingTransition(0, 0)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+    }
 }

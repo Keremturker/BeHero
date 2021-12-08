@@ -6,6 +6,7 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentUserBinding
 import com.keremturker.behero.utils.SharedHelper
+import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,7 +26,8 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
 
         binding.clSignOut.setOnClickListener {
             viewModel.signOut()
-        }
+            reloadActivity()
+         }
 
     }
 
@@ -35,15 +37,20 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         user?.let {
             binding.apply {
                 txtName.text = it.name
-                txtShortAddress.text = it.shortAddress
+
+                if (it.shortAddress.isEmpty()){
+                    llShortAddress.visibleIf(false)
+                }else{
+                    txtShortAddress.text = it.shortAddress
+                }
+
+                layoutBloodType.txtTitle.text = getString(R.string.blood_type)
+                layoutBloodType.txtContent.text = it.bloodGroup
+                layoutRequest.txtTitle.text = getString(R.string.requested)
+                layoutRequest.txtContent.text = "200"
+                scDonate.isChecked = it.availableDonate
             }
         }
-
-        binding.layoutBloodType.txtTitle.text = getString(R.string.blood_type)
-        binding.layoutBloodType.txtContent.text = user?.bloodGroup
-
-        binding.layoutRequest.txtTitle.text = getString(R.string.requested)
-        binding.layoutRequest.txtContent.text = "200"
 
     }
 

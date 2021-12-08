@@ -162,7 +162,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
 
     private fun createUserDate(uUid: String): Users {
 
-
         val name = binding.edtName.getText()
         val mail = binding.edtMail.getText()
         val phone = binding.edtPhone.getText()
@@ -190,6 +189,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             timestamp = FieldValue.serverTimestamp(),
             latitude = selectedAddress.latitude,
             longitude = selectedAddress.longitude,
+            availableDonate = true
         )
     }
 

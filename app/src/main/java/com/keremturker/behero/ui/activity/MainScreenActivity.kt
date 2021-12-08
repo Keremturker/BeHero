@@ -36,19 +36,28 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     override fun onActivityCreated() {
         setSupportActionBar(binding.actionBar.root)
-        viewModel.getAuthState()
+      // viewModel.getAuthState()
         setupBottomNavBar()
+        checkUser()
     }
 
+    private fun checkUser() {
+        val user = auth.currentUser != null
+        if (user) {
+            (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
+        } else {
+            val params = NavigateFragmentParams(R.id.nav_action_RemoveLoginFragment_global)
+            navigateFragment(params)
+        }
+    }
     override fun observe() {
-        viewModel.isLoginUser.observe(this) { isUserSignedOut ->
+   /*     viewModel.isLoginUser.observe(this) { isUserSignedOut ->
             if (isUserSignedOut) {
                 (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Splash)
             } else {
                 (this as MainScreenActivity?)?.showNavigationFragment(SelectedNavGraph.Home)
-
             }
-        }
+        }*/
     }
 
 

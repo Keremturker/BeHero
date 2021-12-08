@@ -80,6 +80,9 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
+    open fun reloadActivity(){
+        baseActivity?.reloadActivity()
+    }
     open fun onPermissionGranted(permissions: Array<String>) {}
 
     open fun onPermissionDenied(permissions: Array<String>) {}
