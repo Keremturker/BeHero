@@ -6,6 +6,7 @@ import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.ERROR_MESSAGE
 import com.keremturker.behero.utils.Constants.USERS_REF
+import com.keremturker.behero.utils.SharedHelper
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -15,7 +16,8 @@ import javax.inject.Singleton
 @Singleton
 class ProfileRepository @Inject constructor(
     private val auth: FirebaseAuth,
-    @Named(USERS_REF) private val usersRef: CollectionReference
+    @Named(USERS_REF) private val usersRef: CollectionReference,
+    val sharedHelper: SharedHelper
 ) {
 
     fun getUserFromFirestore() = flow {
@@ -25,10 +27,25 @@ class ProfileRepository @Inject constructor(
                 val user = usersRef.document(uid).get().await().toObject(Users::class.java)
                 user?.let {
                     emit(Response.Success(user))
-                }?:  emit(Response.Failure( ERROR_MESSAGE))
+                } ?: emit(Response.Failure(ERROR_MESSAGE))
             }
         } catch (e: Exception) {
             emit(Response.Failure(e.message ?: ERROR_MESSAGE))
+        }
+    }
+
+    suspend fun createUserInFirestore(user: Users) = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                usersRef.document(uid).set(user).await().also {
+                    emit(Response.Success(it))
+                    sharedHelper.syncUsers = user
+                }
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: ERROR_MESSAGE))
+            auth.signOut()
         }
     }
 }

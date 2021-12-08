@@ -10,6 +10,7 @@ import com.keremturker.behero.base.BaseViewModel
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.repository.AuthRepository
+import com.keremturker.behero.repository.ProfileRepository
 import com.keremturker.behero.utils.SingleLiveEvent
 import com.keremturker.behero.utils.extension.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterVM @Inject constructor(
-    private val repository: AuthRepository,
+    private val authRepository: AuthRepository,
+    private val profileRepository: ProfileRepository,
     private val auth: FirebaseAuth,
     val app: Application
 ) : BaseViewModel(app) {
@@ -57,7 +59,7 @@ class RegisterVM @Inject constructor(
             )
         ) {
             viewModelScope.launch {
-                repository.firebaseSignUpWithMail(mail, passWord).collect {
+                authRepository.firebaseSignUpWithMail(mail, passWord).collect {
                     _signUpUser.postValue(it)
                 }
             }
@@ -69,7 +71,7 @@ class RegisterVM @Inject constructor(
 
     fun createUserInFirestore(user: Users) {
         viewModelScope.launch {
-            repository.createUserInFirestore(user).collect {
+            profileRepository.createUserInFirestore(user).collect {
                 _createUser.postValue(it)
             }
         }

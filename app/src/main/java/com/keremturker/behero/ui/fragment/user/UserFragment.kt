@@ -28,6 +28,14 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             viewModel.signOut()
             reloadActivity()
          }
+        binding.scDonate.setOnCheckedChangeListener { buttonView, isChecked ->
+
+            sharedHelper.syncUsers?.let {
+                it.availableDonate=isChecked
+                viewModel.setAvailableDonation(it)
+
+            }
+        }
 
     }
 
