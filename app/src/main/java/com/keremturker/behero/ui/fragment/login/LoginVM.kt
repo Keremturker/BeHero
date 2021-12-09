@@ -38,6 +38,10 @@ class LoginVM @Inject constructor(
         navigateFragment(R.id.nav_action_registerFragment_global)
     }
 
+    fun goToMainScreen() {
+        navigateFragment(R.id.nav_action_mainFragment_global)
+    }
+
     fun signInWithMail(mail: String, passWord: String) {
         if (mail.isValidEmail() && passWord.isNotEmpty()
         ) {

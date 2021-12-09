@@ -10,15 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
-import com.keremturker.behero.ui.activity.MainScreenActivity.OnReselectedDelegate
-import com.keremturker.behero.utils.SelectedNavGraph
+import com.keremturker.behero.utils.ToolbarType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
 abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewModel> :
-    Fragment(), OnReselectedDelegate {
+    Fragment() {
 
     private val baseActivity by lazy { activity as BaseActivity<*, *>? }
 
@@ -29,6 +28,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun onFragmentCreated()
     open fun observe() {}
     open var onNavigationViewShow = false
+    open var toolbarType = ToolbarType.Empty
 
 
     override fun onCreateView(
@@ -39,11 +39,16 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         binding = getViewBinding()
         onFragmentCreated()
         showNavigationView(onNavigationViewShow)
-
+        infoToolbarType(toolbarType)
         observe()
         observeActions()
-
         return binding.root
+    }
+
+    private fun infoToolbarType(type: ToolbarType) {
+        GlobalScope.launch(Dispatchers.Main) {
+            (activity as MainScreenActivity?)?.infoToolbarType(type)
+        }
     }
 
     private fun observeActions() {
@@ -54,7 +59,6 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
             baseActivity?.showHideProgress(it)
         }
     }
-
 
     fun updateOnBackPressed(onBackPress: (() -> Unit)? = null) {
         baseActivity?.onNewBackPress = onBackPress
@@ -91,20 +95,14 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
 
     open fun onPermissionDenied(permissions: Array<String>) {}
 
-
-    fun showNavigationFragment(selectedNavGraph: SelectedNavGraph) {
-        (activity as MainScreenActivity?)?.showNavigationFragment(selectedNavGraph)
-    }
-
-
-    fun setToolbar(
+    fun setNormalToolbar(
         isBackIcon: Boolean = false,
         title: String = "",
         rightIcon: Int = 0,
         rightIconFunction: (() -> Unit)? = null
     ) {
         GlobalScope.launch(Dispatchers.Main) {
-            (activity as MainScreenActivity?)?.setToolbar(
+            (activity as MainScreenActivity?)?.setNormalToolbar(
                 isBackIcon,
                 title,
                 rightIcon,
@@ -112,7 +110,6 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
             )
         }
     }
-
 
     private fun <T> LiveData<T>.observeThis(function: (T) -> Unit) {
         observe(viewLifecycleOwner) {
@@ -122,9 +119,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
-    override fun onReselected() {}
-
-    fun showNavigationView(isShow: Boolean) {
+    private fun showNavigationView(isShow: Boolean) {
         GlobalScope.launch(Dispatchers.Main) {
             (activity as MainScreenActivity?)?.setNavigationView(isShow)
         }
@@ -133,5 +128,4 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     fun onBackPress() {
         baseActivity?.performBackPressed()
     }
-
 }

@@ -1,6 +1,7 @@
 package com.keremturker.behero.ui.fragment.user.profile_edit
 
 import android.app.Application
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.keremturker.behero.R
@@ -26,8 +27,12 @@ class ProfileEditVM @Inject constructor(
     val updateUser: LiveData<Response<Void>> = _updateUser
 
 
-    fun goToMaps() {
-        navigateFragment(R.id.nav_action_mapsFragmentSecond_global)
+    fun goToMaps(latitude:Double,longitude:Double) {
+        Bundle().apply {
+            putDouble("latitude",latitude)
+            putDouble("longitude", longitude)
+            navigateFragment(navAction = R.id.nav_action_mapsFragment_global, bundle = this)
+        }
     }
 
     fun updateUser(user: Users) {

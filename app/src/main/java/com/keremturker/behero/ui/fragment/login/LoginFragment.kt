@@ -6,11 +6,13 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentLoginBinding
 import com.keremturker.behero.model.Response
-import com.keremturker.behero.ui.activity.MainScreenActivity
-import com.keremturker.behero.utils.*
+import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
 import com.keremturker.behero.utils.extension.visibleIf
+import com.keremturker.behero.utils.showAsDialog
+import com.keremturker.behero.utils.showMailVerifiedDialog
+import com.keremturker.behero.utils.showResetPasswordDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -94,8 +96,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                     binding.edtMail.clearText()
                     binding.clPassword.edtPassword.setText("")
                     sharedHelper.syncUsers = response.data
-                    showNavigationFragment(SelectedNavGraph.Home)
-                    (activity as MainScreenActivity?)?.reSelectOfferTab()
+                    viewModel.goToMainScreen()
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)

@@ -13,9 +13,4 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
     override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {}
-
-    override fun onReselected() {
-        super.onReselected()
-    }
-
 }

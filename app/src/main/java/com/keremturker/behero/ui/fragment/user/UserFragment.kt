@@ -7,6 +7,7 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentUserBinding
 import com.keremturker.behero.utils.SharedHelper
+import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,10 +20,11 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
 
     override fun getViewBinding() = FragmentUserBinding.inflate(layoutInflater)
     override var onNavigationViewShow = true
+    override var toolbarType: ToolbarType = ToolbarType.Normal
 
 
     override fun onFragmentCreated() {
-        setToolbar(title = getString(R.string.profile_title), rightIcon = R.drawable.ic_edit) {
+        setNormalToolbar(title = getString(R.string.profile_title), rightIcon = R.drawable.ic_edit) {
             viewModel.navToProfileEdit()
         }
         setView()
@@ -30,11 +32,11 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         binding.clSignOut.setOnClickListener {
             viewModel.signOut()
             reloadActivity()
-         }
+        }
         binding.scDonate.setOnCheckedChangeListener { buttonView, isChecked ->
             sharedHelper.syncUsers?.let {
-                it.availableDonate=isChecked
-                it.updateTime=FieldValue.serverTimestamp()
+                it.availableDonate = isChecked
+                it.updateTime = FieldValue.serverTimestamp()
                 viewModel.setAvailableDonation(it)
             }
         }
@@ -48,9 +50,9 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             binding.apply {
                 txtName.text = it.name
 
-                if (it.shortAddress.isEmpty()){
+                if (it.shortAddress.isEmpty()) {
                     llShortAddress.visibleIf(false)
-                }else{
+                } else {
                     txtShortAddress.text = it.shortAddress
                 }
 
@@ -63,10 +65,4 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         }
 
     }
-
-    override fun onReselected() {
-        super.onReselected()
-        setView()
-    }
-
 }

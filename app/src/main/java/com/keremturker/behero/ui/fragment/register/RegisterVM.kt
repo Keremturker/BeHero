@@ -1,6 +1,7 @@
 package com.keremturker.behero.ui.fragment.register
 
 import android.app.Application
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
@@ -41,9 +42,12 @@ class RegisterVM @Inject constructor(
         navigateFragment(R.id.nav_action_RemoveRegisterFragment_global)
     }
 
-    fun goToMaps() {
-        navigateFragment(R.id.nav_action_mapsFragment_global)
-    }
+    fun goToMaps(latitude:Double,longitude:Double) {
+        Bundle().apply {
+            putDouble("latitude",latitude)
+            putDouble("longitude", longitude)
+            navigateFragment(navAction = R.id.nav_action_mapsFragment_global, bundle = this)
+        }    }
 
     fun signUpWithMail(
         name: String,

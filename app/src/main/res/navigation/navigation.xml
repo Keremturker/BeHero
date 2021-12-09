@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.keremturker.behero.ui.fragment.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.keremturker.behero.ui.fragment.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.keremturker.behero.ui.fragment.maps.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.keremturker.behero.ui.fragment.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
+
+    <fragment
+        android:id="@+id/donationSearchFragment"
+        android:name="com.keremturker.behero.ui.fragment.donation_search.DonationSearchFragment"
+        android:label="fragment_donation_search"
+        tools:layout="@layout/fragment_donation_search" />
+
+    <fragment
+        android:id="@+id/myDonationsFragment"
+        android:name="com.keremturker.behero.ui.fragment.my_donations.MyDonationsFragment"
+        android:label="fragment_my_donations"
+        tools:layout="@layout/fragment_my_donations" />
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.keremturker.behero.ui.fragment.user.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.keremturker.behero.ui.fragment.user.profile_edit.ProfileEditFragment"
+        android:label="ProfileEditFragment"
+        tools:layout="@layout/fragment_profile_edit" />
+
+    <action
+        android:id="@+id/nav_action_RemoveLoginFragment_global"
+        app:destination="@id/loginFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/nav_action_loginFragment_global"
+        app:destination="@id/loginFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    <action
+        android:id="@+id/nav_action_registerFragment_global"
+        app:destination="@id/registerFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    <action
+        android:id="@+id/nav_action_mapsFragment_global"
+        app:destination="@id/mapsFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
+    <action
+        android:id="@+id/nav_action_RemoveRegisterFragment_global"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@id/registerFragment"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/nav_action_mainFragment_global"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    <action
+        android:id="@+id/nav_action_donationSearchFragment_global_removeAll"
+        app:destination="@id/donationSearchFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/navigation"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/nav_action_mainFragment_global_removeAll"
+        app:destination="@id/mainFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/navigation"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/nav_action_myDonationsFragment_global_removeAll"
+        app:destination="@id/myDonationsFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/navigation"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/nav_action_userFragment_global_removeAll"
+        app:destination="@id/userFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/navigation"
+        app:popUpToInclusive="true" />
+
+
+    <action
+        android:id="@+id/nav_action_profileEditFragment_global"
+        app:destination="@id/profileEditFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
+</navigation>

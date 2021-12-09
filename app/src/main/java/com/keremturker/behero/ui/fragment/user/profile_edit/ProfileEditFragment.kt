@@ -9,12 +9,9 @@ import com.keremturker.behero.databinding.FragmentProfileEditBinding
 import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
-import com.keremturker.behero.utils.Constants
-import com.keremturker.behero.utils.SharedHelper
+import com.keremturker.behero.utils.*
 import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import com.keremturker.behero.utils.extension.visibleIf
-import com.keremturker.behero.utils.showAsDialog
-import com.keremturker.behero.utils.showDatePicker
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -25,11 +22,12 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
     override fun getViewBinding() = FragmentProfileEditBinding.inflate(layoutInflater)
     var birthDay = ""
     lateinit var selectedAddress: Address
+    override var toolbarType: ToolbarType = ToolbarType.Normal
 
     @Inject
     lateinit var sharedHelper: SharedHelper
     override fun onFragmentCreated() {
-        setToolbar(isBackIcon = true, getString(R.string.profile_edit_title))
+        setNormalToolbar(isBackIcon = true, getString(R.string.profile_edit_title))
         setView()
     }
 
@@ -120,7 +118,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
     }
 
     override fun onPermissionGranted(permissions: Array<String>) {
-        viewModel.goToMaps()
+        viewModel.goToMaps(selectedAddress.latitude, selectedAddress.longitude)
     }
 
     override fun onPermissionDenied(permissions: Array<String>) {

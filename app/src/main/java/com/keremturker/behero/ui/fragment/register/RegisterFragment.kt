@@ -29,7 +29,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override val viewModel: RegisterVM by viewModels()
     override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
-    var birthDay = ""
+    private var birthDay = ""
     var selectedAddress = Address()
     override fun onFragmentCreated() {
         binding.txtTitle.makeClickableText(
@@ -131,7 +131,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     }
 
     override fun onPermissionGranted(permissions: Array<String>) {
-        viewModel.goToMaps()
+        viewModel.goToMaps(selectedAddress.latitude, selectedAddress.longitude)
+
     }
 
     override fun onPermissionDenied(permissions: Array<String>) {

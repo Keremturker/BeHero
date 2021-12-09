@@ -13,9 +13,4 @@ class MyDonationsFragment : BaseFragment<FragmentMyDonationsBinding, MyDonations
     override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {}
-
-    override fun onReselected() {
-        super.onReselected()
-    }
-
 }

@@ -23,6 +23,7 @@ import com.keremturker.behero.model.Address
 import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
+import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.setNavigationResult
 import java.io.IOException
 import java.util.*
@@ -31,24 +32,27 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
 
 
     var currentMarker: Marker? = null
-    var currentAddress = Address()
+    private var currentAddress = Address()
     private lateinit var mMap: GoogleMap
     private var currentLocation: Location? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
-
+    override var toolbarType: ToolbarType = ToolbarType.Empty
+    private val zoomRatio = 18f
 
     override val viewModel: MapsVM by viewModels()
 
     override fun getViewBinding() = FragmentMapsBinding.inflate(layoutInflater)
 
-    override fun onFragmentCreated() {
+    private val latitude: Double? get() = arguments?.getDouble("latitude", 0.0)
+    private val longitude: Double? get() = arguments?.getDouble("longitude", 0.0)
 
+    override fun onFragmentCreated() {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
 
         requestPermission(PERMISSION_LOCATION, *permissionLocation)
         binding.imgCurrentLocation.setOnClickListener {
-            fetchLocation()
+            fetchLocation(true)
         }
 
         binding.btnPick.setOnClickListener {
@@ -66,11 +70,18 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     }
 
     @SuppressLint("MissingPermission")
-    fun fetchLocation() {
+    fun fetchLocation(findCurrentLocation: Boolean = false) {
         val task = fusedLocationProviderClient!!.lastLocation
         task.addOnSuccessListener { location ->
             if (location != null) {
-                currentLocation = location
+                if (latitude != 0.0 && longitude != 0.0 && !findCurrentLocation) {
+                    location.latitude = latitude!!
+                    location.longitude = longitude!!
+
+                    currentLocation = location
+                } else {
+                    currentLocation = location
+                }
 
                 val mapFragment =
                     childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
@@ -144,7 +155,7 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
         val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
             .snippet(address)*/.draggable(true)
         mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomRatio))
         currentMarker = mMap.addMarker(markerOptions)
         currentMarker?.showInfoWindow()
     }

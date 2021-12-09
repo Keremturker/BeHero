@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.R
 import com.keremturker.behero.model.NavigateFragmentParams
+import com.keremturker.behero.utils.ToolbarType
 
 abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewModel> :
     AppCompatActivity() {
@@ -16,12 +17,11 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun getViewBinding(): BindingType
     abstract fun performBackPressed()
     abstract fun showHideProgress(isShow: Boolean)
+    abstract fun infoToolbarType(type: ToolbarType)
     protected abstract val viewModel: ViewModelType
     open var onNavigationViewShow = false
 
     var onNewBackPress: (() -> Unit)? = null
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

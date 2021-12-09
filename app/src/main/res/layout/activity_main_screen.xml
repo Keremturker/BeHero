@@ -8,9 +8,8 @@
 
 
     <include
-        android:id="@+id/actionBar"
-        layout="@layout/custom_actionbar"
-        android:visibility="gone"
+        android:id="@+id/actionBarNormal"
+        layout="@layout/custom_actionbar_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +22,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/actionBar" />
+        app:layout_constraintTop_toBottomOf="@id/actionBarNormal" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,30 +46,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/sectionWrapperSplash"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fitsSystemWindows="true"
-            app:layout_constraintBottom_toTopOf="@id/navigationView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <fragment
-                android:id="@+id/sectionSplash"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:tag="section_splash"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/navigation_splash" />
-        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/sectionWrapperMain"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fitsSystemWindows="true"
-            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/navigationView"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -80,69 +61,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                android:tag="section_main"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/navigation_main" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/sectionWrapperDonationSearch"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fitsSystemWindows="true"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/navigationView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <fragment
-                android:id="@+id/sectionDonationSearch"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:tag="section_donation_search"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/navigation_donation_search" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/sectionWrapperMyDonation"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fitsSystemWindows="true"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/navigationView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <fragment
-                android:id="@+id/sectionMyDonation"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:tag="section_my_donation"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/navigation_my_donation" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/sectionWrapperUser"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fitsSystemWindows="true"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/navigationView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <fragment
-                android:id="@+id/sectionUser"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
                 android:tag="section_user"
-                app:defaultNavHost="false"
-                app:navGraph="@navigation/navigation_user" />
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/navigation" />
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -151,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            android:visibility="gone"
             android:background="@color/background"
+            android:visibility="gone"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
