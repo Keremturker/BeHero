@@ -15,6 +15,8 @@
         android:name="com.keremturker.behero.ui.fragment.user.profile_edit.ProfileEditFragment"
         android:label="ProfileEditFragment"
         tools:layout="@layout/fragment_profile_edit" />
+
+
     <action
         android:id="@+id/nav_action_profileEditFragment_global"
         app:destination="@id/profileEditFragment"
@@ -22,5 +24,13 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    <fragment
+        android:id="@+id/mapsFragmentSecond"
+        android:name="com.keremturker.behero.ui.fragment.maps.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <action
+        android:id="@+id/nav_action_mapsFragmentSecond_global"
+        app:destination="@id/mapsFragmentSecond" />
 
 </navigation>

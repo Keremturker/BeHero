@@ -35,6 +35,7 @@
             <com.keremturker.behero.commons.CustomEdittext
                 android:id="@+id/edtMail"
                 android:layout_width="match_parent"
+                android:enabled="false"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_small"
                 android:hint="@string/email_hint_text"
@@ -264,9 +265,9 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/btnRegister"
+                android:id="@+id/btnUpdate"
                 style="@style/Button.Main"
-                android:text="@string/register_button_text"
+                android:text="@string/update_button_text"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

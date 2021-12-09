@@ -4,9 +4,11 @@ import android.app.Application
 import androidx.lifecycle.viewModelScope
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseViewModel
+import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.repository.AuthRepository
 import com.keremturker.behero.repository.ProfileRepository
+import com.keremturker.behero.utils.SharedHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class UserVM @Inject constructor(
     private val authRepository: AuthRepository,
     private val profileRepository: ProfileRepository,
+    private val sharedHelper: SharedHelper,
     app: Application
 ) : BaseViewModel(app) {
 
@@ -29,7 +32,11 @@ class UserVM @Inject constructor(
 
     fun setAvailableDonation(user: Users) {
         viewModelScope.launch {
-            profileRepository.createUserInFirestore(user).collect {}
+            profileRepository.createUserInFirestore(user).collect {
+                if (it is Response.Success) {
+                    sharedHelper.syncUsers = user
+                }
+            }
         }
     }
 }

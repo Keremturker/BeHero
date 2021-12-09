@@ -2,6 +2,7 @@ package com.keremturker.behero.ui.fragment.user
 
 
 import androidx.fragment.app.viewModels
+import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentUserBinding
@@ -30,11 +31,10 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             reloadActivity()
          }
         binding.scDonate.setOnCheckedChangeListener { buttonView, isChecked ->
-
             sharedHelper.syncUsers?.let {
                 it.availableDonate=isChecked
+                it.updateTime=FieldValue.serverTimestamp()
                 viewModel.setAvailableDonation(it)
-
             }
         }
 
