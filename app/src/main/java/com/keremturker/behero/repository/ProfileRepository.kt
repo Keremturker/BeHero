@@ -6,7 +6,6 @@ import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.ERROR_MESSAGE
 import com.keremturker.behero.utils.Constants.USERS_REF
-import com.keremturker.behero.utils.SharedHelper
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -16,8 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class ProfileRepository @Inject constructor(
     private val auth: FirebaseAuth,
-    @Named(USERS_REF) private val usersRef: CollectionReference,
-    private val sharedHelper: SharedHelper
+    @Named(USERS_REF) private val usersRef: CollectionReference
 ) {
 
     fun getUserFromFirestore() = flow {
@@ -40,7 +38,6 @@ class ProfileRepository @Inject constructor(
             auth.currentUser?.apply {
                 usersRef.document(uid).set(user).await().also {
                     emit(Response.Success(it))
-                    sharedHelper.syncUsers = user
                 }
             }
         } catch (e: Exception) {
