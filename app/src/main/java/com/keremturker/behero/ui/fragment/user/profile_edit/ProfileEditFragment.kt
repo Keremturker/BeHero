@@ -6,10 +6,12 @@ import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentProfileEditBinding
+import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants
 import com.keremturker.behero.utils.SharedHelper
+import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import com.keremturker.behero.utils.showDatePicker
@@ -22,6 +24,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
 
     override fun getViewBinding() = FragmentProfileEditBinding.inflate(layoutInflater)
     var birthDay = ""
+    lateinit var selectedAddress: Address
 
     @Inject
     lateinit var sharedHelper: SharedHelper
@@ -52,6 +55,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
     private fun setView() {
         sharedHelper.syncUsers?.let {
             binding.apply {
+                selectedAddress = Address(it.address, it.latitude, it.longitude, it.shortAddress)
                 edtName.setText(it.name)
                 edtMail.setText(it.mail)
                 edtPhone.setText(it.phone)
@@ -104,13 +108,13 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
             birthDay = birthDay,
             gender = gender,
             bloodGroup = bloodGroup,
-            address = users.address,
-            shortAddress = users.shortAddress,
+            address = selectedAddress.description,
+            shortAddress = selectedAddress.shortAddress,
             phone = phone,
             createTime = users.createTime,
             updateTime = FieldValue.serverTimestamp(),
-            latitude = users.latitude,
-            longitude = users.longitude,
+            latitude = selectedAddress.latitude,
+            longitude = selectedAddress.longitude,
             availableDonate = users.availableDonate
         )
     }
@@ -134,6 +138,14 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
 
     override fun onResume() {
         super.onResume()
+
+        val address = this.getNavigationResultLiveData<Address>(Constants.ADDRESS)
+
+        address?.value?.let {
+            selectedAddress = it
+            binding.txtAddress.text = it.description
+        }
+
         if (birthDay != "") {
             binding.txtBirthday.text = birthDay
         }

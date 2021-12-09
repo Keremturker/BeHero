@@ -55,6 +55,9 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
             this.setNavigationResult(currentAddress, ADDRESS)
             findNavController().navigateUp()
         }
+        binding.imgBack.setOnClickListener {
+            onBackPress()
+        }
     }
 
 

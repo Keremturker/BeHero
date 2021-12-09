@@ -290,4 +290,8 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         }
     }
 
+    override fun performBackPressed() {
+        onBackPressed()
+    }
+
 }

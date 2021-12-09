@@ -130,4 +130,8 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
+    fun onBackPress() {
+        baseActivity?.performBackPressed()
+    }
+
 }

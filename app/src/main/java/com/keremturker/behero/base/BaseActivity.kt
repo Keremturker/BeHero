@@ -14,6 +14,7 @@ abstract class BaseActivity<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun observe()
     abstract fun navigateFragment(params: NavigateFragmentParams)
     abstract fun getViewBinding(): BindingType
+    abstract fun performBackPressed()
     abstract fun showHideProgress(isShow: Boolean)
     protected abstract val viewModel: ViewModelType
     open var onNavigationViewShow = false
