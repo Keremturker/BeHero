@@ -17,6 +17,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
     override val viewModel: UserVM by viewModels()
 
     override fun getViewBinding() = FragmentUserBinding.inflate(layoutInflater)
+    override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {
         setToolbar(title = getString(R.string.profile_title), rightIcon = R.drawable.ic_edit) {

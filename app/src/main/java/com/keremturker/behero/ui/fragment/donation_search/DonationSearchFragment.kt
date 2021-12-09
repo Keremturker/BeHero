@@ -10,6 +10,7 @@ class DonationSearchFragment : BaseFragment<FragmentDonationSearchBinding, Donat
     override val viewModel: DonationSearchVM by viewModels()
 
     override fun getViewBinding() = FragmentDonationSearchBinding.inflate(layoutInflater)
+    override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {}
 

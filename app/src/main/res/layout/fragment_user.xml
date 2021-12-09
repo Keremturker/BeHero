@@ -140,6 +140,7 @@
         android:background="@drawable/layout_radius_bg"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="gone"
         android:paddingHorizontal="@dimen/space_small"
         android:paddingVertical="@dimen/space_med_small"
         app:layout_constraintTop_toBottomOf="@id/clAvailableDonate">
@@ -182,7 +183,7 @@
             android:id="@+id/imgSignOut"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/ic_date"
+            android:background="@drawable/ic_exit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

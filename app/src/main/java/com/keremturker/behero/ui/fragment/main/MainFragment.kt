@@ -10,6 +10,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
     override val viewModel: MainMV by viewModels()
 
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
+    override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {}
 

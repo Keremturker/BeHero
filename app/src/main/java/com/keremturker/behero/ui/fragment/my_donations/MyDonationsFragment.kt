@@ -10,6 +10,7 @@ class MyDonationsFragment : BaseFragment<FragmentMyDonationsBinding, MyDonations
     override val viewModel: MyDonationsVM by viewModels()
 
     override fun getViewBinding() = FragmentMyDonationsBinding.inflate(layoutInflater)
+    override var onNavigationViewShow = true
 
     override fun onFragmentCreated() {}
 

@@ -28,6 +28,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     abstract fun getViewBinding(): BindingType
     abstract fun onFragmentCreated()
     open fun observe() {}
+    open var onNavigationViewShow = false
 
 
     override fun onCreateView(
@@ -36,7 +37,9 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding()
-         onFragmentCreated()
+        onFragmentCreated()
+        showNavigationView(onNavigationViewShow)
+
         observe()
         observeActions()
 
@@ -80,9 +83,10 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         }
     }
 
-    open fun reloadActivity(){
+    open fun reloadActivity() {
         baseActivity?.reloadActivity()
     }
+
     open fun onPermissionGranted(permissions: Array<String>) {}
 
     open fun onPermissionDenied(permissions: Array<String>) {}
@@ -91,7 +95,6 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     fun showNavigationFragment(selectedNavGraph: SelectedNavGraph) {
         (activity as MainScreenActivity?)?.showNavigationFragment(selectedNavGraph)
     }
-
 
 
     fun setToolbar(
@@ -120,5 +123,11 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
     }
 
     override fun onReselected() {}
+
+    fun showNavigationView(isShow: Boolean) {
+        GlobalScope.launch(Dispatchers.Main) {
+            (activity as MainScreenActivity?)?.setNavigationView(isShow)
+        }
+    }
 
 }

@@ -240,6 +240,10 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
         binding.pbLoading.visibleIf(isShow)
     }
 
+    fun setNavigationView(isShow: Boolean = false) {
+        binding.navigationView.visibleIf(isShow)
+    }
+
 
     fun setToolbar(
         isBackIcon: Boolean = false,
