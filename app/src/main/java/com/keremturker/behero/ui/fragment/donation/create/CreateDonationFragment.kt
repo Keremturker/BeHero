@@ -26,7 +26,7 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
     var selectedAddress = Address()
 
     @Inject
-    lateinit var auth: SharedHelper
+    lateinit var sharedHelper: SharedHelper
     override fun onFragmentCreated() {
         setNormalToolbar(isBackIcon = true, title = getString(R.string.create_a_request_title))
 
@@ -81,7 +81,7 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
         val address = binding.txtAddress.text.toString()
 
         return Donations(
-            uuid = auth.syncUsers?.uuid ?: "",
+            uuid = sharedHelper.syncUsers?.uuid ?: "",
             phone = phone,
             bloodGroup = bloodGroup,
             address = address,

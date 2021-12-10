@@ -30,4 +30,19 @@ class DonationRepository @Inject constructor(
             auth.signOut()
         }
     }
+
+
+    fun getDonationsFromFirestore(uuid: String) = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+
+                val donations = donationsRef.whereEqualTo("uuid", uuid).get().await()
+                    .toObjects(Donations::class.java)
+                emit(Response.Success(donations))
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
 }
