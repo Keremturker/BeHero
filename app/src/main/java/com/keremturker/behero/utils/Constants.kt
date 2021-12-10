@@ -13,6 +13,7 @@ object Constants {
 
     //References
     const val USERS_REF = "users"
+    const val DONATIONS_REF = "donations"
 
     val permissionLocation = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,

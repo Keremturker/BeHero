@@ -3,6 +3,7 @@ package com.keremturker.behero.di
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.keremturker.behero.utils.Constants.DONATIONS_REF
 import com.keremturker.behero.utils.Constants.USERS_REF
 import dagger.Module
 import dagger.Provides
@@ -27,5 +28,11 @@ object FirebaseModule {
     @Named(USERS_REF)
     fun provideUsersRef(rootRef: FirebaseFirestore): CollectionReference {
         return rootRef.collection(USERS_REF)
+    }
+
+    @Provides
+    @Named(DONATIONS_REF)
+    fun provideDonationsRef(rootRef: FirebaseFirestore): CollectionReference {
+        return rootRef.collection(DONATIONS_REF)
     }
 }
