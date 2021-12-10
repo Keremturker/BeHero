@@ -41,6 +41,8 @@
     <!-- Action Bar Title-->
     <string name="profile_title">Profile</string>
     <string name="profile_edit_title">Profile Edit</string>
+    <string name="mine_request_title">My Request</string>
+    <string name="create_a_request_title">Create A Request</string>
 
     <string-array name="blood_group">
         <item>A+</item>

@@ -22,8 +22,12 @@ class UserVM @Inject constructor(
     app: Application
 ) : BaseViewModel(app) {
 
-    fun navToProfileEdit() {
+    fun goToProfileEdit() {
         navigateFragment(R.id.nav_action_profileEditFragment_global)
+    }
+
+    fun goToCreateDonation(){
+        navigateFragment(R.id.nav_action_createDonationFragment_global)
     }
 
     fun signOut() {

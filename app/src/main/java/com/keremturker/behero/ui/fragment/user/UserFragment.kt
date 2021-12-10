@@ -25,7 +25,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
 
     override fun onFragmentCreated() {
         setNormalToolbar(title = getString(R.string.profile_title), rightIcon = R.drawable.ic_edit) {
-            viewModel.navToProfileEdit()
+            viewModel.goToProfileEdit()
         }
         setView()
 
@@ -39,6 +39,9 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
                 it.updateTime = FieldValue.serverTimestamp()
                 viewModel.setAvailableDonation(it)
             }
+        }
+        binding.btnRequest.onClickLister {
+            viewModel.goToCreateDonation()
         }
 
     }
