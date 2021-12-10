@@ -34,7 +34,7 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
         binding.btnRequest.setOnClickListener {
             binding.apply {
                 edtPhone.apply { showError(getText().isEmpty()) }
-                addressLine.visibleIf(txtAddress.text == getText(R.string.address_hint_text))
+                addressLine.visibleIf(txtAddress.text == getText(R.string.address_hint_text) || txtAddress.text.isEmpty())
             }
             viewModel.createDonation(createDonation())
         }

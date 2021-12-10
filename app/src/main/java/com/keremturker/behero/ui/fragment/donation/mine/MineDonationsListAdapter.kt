@@ -6,6 +6,7 @@ import com.keremturker.behero.base.BaseAdapter
 import com.keremturker.behero.base.BaseHolder
 import com.keremturker.behero.databinding.ListItemDonationBinding
 import com.keremturker.behero.model.Donations
+import com.keremturker.behero.utils.extension.getBloodImage
 
 class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
     BaseAdapter<Donations, ListItemDonationBinding, MineDonationsListAdapter.MineDonationsListHolder>() {
@@ -24,9 +25,11 @@ class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit))
         BaseHolder<Donations, ListItemDonationBinding>(viewBinding) {
         override fun bind(binding: ListItemDonationBinding, items: Donations?) {
             binding.apply {
-                items?.let {item->
-                    txtAddress.text = item.uuid
-                    txtAddress.setOnClickListener { onClickAction.invoke(item) }
+                items?.let { item ->
+                    txtName.text = item.shortAddress
+                    txtLocation.text = item.shortAddress
+                    txtLocation.setOnClickListener { onClickAction.invoke(item) }
+                    imgBloodGroup.setBackgroundResource(item.bloodGroup.getBloodImage())
                 }
             }
         }

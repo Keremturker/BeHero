@@ -11,6 +11,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.View
 import android.widget.TextView
+import com.keremturker.behero.R
 import java.util.*
 
 fun TextView.makeClickableText(
@@ -129,4 +130,17 @@ fun String.getDateSplit(splitChar: String = "-"): ArrayList<Int> {
 
 fun String?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
+fun String.getBloodImage(): Int {
+
+    return when (this) {
+        "AB+" -> R.drawable.ic_ab_positive
+        "AB-" -> R.drawable.ic_ab_negative
+        "B+" -> R.drawable.ic_b_positive
+        "B-" -> R.drawable.ic_b_negative
+        "A-" -> R.drawable.ic_a_negative
+        "A+" -> R.drawable.ic_a_positive
+        "0-","O-" -> R.drawable.ic_zero_negative
+        else -> R.drawable.ic_zero_positive
+    }
+}
 
