@@ -160,4 +160,15 @@
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
 
 
+    <action
+        android:id="@+id/nav_action_createDonationFragment_global_remove"
+        app:destination="@id/mineDonationsFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/createDonationFragment"
+        app:popUpToInclusive="true" />
+
+
 </navigation>

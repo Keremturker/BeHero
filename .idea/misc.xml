@@ -55,7 +55,7 @@
         <entry key="app/src/main/res/layout/fragment_mine_donations.xml" value="0.3161231884057971" />
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile_edit.xml" value="0.5116640746500778" />
-        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.6658097686375322" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_search_donations.xml" value="0.3161231884057971" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.33" />

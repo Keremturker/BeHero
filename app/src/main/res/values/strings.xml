@@ -15,6 +15,7 @@
     <string name="email_hint_text">Email</string>
     <string name="password_hint_text">Password</string>
     <string name="phone_hint_text">Phone</string>
+    <string name="description_hint_text">Description</string>
     <string name="birthday_hint_text">Select your birthday</string>
     <string name="address_hint_text">Select your address</string>
     <string name="required_filed_text">Please fill in all the required fields</string>
@@ -24,15 +25,16 @@
     <string name="sent_mail_text">A verification link has been sent to your email account</string>
     <string name="sent_reset_password_text">Enter your email address and we\'ll email you instructions on how to reset your password</string>
     <string name="sent_password_text">An email has been sent your rescue email address. Follow the directions in the email to reset your password.</string>
+    <string name="donation_request_text">Your donation request created successfully.</string>
     <string name="blood_type">Blood Type</string>
     <string name="requested">Requested</string>
     <!-- Button Text-->
-    <string name="login_button_text">LOG IN</string>
-    <string name="register_button_text">REGISTER</string>
-    <string name="update_button_text">UPDATE</string>
-    <string name="send_button_text">SEND</string>
-    <string name="pick_button_text">PICK</string>
-    <string name="ok">OKEY</string>
+    <string name="login_button_text">Log In</string>
+    <string name="register_button_text">Register</string>
+    <string name="update_button_text">Update</string>
+    <string name="send_button_text">Send</string>
+    <string name="pick_button_text">Pick</string>
+    <string name="ok">Okey</string>
     <string name="call_now">Call Now</string>
     <string name="request">Request</string>
     <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>

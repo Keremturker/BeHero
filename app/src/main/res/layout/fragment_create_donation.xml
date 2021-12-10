@@ -1,7 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/space_small"
+                    android:background="@drawable/edittext_radius_bg"
+                    android:paddingVertical="@dimen/space_small"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/leftImageAddress"
+                        android:layout_width="@dimen/space_large"
+                        android:layout_height="@dimen/space_large"
+                        android:layout_marginHorizontal="@dimen/space_small"
+                        android:background="@drawable/ic_location"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/verticalLineAddress"
+                        android:layout_width="@dimen/space_small_3"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/space_small_2"
+                        android:background="@color/lineColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/leftImageAddress"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_small"
+                        android:fontFamily="@font/poppins_regular"
+                        android:paddingVertical="@dimen/space_small_1"
+                        android:text="@string/address_hint_text"
+                        android:textColor="@color/dark_gry"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/verticalLineAddress"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:id="@+id/addressLine"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="@dimen/space_small_2"
+                    android:layout_marginEnd="@dimen/space_small"
+                    android:background="@color/red_500"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clAddress" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBloodGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
+                android:background="@drawable/edittext_radius_bg"
+                android:paddingVertical="@dimen/space_small"
+                app:layout_constraintTop_toBottomOf="@id/clView">
+
+
+                <ImageView
+                    android:id="@+id/leftImage"
+                    android:layout_width="@dimen/space_large"
+                    android:layout_height="@dimen/space_large"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    android:background="@drawable/ic_blood"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/verticalLine"
+                    android:layout_width="@dimen/space_small_3"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/space_small_2"
+                    android:background="@color/lineColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/leftImage"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <include
+                    android:id="@+id/bloodLayout"
+                    layout="@layout/custom_blood_group_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/space_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/verticalLine"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.keremturker.behero.commons.CustomEdittext
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
+                android:hint="@string/phone_hint_text"
+                android:inputType="phone"
+                app:layout_constraintTop_toBottomOf="@id/clBloodGroup"
+                app:leftImage="@drawable/ic_phone" />
+
+            <com.keremturker.behero.commons.CustomEdittext
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
+                android:hint="@string/description_hint_text"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@id/edtPhone"
+                app:leftImage="@drawable/ic_description" />
+
+            <Button
+                android:id="@+id/btnRequest"
+                style="@style/Button.Main"
+                android:text="@string/request"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edtDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

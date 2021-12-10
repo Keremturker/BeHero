@@ -42,12 +42,13 @@ class RegisterVM @Inject constructor(
         navigateFragment(R.id.nav_action_RemoveRegisterFragment_global)
     }
 
-    fun goToMaps(latitude:Double,longitude:Double) {
+    fun goToMaps(latitude: Double, longitude: Double) {
         Bundle().apply {
-            putDouble("latitude",latitude)
+            putDouble("latitude", latitude)
             putDouble("longitude", longitude)
             navigateFragment(navAction = R.id.nav_action_mapsFragment_global, bundle = this)
-        }    }
+        }
+    }
 
     fun signUpWithMail(
         name: String,
