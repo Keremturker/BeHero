@@ -131,7 +131,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     }
 
     override fun onPermissionGranted(permissions: Array<String>) {
-        viewModel.goToMaps(selectedAddress.latitude, selectedAddress.longitude)
+        viewModel.goToMaps(selectedAddress.latitude ?: 0.0, selectedAddress.longitude ?: 0.0)
 
     }
 
@@ -169,13 +169,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
         val birthDay = binding.txtBirthday.text.toString()
         val gender = binding.genderLayout.genderGroup.checkedRadioButtonText.toString()
         val bloodGroup = binding.bloodLayout.bloodGroup.checkedRadioButtonText.toString()
-        val address =
-            if (binding.txtAddress.text.toString() == requireContext().getString(R.string.address_hint_text)) {
-                ""
-            } else {
-                binding.txtAddress.text.toString()
-            }
-        val shortAddress = selectedAddress.shortAddress
 
         return Users(
             uuid = uUid,
@@ -184,13 +177,10 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             birthDay = birthDay,
             gender = gender,
             bloodGroup = bloodGroup,
-            address = address,
-            shortAddress = shortAddress,
+            address = selectedAddress,
             phone = phone,
             createTime = FieldValue.serverTimestamp(),
             updateTime = FieldValue.serverTimestamp(),
-            latitude = selectedAddress.latitude,
-            longitude = selectedAddress.longitude,
             availableDonate = true
         )
     }

@@ -1,5 +1,8 @@
 <resources>
 
+    <string name="name">Name</string>
+    <string name="location">Location</string>
+
     <string name="splash_screen_text">Dear To Donate</string>
     <string name="logo_title_full_text">Dare To Donate</string>
     <string name="logo_title_part1">Dare</string>
@@ -16,6 +19,8 @@
     <string name="password_hint_text">Password</string>
     <string name="phone_hint_text">Phone</string>
     <string name="description_hint_text">Description</string>
+    <string name="patient_name_hint_Tex">Patient Name</string>
+    <string name="hospital_name">Hospital Name</string>
     <string name="birthday_hint_text">Select your birthday</string>
     <string name="address_hint_text">Select your address</string>
     <string name="required_filed_text">Please fill in all the required fields</string>

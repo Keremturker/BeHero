@@ -26,8 +26,8 @@ class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit))
         override fun bind(binding: ListItemDonationBinding, items: Donations?) {
             binding.apply {
                 items?.let { item ->
-                    txtName.text = item.shortAddress
-                    txtLocation.text = item.shortAddress
+                    txtName.text = item.patientName
+                    txtLocation.text = item.address.countryName
                     txtLocation.setOnClickListener { onClickAction.invoke(item) }
                     imgBloodGroup.setBackgroundResource(item.bloodGroup.getBloodImage())
                 }

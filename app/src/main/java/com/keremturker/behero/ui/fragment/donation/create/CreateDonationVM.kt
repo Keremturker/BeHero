@@ -51,6 +51,6 @@ class CreateDonationVM @Inject constructor(
 
     private fun validationParameters(donation: Donations): Boolean {
 
-        return donation.address != app.getString(R.string.address_hint_text) && donation.address.isNotEmpty() && donation.phone.isNotEmpty() && donation.bloodGroup.isNotEmpty()
+        return donation.address.description != app.getString(R.string.address_hint_text) && donation.address.description?.isNotEmpty() == true && donation.phone.isNotEmpty() && donation.bloodGroup.isNotEmpty() && donation.hospitalName.isNotEmpty() && donation.patientName.isNotEmpty()
     }
 }

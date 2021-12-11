@@ -148,7 +148,10 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
                 description = it.getAddressLine(0),
                 latitude = latLng.latitude,
                 longitude = latLng.longitude,
-                shortAddress = it.adminArea + "," + it.countryName
+                cityName = it.adminArea,
+                countryName = it.countryName,
+                countryCode = it.countryCode,
+                subCityName = it.subAdminArea
             )
             binding.txtCurrentAddress.text = currentAddress.description
         }
@@ -169,6 +172,4 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
             null
         }
     }
-
-
 }

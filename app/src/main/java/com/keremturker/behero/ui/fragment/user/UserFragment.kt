@@ -24,7 +24,10 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
 
 
     override fun onFragmentCreated() {
-        setNormalToolbar(title = getString(R.string.profile_title), rightIcon = R.drawable.ic_edit) {
+        setNormalToolbar(
+            title = getString(R.string.profile_title),
+            rightIcon = R.drawable.ic_edit
+        ) {
             viewModel.goToProfileEdit()
         }
         setView()
@@ -33,7 +36,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             viewModel.signOut()
             reloadActivity()
         }
-        binding.scDonate.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.scDonate.setOnCheckedChangeListener { _, isChecked ->
             sharedHelper.syncUsers?.let {
                 it.availableDonate = isChecked
                 it.updateTime = FieldValue.serverTimestamp()
@@ -53,10 +56,10 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             binding.apply {
                 txtName.text = it.name
 
-                if (it.shortAddress.isEmpty()) {
+                if (it.address?.cityName?.isEmpty() == true) {
                     llShortAddress.visibleIf(false)
                 } else {
-                    txtShortAddress.text = it.shortAddress
+                    txtShortAddress.text = it.address?.cityName
                 }
 
                 layoutBloodType.txtTitle.text = getString(R.string.blood_type)

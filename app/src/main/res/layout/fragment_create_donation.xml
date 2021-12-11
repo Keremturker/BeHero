@@ -18,11 +18,31 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
+            <com.keremturker.behero.commons.CustomEdittext
+                android:id="@+id/edtPatientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
+                android:hint="@string/patient_name_hint_Tex"
+                android:inputType="text"
+                app:layout_constraintTop_toTopOf="parent"
+                app:leftImage="@drawable/ic_user_red" />
+
+            <com.keremturker.behero.commons.CustomEdittext
+                android:id="@+id/edtHospitalName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_small"
+                android:hint="@string/hospital_name"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@id/edtPatientName"
+                app:leftImage="@drawable/ic_hospital" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/edtHospitalName">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clAddress"
@@ -88,7 +108,6 @@
                     app:layout_constraintTop_toBottomOf="@id/clAddress" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clBloodGroup"

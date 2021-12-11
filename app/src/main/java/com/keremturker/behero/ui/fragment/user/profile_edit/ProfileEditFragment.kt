@@ -21,7 +21,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
 
     override fun getViewBinding() = FragmentProfileEditBinding.inflate(layoutInflater)
     var birthDay = ""
-    lateinit var selectedAddress: Address
+    var selectedAddress: Address? = null
     override var toolbarType: ToolbarType = ToolbarType.Normal
 
     @Inject
@@ -53,14 +53,14 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
     private fun setView() {
         sharedHelper.syncUsers?.let {
             binding.apply {
-                selectedAddress = Address(it.address, it.latitude, it.longitude, it.shortAddress)
+                selectedAddress = it.address
                 edtName.setText(it.name)
                 edtMail.setText(it.mail)
                 edtPhone.setText(it.phone)
                 txtBirthday.text = it.birthDay
                 genderLayout.genderGroup.check(it.gender)
                 bloodLayout.bloodGroup.check(it.bloodGroup)
-                txtAddress.text = it.address
+                txtAddress.text = it.address?.description
 
                 btnUpdate.setOnClickListener { button ->
                     binding.apply {
@@ -106,19 +106,16 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
             birthDay = birthDay,
             gender = gender,
             bloodGroup = bloodGroup,
-            address = selectedAddress.description,
-            shortAddress = selectedAddress.shortAddress,
+            address = selectedAddress,
             phone = phone,
             createTime = users.createTime,
             updateTime = FieldValue.serverTimestamp(),
-            latitude = selectedAddress.latitude,
-            longitude = selectedAddress.longitude,
             availableDonate = users.availableDonate
         )
     }
 
     override fun onPermissionGranted(permissions: Array<String>) {
-        viewModel.goToMaps(selectedAddress.latitude, selectedAddress.longitude)
+        viewModel.goToMaps(selectedAddress?.latitude ?: 0.0, selectedAddress?.longitude ?: 0.0)
     }
 
     override fun onPermissionDenied(permissions: Array<String>) {

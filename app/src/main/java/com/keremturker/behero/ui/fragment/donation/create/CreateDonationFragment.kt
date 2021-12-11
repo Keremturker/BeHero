@@ -34,6 +34,9 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
         binding.btnRequest.setOnClickListener {
             binding.apply {
                 edtPhone.apply { showError(getText().isEmpty()) }
+                edtHospitalName.apply { showError(getText().isEmpty()) }
+                edtPatientName.apply { showError(getText().isEmpty()) }
+                edtPhone.apply { showError(getText().isEmpty()) }
                 addressLine.visibleIf(txtAddress.text == getText(R.string.address_hint_text) || txtAddress.text.isEmpty())
             }
             viewModel.createDonation(createDonation())
@@ -41,7 +44,7 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
 
         binding.txtAddress.setOnClickListener {
             binding.addressLine.visibleIf(false)
-            viewModel.goToMaps(selectedAddress.latitude, selectedAddress.longitude)
+            viewModel.goToMaps(selectedAddress.latitude?:0.0, selectedAddress.longitude?:0.0)
         }
     }
 
@@ -78,16 +81,16 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
         val phone = binding.edtPhone.getText()
         val bloodGroup = binding.bloodLayout.bloodGroup.checkedRadioButtonText.toString()
         val description = binding.edtDescription.getText()
-        val address = binding.txtAddress.text.toString()
+        val hospital = binding.edtHospitalName.getText()
+        val patient = binding.edtPatientName.getText()
 
         return Donations(
             uuid = sharedHelper.syncUsers?.uuid ?: "",
+            hospitalName = hospital,
+            patientName = patient,
             phone = phone,
             bloodGroup = bloodGroup,
-            address = address,
-            shortAddress = selectedAddress.shortAddress,
-            latitude = selectedAddress.latitude,
-            longitude = selectedAddress.longitude,
+            address = selectedAddress,
             description = description,
             createTime = FieldValue.serverTimestamp(),
             updateTime = FieldValue.serverTimestamp()

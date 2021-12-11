@@ -10,10 +10,7 @@ data class Users(
     var birthDay: String = "",
     var gender: String = "",
     var bloodGroup: String = "",
-    var address: String = "",
-    var shortAddress: String = "",
-    var latitude: Double = 0.0,
-    var longitude: Double = 0.0,
+    var address: Address? = null,
     var availableDonate: Boolean = false,
     val createTime: Any? = null,
     var updateTime: Any? = null
