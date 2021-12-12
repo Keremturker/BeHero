@@ -81,6 +81,8 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
                 else -> true
             }
         }
+
+        binding.navigationView.setOnItemReselectedListener {}
     }
 
     override fun supportNavigateUpTo(upIntent: Intent) {
