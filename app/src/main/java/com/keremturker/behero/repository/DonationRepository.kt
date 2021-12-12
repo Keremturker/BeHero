@@ -31,6 +31,20 @@ class DonationRepository @Inject constructor(
         }
     }
 
+    suspend fun updateDonationInFirestore(documentId: String, donation: Donations) = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                donationsRef.document(documentId).set(donation).await().also {
+                    emit(Response.Success(it))
+                }
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+            auth.signOut()
+        }
+    }
+
 
     fun getDonationsFromFirestore(uuid: String) = flow {
         try {

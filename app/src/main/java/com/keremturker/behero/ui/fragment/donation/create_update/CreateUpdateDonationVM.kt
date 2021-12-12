@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donation.create
+package com.keremturker.behero.ui.fragment.donation.create_update
 
 import android.app.Application
 import android.os.Bundle
@@ -40,6 +40,19 @@ class CreateUpdateDonationVM @Inject constructor(
         if (validationParameters(donation)) {
             viewModelScope.launch {
                 donationRepository.createDonationInFirestore(donation).collect {
+                    _createDonation.postValue(it)
+                }
+            }
+        } else {
+            _createDonation.postValue(Response.Failure(app.getString(R.string.required_filed_text)))
+        }
+
+    }
+
+    fun updateDonation(documentId: String, donation: Donations) {
+        if (validationParameters(donation)) {
+            viewModelScope.launch {
+                donationRepository.updateDonationInFirestore(documentId, donation).collect {
                     _createDonation.postValue(it)
                 }
             }

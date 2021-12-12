@@ -55,6 +55,7 @@
     <string name="profile_edit_title">Profile Edit</string>
     <string name="mine_request_title">My Request</string>
     <string name="create_a_request_title">Create A Request</string>
+    <string name="update_request_title">Update Request</string>
     <string name="donation_detail_title">Donation Detail</string>
     <string name="find_donor_title">Find Donor</string>
 

@@ -176,7 +176,7 @@
                 app:leftImage="@drawable/ic_description" />
 
             <Button
-                android:id="@+id/btnRequest"
+                android:id="@+id/btnCreateUpdate"
                 style="@style/Button.Main"
                 android:text="@string/request"
                 android:textSize="20sp"

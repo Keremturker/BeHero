@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donation.create
+package com.keremturker.behero.ui.fragment.donation.create_update
 
 import androidx.fragment.app.viewModels
 import com.google.firebase.firestore.FieldValue
@@ -26,13 +26,20 @@ class CreateUpdateDonationFragment :
     override var toolbarType = ToolbarType.Normal
     var selectedAddress = Address()
 
+    private val donation: Donations? get() = arguments?.getSerializable("donation") as Donations?
+
+
     @Inject
     lateinit var sharedHelper: SharedHelper
+
     override fun onFragmentCreated() {
-        setNormalToolbar(isBackIcon = true, title = getString(R.string.create_a_request_title))
+        val title = donation?.let {
+            getString(R.string.update_request_title)
+        } ?: getString(R.string.create_a_request_title)
 
+        setNormalToolbar(isBackIcon = true, title = title)
 
-        binding.btnRequest.setOnClickListener {
+        binding.btnCreateUpdate.setOnClickListener {
             binding.apply {
                 edtPhone.apply { showError(getText().isEmpty()) }
                 edtHospitalName.apply { showError(getText().isEmpty()) }
@@ -40,12 +47,31 @@ class CreateUpdateDonationFragment :
                 edtPhone.apply { showError(getText().isEmpty()) }
                 addressLine.visibleIf(txtAddress.text == getText(R.string.address_hint_text) || txtAddress.text.isEmpty())
             }
-            viewModel.createDonation(createDonation())
+            donation?.let {
+                viewModel.updateDonation(documentId = it.documentId, donation())
+            } ?: viewModel.createDonation(donation())
         }
 
         binding.txtAddress.setOnClickListener {
             binding.addressLine.visibleIf(false)
             viewModel.goToMaps(selectedAddress.latitude ?: 0.0, selectedAddress.longitude ?: 0.0)
+        }
+
+        setView(donation)
+    }
+
+    private fun setView(donation: Donations?) {
+        donation?.let {
+            binding.apply {
+                edtPatientName.setText(it.patientName)
+                edtHospitalName.setText(it.hospitalName)
+                selectedAddress = it.address
+                txtAddress.text = it.address.description
+                bloodLayout.bloodGroup.check(it.bloodGroup)
+                edtPhone.setText(it.phone)
+                edtDescription.setText(it.description)
+                btnCreateUpdate.text = getString(R.string.update_button_text)
+            }
         }
     }
 
@@ -78,14 +104,16 @@ class CreateUpdateDonationFragment :
     }
 
 
-    private fun createDonation(): Donations {
+    private fun donation(): Donations {
         val phone = binding.edtPhone.getText()
         val bloodGroup = binding.bloodLayout.bloodGroup.checkedRadioButtonText.toString()
         val description = binding.edtDescription.getText()
         val hospital = binding.edtHospitalName.getText()
         val patient = binding.edtPatientName.getText()
+        val createTime = donation?.createTime ?: FieldValue.serverTimestamp()
 
         return Donations(
+            documentId = donation?.documentId ?: "",
             uuid = sharedHelper.syncUsers?.uuid ?: "",
             hospitalName = hospital,
             patientName = patient,
@@ -93,9 +121,8 @@ class CreateUpdateDonationFragment :
             bloodGroup = bloodGroup,
             address = selectedAddress,
             description = description,
-            createTime = FieldValue.serverTimestamp(),
+            createTime = createTime,
             updateTime = FieldValue.serverTimestamp()
         )
     }
-
 }

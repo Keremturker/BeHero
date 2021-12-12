@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/layout/edittext.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/edittext_password.xml" value="1.0" />
         <entry key="app/src/main/res/layout/fragment_create_donation.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_create_update_donation.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/fragment_custom_dialog.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_detail_donation.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />

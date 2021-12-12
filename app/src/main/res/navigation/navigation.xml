@@ -55,7 +55,7 @@
 
     <fragment
         android:id="@+id/createUpdateDonationFragment"
-        android:name="com.keremturker.behero.ui.fragment.donation.create.CreateUpdateDonationFragment"
+        android:name="com.keremturker.behero.ui.fragment.donation.create_update.CreateUpdateDonationFragment"
         android:label="CreateUpdateDonationFragment"
         tools:layout="@layout/fragment_create_update_donation" />
 
@@ -177,8 +177,7 @@
 
     <action
         android:id="@+id/nav_action_createUpdateDonationFragment_global_remove"
-        app:destination="@id/mineDonationsFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
+         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
