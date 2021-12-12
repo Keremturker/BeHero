@@ -1,6 +1,5 @@
 package com.keremturker.behero.ui.fragment.donation.mine
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.keremturker.behero.R
@@ -9,6 +8,7 @@ import com.keremturker.behero.databinding.FragmentMineDonationsBinding
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
 
     private val donationAdapter = MineDonationsListAdapter(::onClickAction)
     override fun onFragmentCreated() {
-        setNormalToolbar(isBackIcon = true,title = getString(R.string.mine_request_title))
+        setNormalToolbar(isBackIcon = true, title = getString(R.string.mine_request_title))
         prepareRecyclerView()
         binding.fabCreateDonation.setOnClickListener {
             viewModel.goToCreateDonation()
@@ -39,8 +39,12 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
                     viewModel.loadingDetection.postValue(false)
                     if (response.data.isNotEmpty()) {
                         donationAdapter.replaceData(response.data)
+                        binding.txtNoRecords.visibleIf(false)
+                        binding.rvDonations.visibleIf(true)
                     } else {
-                        Log.d("test123", "kayıt bulunamadı")
+                        donationAdapter.replaceData(arrayListOf())
+                        binding.rvDonations.visibleIf(false)
+                        binding.txtNoRecords.visibleIf(true)
                     }
                 }
                 is Response.Failure -> {

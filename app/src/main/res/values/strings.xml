@@ -38,6 +38,7 @@
     <string name="hospital">Hospital</string>
     <string name="description">Description</string>
     <string name="address">Address</string>
+    <string name="no_records">No Records</string>
 
     <!-- Button Text-->
     <string name="login_button_text">Log In</string>
