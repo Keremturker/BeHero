@@ -5,9 +5,11 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentDetailDonationBinding
 import com.keremturker.behero.model.Donations
+import com.keremturker.behero.utils.Constants.DONATION
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.getBloodImage
+import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,7 +20,7 @@ class DetailDonationFragment :
 
     override fun getViewBinding() = FragmentDetailDonationBinding.inflate(layoutInflater)
 
-    private val donation: Donations? get() = arguments?.getSerializable("donation") as Donations?
+    private var donation: Donations? = null
 
     override var toolbarType = ToolbarType.Normal
 
@@ -26,6 +28,8 @@ class DetailDonationFragment :
     lateinit var sharedHelper: SharedHelper
 
     override fun onFragmentCreated() {
+        donation = arguments?.getSerializable("donation") as Donations?
+
         if (sharedHelper.syncUsers?.uuid == donation?.uuid) {
             setNormalToolbar(
                 isBackIcon = true,
@@ -40,7 +44,6 @@ class DetailDonationFragment :
             setNormalToolbar(isBackIcon = true, title = getString(R.string.donation_detail_title))
         }
 
-        setView(donation)
     }
 
     private fun setView(donation: Donations?) {
@@ -51,5 +54,14 @@ class DetailDonationFragment :
             binding.edtDescription.setText(donation.description)
             binding.edtAddress.setText(donation.address.countryName)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val newDonation = this.getNavigationResultLiveData<Donations>(DONATION)
+        newDonation?.value?.let {
+            donation = it
+            setView(it)
+        } ?: setView(donation)
     }
 }

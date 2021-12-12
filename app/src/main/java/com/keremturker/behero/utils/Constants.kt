@@ -7,6 +7,7 @@ object Constants {
 
     const val PERMISSION_LOCATION = 0
     const val ADDRESS = "ADDRESS"
+    const val DONATION = "DONATION"
 
     //Messages
     const val ERROR_MESSAGE = "Unexpected error!"

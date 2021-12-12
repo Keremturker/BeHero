@@ -24,6 +24,9 @@ class CreateUpdateDonationVM @Inject constructor(
     private val _createDonation = SingleLiveEvent<Response<Void>>()
     val createDonation: LiveData<Response<Void>> = _createDonation
 
+    private val _updateDonation = SingleLiveEvent<Response<Void>>()
+    val updateDonation: LiveData<Response<Void>> = _updateDonation
+
     fun goToMaps(latitude: Double, longitude: Double) {
         Bundle().apply {
             putDouble("latitude", latitude)
@@ -49,15 +52,15 @@ class CreateUpdateDonationVM @Inject constructor(
 
     }
 
-    fun updateDonation(documentId: String, donation: Donations) {
+    fun updateDonation(donation: Donations) {
         if (validationParameters(donation)) {
             viewModelScope.launch {
-                donationRepository.updateDonationInFirestore(documentId, donation).collect {
-                    _createDonation.postValue(it)
+                donationRepository.updateDonationInFirestore(donation).collect {
+                    _updateDonation.postValue(it)
                 }
             }
         } else {
-            _createDonation.postValue(Response.Failure(app.getString(R.string.required_filed_text)))
+            _updateDonation.postValue(Response.Failure(app.getString(R.string.required_filed_text)))
         }
 
     }

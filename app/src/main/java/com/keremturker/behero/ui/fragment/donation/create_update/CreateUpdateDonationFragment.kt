@@ -1,6 +1,7 @@
 package com.keremturker.behero.ui.fragment.donation.create_update
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
@@ -9,9 +10,11 @@ import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.Constants
+import com.keremturker.behero.utils.Constants.DONATION
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.getNavigationResultLiveData
+import com.keremturker.behero.utils.extension.setNavigationResult
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +30,7 @@ class CreateUpdateDonationFragment :
     var selectedAddress = Address()
 
     private val donation: Donations? get() = arguments?.getSerializable("donation") as Donations?
-
+    var newDonation = Donations()
 
     @Inject
     lateinit var sharedHelper: SharedHelper
@@ -48,7 +51,8 @@ class CreateUpdateDonationFragment :
                 addressLine.visibleIf(txtAddress.text == getText(R.string.address_hint_text) || txtAddress.text.isEmpty())
             }
             donation?.let {
-                viewModel.updateDonation(documentId = it.documentId, donation())
+                newDonation = donation()
+                viewModel.updateDonation(newDonation)
             } ?: viewModel.createDonation(donation())
         }
 
@@ -81,8 +85,25 @@ class CreateUpdateDonationFragment :
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
                 is Response.Success -> {
                     viewModel.loadingDetection.postValue(false)
-                    getString(R.string.donation_request_text).showAsDialog(requireContext()) {
+                    getString(R.string.donation_created_request_text).showAsDialog(requireContext()) {
                         viewModel.goToBack()
+                    }
+                }
+                is Response.Failure -> {
+                    viewModel.loadingDetection.postValue(false)
+                    response.errorMessage.showAsDialog(requireContext())
+                }
+            }
+        }
+
+        viewModel.updateDonation.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Response.Loading -> viewModel.loadingDetection.postValue(true)
+                is Response.Success -> {
+                    viewModel.loadingDetection.postValue(false)
+                    getString(R.string.donation_updated_request_text).showAsDialog(requireContext()) {
+                        this.setNavigationResult(newDonation, DONATION)
+                        findNavController().navigateUp()
                     }
                 }
                 is Response.Failure -> {

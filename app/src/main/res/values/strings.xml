@@ -30,7 +30,8 @@
     <string name="sent_mail_text">A verification link has been sent to your email account</string>
     <string name="sent_reset_password_text">Enter your email address and we\'ll email you instructions on how to reset your password</string>
     <string name="sent_password_text">An email has been sent your rescue email address. Follow the directions in the email to reset your password.</string>
-    <string name="donation_request_text">Your donation request created successfully.</string>
+    <string name="donation_created_request_text">Your donation request created successfully.</string>
+    <string name="donation_updated_request_text">Your donation request updated successfully.</string>
     <string name="blood_type">Blood Type</string>
     <string name="requested">Requested</string>
     <string name="patient">Patient</string>

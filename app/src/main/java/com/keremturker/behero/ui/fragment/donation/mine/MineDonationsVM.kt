@@ -45,10 +45,8 @@ class MineDonationsVM @Inject constructor(
 
     fun getMineDonation() {
         viewModelScope.launch {
-            sharedHelper.syncUsers?.let {
-                donationRepository.getDonationsFromFirestore(it.uuid).collect { response ->
-                    _mineDonations.postValue(response)
-                }
+            donationRepository.getDonationsFromFirestore().collect { response ->
+                _mineDonations.postValue(response)
             }
         }
     }

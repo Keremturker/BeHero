@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentUserBinding
+import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.visibleIf
@@ -46,8 +47,27 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         binding.clMyDonation.setOnClickListener {
             viewModel.goToMineDonation()
         }
+    }
 
+    override fun observe() {
+        viewModel.countDonation.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Response.Loading -> binding.layoutRequest.pbCount.visibleIf(true)
+                is Response.Success -> {
+                    binding.layoutRequest.pbCount.visibleIf(false)
+                    binding.layoutRequest.txtContent.text = response.data.toString()
+                }
+                is Response.Failure -> {
+                    binding.layoutRequest.pbCount.visibleIf(false)
+                    binding.layoutRequest.txtContent.text = "0"
+                }
+            }
+        }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getDonationCount()
     }
 
     private fun setView() {
@@ -66,10 +86,8 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
                 layoutBloodType.txtTitle.text = getString(R.string.blood_type)
                 layoutBloodType.txtContent.text = it.bloodGroup
                 layoutRequest.txtTitle.text = getString(R.string.requested)
-                layoutRequest.txtContent.text = "200"
                 scDonate.isChecked = it.availableDonate
             }
         }
-
     }
 }

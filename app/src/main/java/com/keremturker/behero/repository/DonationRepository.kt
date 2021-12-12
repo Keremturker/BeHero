@@ -31,11 +31,11 @@ class DonationRepository @Inject constructor(
         }
     }
 
-    suspend fun updateDonationInFirestore(documentId: String, donation: Donations) = flow {
+    suspend fun updateDonationInFirestore(donation: Donations) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                donationsRef.document(documentId).set(donation).await().also {
+                donationsRef.document(donation.documentId).set(donation).await().also {
                     emit(Response.Success(it))
                 }
             }
@@ -46,12 +46,11 @@ class DonationRepository @Inject constructor(
     }
 
 
-    fun getDonationsFromFirestore(uuid: String) = flow {
+    suspend fun getDonationsFromFirestore() = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-
-                val donations = donationsRef.whereEqualTo("uuid", uuid).get().await()
+                val donations = donationsRef.whereEqualTo("uuid", this.uid).get().await()
                     .toObjects(Donations::class.java)
                 emit(Response.Success(donations))
             }
@@ -59,4 +58,17 @@ class DonationRepository @Inject constructor(
             emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
         }
     }
+
+    suspend fun getDonationCount() = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                val donations = donationsRef.whereEqualTo("uuid", this.uid).get().await()
+                emit(Response.Success(donations.documents.size))
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
+
 }
