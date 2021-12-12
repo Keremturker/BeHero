@@ -8,6 +8,7 @@ import com.keremturker.behero.model.Donations
 import com.keremturker.behero.utils.Constants.DONATION
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.getBloodImage
 import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +53,7 @@ class DetailDonationFragment :
             binding.edtHospitalName.setText(it.hospitalName)
             binding.imgBloodGroup.setBackgroundResource(donation.bloodGroup.getBloodImage())
             binding.edtDescription.setText(donation.description)
-            binding.edtAddress.setText(donation.address.countryName)
+            binding.edtAddress.setText(donation.address.getAddress())
         }
     }
 

@@ -9,6 +9,7 @@ import com.keremturker.behero.databinding.FragmentUserBinding
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -77,11 +78,9 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             binding.apply {
                 txtName.text = it.name
 
-                if (it.address?.cityName?.isEmpty() == true) {
-                    llShortAddress.visibleIf(false)
-                } else {
-                    txtShortAddress.text = it.address?.cityName
-                }
+                llShortAddress.visibleIf(it.address.getAddress().isNotEmpty())
+
+                txtShortAddress.text = it.address.getAddress()
 
                 layoutBloodType.txtTitle.text = getString(R.string.blood_type)
                 layoutBloodType.txtContent.text = it.bloodGroup

@@ -6,6 +6,7 @@ import com.keremturker.behero.base.BaseAdapter
 import com.keremturker.behero.base.BaseHolder
 import com.keremturker.behero.databinding.ListItemDonationBinding
 import com.keremturker.behero.model.Donations
+import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.getBloodImage
 
 class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
@@ -28,7 +29,7 @@ class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit))
             item?.let {donation->
                 binding.apply {
                     txtName.text = donation.patientName
-                    txtLocation.text = donation.address.countryName
+                    txtLocation.text = donation.address.getAddress()
                     parentLayout.setOnClickListener {
                         onClickAction.invoke(donation)
                     }

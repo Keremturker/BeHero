@@ -12,6 +12,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.TextView
 import com.keremturker.behero.R
+import com.keremturker.behero.model.Address
 import java.util.*
 
 fun TextView.makeClickableText(
@@ -131,7 +132,6 @@ fun String.getDateSplit(splitChar: String = "-"): ArrayList<Int> {
 fun String?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
 
 fun String.getBloodImage(): Int {
-
     return when (this) {
         "AB+" -> R.drawable.ic_ab_positive
         "AB-" -> R.drawable.ic_ab_negative
@@ -139,8 +139,20 @@ fun String.getBloodImage(): Int {
         "B-" -> R.drawable.ic_b_negative
         "A-" -> R.drawable.ic_a_negative
         "A+" -> R.drawable.ic_a_positive
-        "0-","O-" -> R.drawable.ic_zero_negative
+        "0-", "O-" -> R.drawable.ic_zero_negative
         else -> R.drawable.ic_zero_positive
+    }
+}
+
+fun Address?.getAddress(): String {
+    return if (!this?.countryName.isNullOrEmpty() && !this?.cityName.isNullOrEmpty()) {
+        "${this?.cityName},${this?.countryName}"
+    } else if (this?.cityName.isNullOrEmpty()) {
+        "${this?.countryName}"
+    } else if (this?.countryName.isNullOrEmpty()) {
+        "${this?.cityName}"
+    } else {
+        ""
     }
 }
 
