@@ -54,10 +54,22 @@
         tools:layout="@layout/fragment_profile_edit" />
 
     <fragment
-        android:id="@+id/createDonationFragment"
-        android:name="com.keremturker.behero.ui.fragment.donation.create.CreateDonationFragment"
-        android:label="CreateDonationFragment"
-        tools:layout="@layout/fragment_create_donation" />
+        android:id="@+id/createUpdateDonationFragment"
+        android:name="com.keremturker.behero.ui.fragment.donation.create.CreateUpdateDonationFragment"
+        android:label="CreateUpdateDonationFragment"
+        tools:layout="@layout/fragment_create_update_donation" />
+
+    <fragment
+        android:id="@+id/detailDonationFragment"
+        android:name="com.keremturker.behero.ui.fragment.donation.detail.DetailDonationFragment"
+        android:label="DetailDonationFragment"
+        tools:layout="@layout/fragment_detail_donation" />
+
+    <fragment
+        android:id="@+id/searchDonorFragment"
+        android:name="com.keremturker.behero.ui.fragment.donor.SearchDonorFragment"
+        android:label="SearchDonorFragment"
+        tools:layout="@layout/fragment_search_donor" />
 
     <action
         android:id="@+id/nav_action_RemoveLoginFragment_global"
@@ -75,6 +87,7 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
     <action
         android:id="@+id/nav_action_registerFragment_global"
         app:destination="@id/registerFragment"
@@ -82,6 +95,7 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
     <action
         android:id="@+id/nav_action_mapsFragment_global"
         app:destination="@id/mapsFragment"
@@ -98,6 +112,7 @@
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
         app:popUpTo="@id/registerFragment"
         app:popUpToInclusive="true" />
+
     <action
         android:id="@+id/nav_action_mainFragment_global"
         app:destination="@id/mainFragment"
@@ -105,6 +120,7 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
     <action
         android:id="@+id/nav_action_searchDonationsFragment_global_removeAll"
         app:destination="@id/searchDonationsFragment"
@@ -124,15 +140,15 @@
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
         app:popUpTo="@+id/navigation"
         app:popUpToInclusive="true" />
+
     <action
-        android:id="@+id/nav_action_mineDonationsFragment_global_removeAll"
+        android:id="@+id/nav_action_mineDonationsFragment_global"
         app:destination="@id/mineDonationsFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@animator/nav_default_pop_exit_anim"
-        app:popUpTo="@+id/navigation"
-        app:popUpToInclusive="true" />
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"/>
+
     <action
         android:id="@+id/nav_action_userFragment_global_removeAll"
         app:destination="@id/userFragment"
@@ -143,7 +159,6 @@
         app:popUpTo="@+id/navigation"
         app:popUpToInclusive="true" />
 
-
     <action
         android:id="@+id/nav_action_profileEditFragment_global"
         app:destination="@id/profileEditFragment"
@@ -151,24 +166,41 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
     <action
-        android:id="@+id/nav_action_createDonationFragment_global"
-        app:destination="@id/createDonationFragment"
+        android:id="@+id/nav_action_createUpdateDonationFragment_global"
+        app:destination="@id/createUpdateDonationFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim" />
 
-
     <action
-        android:id="@+id/nav_action_createDonationFragment_global_remove"
+        android:id="@+id/nav_action_createUpdateDonationFragment_global_remove"
         app:destination="@id/mineDonationsFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
-        app:popUpTo="@+id/createDonationFragment"
+        app:popUpTo="@+id/createUpdateDonationFragment"
         app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/nav_action_detailDonationFragment_global"
+        app:destination="@id/detailDonationFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+    <action
+        android:id="@+id/nav_action_searchDonorFragment_global_RemoveAll"
+        app:destination="@id/searchDonorFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim"
+        app:popUpTo="@+id/navigation"
+        app:popUpToInclusive="true"/>
 
 
 </navigation>

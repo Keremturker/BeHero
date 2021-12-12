@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CreateDonationVM @Inject constructor(
+class CreateUpdateDonationVM @Inject constructor(
     val app: Application,
     private val donationRepository: DonationRepository
 ) : BaseViewModel(app) {
@@ -33,7 +33,7 @@ class CreateDonationVM @Inject constructor(
     }
 
     fun goToBack() {
-        navigateFragment(navAction = R.id.nav_action_createDonationFragment_global_remove)
+        navigateFragment(navAction = R.id.nav_action_createUpdateDonationFragment_global_remove)
     }
 
     fun createDonation(donation: Donations) {

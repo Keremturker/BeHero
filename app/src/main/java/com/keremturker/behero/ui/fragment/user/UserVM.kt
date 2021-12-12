@@ -26,8 +26,12 @@ class UserVM @Inject constructor(
         navigateFragment(R.id.nav_action_profileEditFragment_global)
     }
 
-    fun goToCreateDonation(){
-        navigateFragment(R.id.nav_action_createDonationFragment_global)
+    fun goToCreateDonation() {
+        navigateFragment(R.id.nav_action_createUpdateDonationFragment_global)
+    }
+
+    fun goToMineDonation() {
+        navigateFragment(R.id.nav_action_mineDonationsFragment_global)
     }
 
     fun signOut() {

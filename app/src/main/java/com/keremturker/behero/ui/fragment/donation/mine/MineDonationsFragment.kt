@@ -22,7 +22,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
 
     private val donationAdapter = MineDonationsListAdapter(::onClickAction)
     override fun onFragmentCreated() {
-        setNormalToolbar(title = getString(R.string.mine_request_title))
+        setNormalToolbar(isBackIcon = true,title = getString(R.string.mine_request_title))
         prepareRecyclerView()
         binding.fabCreateDonation.setOnClickListener {
             viewModel.goToCreateDonation()
@@ -60,7 +60,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
     }
 
     private fun onClickAction(item: Donations) {
-        Log.d("test123", "adres: "+item.address)
+        viewModel.goToDetailDonation(item)
     }
 
     override fun onResume() {

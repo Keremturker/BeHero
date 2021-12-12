@@ -7,13 +7,13 @@
         android:title="" />
 
     <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search"
+        android:id="@+id/navigation_donation"
+        android:icon="@drawable/ic_find_donation"
         android:title="" />
 
     <item
-        android:id="@+id/navigation_donation"
-        android:icon="@drawable/ic_analysis"
+        android:id="@+id/navigation_donor"
+        android:icon="@drawable/ic_find_donor"
         android:title="" />
     <item
         android:id="@+id/navigation_user"

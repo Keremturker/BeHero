@@ -23,15 +23,18 @@ class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit))
         private val onClickAction: ((Donations) -> Unit)
     ) :
         BaseHolder<Donations, ListItemDonationBinding>(viewBinding) {
-        override fun bind(binding: ListItemDonationBinding, items: Donations?) {
-            binding.apply {
-                items?.let { item ->
-                    txtName.text = item.patientName
-                    txtLocation.text = item.address.countryName
-                    txtLocation.setOnClickListener { onClickAction.invoke(item) }
-                    imgBloodGroup.setBackgroundResource(item.bloodGroup.getBloodImage())
+        override fun bind(binding: ListItemDonationBinding, item: Donations?) {
+
+            item?.let {donation->
+                binding.apply {
+                    txtName.text = donation.patientName
+                    txtLocation.text = donation.address.countryName
+                    parentLayout.setOnClickListener {
+                        onClickAction.invoke(donation)
+                    }
+                    imgBloodGroup.setBackgroundResource(donation.bloodGroup.getBloodImage())
                 }
-            }
+            } ?: return
         }
     }
 }

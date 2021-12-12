@@ -57,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_small"
+        android:visibility="gone"
         app:backgroundColor="@color/red_500"
         app:image="@drawable/ic_request"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,6 +132,39 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMyDonation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:background="@drawable/layout_radius_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/space_small"
+        android:paddingVertical="@dimen/space_med_small"
+        app:layout_constraintTop_toBottomOf="@id/clAvailableDonate">
+
+        <ImageView
+            android:id="@+id/imgDonation"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_my_request"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_small"
+            android:text="My Requests"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgDonation"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clInviteFriends"
@@ -140,10 +174,10 @@
         android:background="@drawable/layout_radius_bg"
         android:clickable="true"
         android:focusable="true"
-        android:visibility="gone"
         android:paddingHorizontal="@dimen/space_small"
         android:paddingVertical="@dimen/space_med_small"
-        app:layout_constraintTop_toBottomOf="@id/clAvailableDonate">
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/clMyDonation">
 
         <ImageView
             android:id="@+id/imgInvite"

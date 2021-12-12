@@ -89,6 +89,8 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
                 setSingleLineFromAttr(this)
                 setEnabledFromAttr(this)
                 setDigitsFromAttr(this)
+                setMinLineFromAttr(this)
+                setMaxLineFromAttr(this)
                 setFontFamily(this)
             } finally {
                 recycle()
@@ -161,6 +163,18 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
         digits?.let {
             inputText.keyListener = DigitsKeyListener.getInstance(it)
         }
+    }
+
+    private fun setMinLineFromAttr(attributeSet: TypedArray) {
+        val minLine =
+            attributeSet.getInt(R.styleable.CustomEdittext_android_minLines, 1)
+        inputText.minLines = minLine
+    }
+
+    private fun setMaxLineFromAttr(attributeSet: TypedArray) {
+        val maxLine =
+            attributeSet.getInt(R.styleable.CustomEdittext_android_maxLines, 1)
+        inputText.maxLines = maxLine
     }
 
     private fun setFontFamily(attributeSet: TypedArray) {

@@ -11,6 +11,9 @@
         <attr name="android:singleLine" />
         <attr name="android:enabled" />
         <attr name="android:fontFamily" />
+        <attr name="android:minLines" />
+        <attr name="android:maxLines" />
+        <attr name="android:gravity" />
     </declare-styleable>
 
     <declare-styleable name="CustomButton">

@@ -171,6 +171,7 @@
                 android:layout_margin="@dimen/space_small"
                 android:hint="@string/description_hint_text"
                 android:inputType="text"
+                android:singleLine="false"
                 app:layout_constraintTop_toBottomOf="@id/edtPhone"
                 app:leftImage="@drawable/ic_description" />
 

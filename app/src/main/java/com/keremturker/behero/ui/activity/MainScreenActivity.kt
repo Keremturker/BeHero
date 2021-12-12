@@ -55,14 +55,14 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
                     val params = NavigateFragmentParams(R.id.nav_action_mainFragment_global)
                     navigateFragment(params)
                 }
-                R.id.navigation_search -> {
+                R.id.navigation_donation -> {
                     val params =
                         NavigateFragmentParams(R.id.nav_action_searchDonationsFragment_global_removeAll)
                     navigateFragment(params)
                 }
-                R.id.navigation_donation -> {
+                R.id.navigation_donor -> {
                     val params =
-                        NavigateFragmentParams(R.id.nav_action_mineDonationsFragment_global_removeAll)
+                        NavigateFragmentParams(R.id.nav_action_searchDonorFragment_global_RemoveAll)
                     navigateFragment(params)
                 }
                 R.id.navigation_user -> {

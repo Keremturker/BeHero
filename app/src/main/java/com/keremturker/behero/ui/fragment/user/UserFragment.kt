@@ -43,9 +43,10 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
                 viewModel.setAvailableDonation(it)
             }
         }
-        binding.btnRequest.onClickLister {
-            viewModel.goToCreateDonation()
+        binding.clMyDonation.setOnClickListener {
+            viewModel.goToMineDonation()
         }
+
 
     }
 

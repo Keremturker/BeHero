@@ -33,6 +33,11 @@
     <string name="donation_request_text">Your donation request created successfully.</string>
     <string name="blood_type">Blood Type</string>
     <string name="requested">Requested</string>
+    <string name="patient">Patient</string>
+    <string name="hospital">Hospital</string>
+    <string name="description">Description</string>
+    <string name="address">Address</string>
+
     <!-- Button Text-->
     <string name="login_button_text">Log In</string>
     <string name="register_button_text">Register</string>
@@ -50,6 +55,8 @@
     <string name="profile_edit_title">Profile Edit</string>
     <string name="mine_request_title">My Request</string>
     <string name="create_a_request_title">Create A Request</string>
+    <string name="donation_detail_title">Donation Detail</string>
+    <string name="find_donor_title">Find Donor</string>
 
     <string-array name="blood_group">
         <item>A+</item>

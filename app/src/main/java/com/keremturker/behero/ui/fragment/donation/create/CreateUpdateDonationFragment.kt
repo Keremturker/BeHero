@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.google.firebase.firestore.FieldValue
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
-import com.keremturker.behero.databinding.FragmentCreateDonationBinding
+import com.keremturker.behero.databinding.FragmentCreateUpdateDonationBinding
 import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
@@ -18,10 +18,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, CreateDonationVM>() {
-    override val viewModel: CreateDonationVM by viewModels()
+class CreateUpdateDonationFragment :
+    BaseFragment<FragmentCreateUpdateDonationBinding, CreateUpdateDonationVM>() {
+    override val viewModel: CreateUpdateDonationVM by viewModels()
 
-    override fun getViewBinding() = FragmentCreateDonationBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentCreateUpdateDonationBinding.inflate(layoutInflater)
     override var toolbarType = ToolbarType.Normal
     var selectedAddress = Address()
 
@@ -44,7 +45,7 @@ class CreateDonationFragment : BaseFragment<FragmentCreateDonationBinding, Creat
 
         binding.txtAddress.setOnClickListener {
             binding.addressLine.visibleIf(false)
-            viewModel.goToMaps(selectedAddress.latitude?:0.0, selectedAddress.longitude?:0.0)
+            viewModel.goToMaps(selectedAddress.latitude ?: 0.0, selectedAddress.longitude ?: 0.0)
         }
     }
 
