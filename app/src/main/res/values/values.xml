@@ -16,5 +16,5 @@
     <dimen name="space_large_9">124dp</dimen>
     <dimen name="space_large_10">212dp</dimen>
 
-    <dimen name="icon_size">40dp</dimen>
+    <dimen name="icon_size">32dp</dimen>
 </resources>

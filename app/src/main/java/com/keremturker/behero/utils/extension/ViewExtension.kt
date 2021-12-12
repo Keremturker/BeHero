@@ -17,8 +17,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 
-fun View.setVisible() {
-    visibility = VISIBLE
+fun View.setVisible(visible: Boolean) {
+    visibility = if (visible) VISIBLE else INVISIBLE
 }
 
 fun View.setGone() {
@@ -26,7 +26,7 @@ fun View.setGone() {
 }
 
 fun View.setInvisible() {
-    visibility = INVISIBLE
+    visibility =INVISIBLE
 }
 
 fun View.visibleIf(visible: Boolean) {

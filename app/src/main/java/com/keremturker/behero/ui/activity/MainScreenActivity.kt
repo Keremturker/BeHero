@@ -29,7 +29,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
     lateinit var auth: FirebaseAuth
 
     override fun onActivityCreated() {
-        setSupportActionBar(binding.actionBarNormal.root)
+        //setSupportActionBar(binding.actionBarNormal)
         setupBottomNavBar()
         checkUser()
     }
@@ -112,7 +112,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     fun setNormalToolbar(
         isBackIcon: Boolean = false,
-        title: String =emptyText(),
+        title: String = emptyText(),
         rightIcon: Int = 0,
         rightIconFunction: (() -> Unit)? = null
     ) {
@@ -120,30 +120,19 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
             txtToolbarTitle.text = title
             binding.viewLine.visibleIf(true)
 
-            if (isBackIcon) {
-                imgToolbarIcon.setVisible()
-                val icon =
-                    this@MainScreenActivity.getBitmapFromVectorDrawable(R.drawable.ic_left_arrow)
-                icon?.let {
-                    imgToolbarIcon.setImage(it)
-                }
+            imgToolbarIcon.setVisible(isBackIcon)
 
-                imgToolbarIcon.setOnClickListener {
-                    onBackPressed()
-                }
-            } else {
-                imgToolbarIcon.setInvisible()
+            imgToolbarIcon.setOnClickListener {
+                onBackPressed()
             }
-            if (rightIcon == 0) {
-                imgRightIcon.setInvisible()
-            } else {
-                imgRightIcon.setVisible()
-                val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
-                icon?.let {
-                    imgRightIcon.setImage(it)
-                    imgRightIcon.setOnClickListener {
-                        rightIconFunction?.invoke()
-                    }
+
+
+            imgRightIcon.setVisible(rightIcon != 0)
+            val icon = this@MainScreenActivity.getBitmapFromVectorDrawable(rightIcon)
+            icon?.let {
+                imgRightIcon.setImage(it)
+                imgRightIcon.setOnClickListener {
+                    rightIconFunction?.invoke()
                 }
             }
         }

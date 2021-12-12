@@ -1,61 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:contentInsetStart="0dp"
-    android:contentInsetLeft="0dp"
-    android:contentInsetEnd="0dp"
-    android:contentInsetRight="0dp"
-    android:fitsSystemWindows="true"
-    android:theme="@style/ToolbarTheme"
-    app:contentInsetEnd="0dp"
-    app:contentInsetLeft="0dp"
-    app:contentInsetRight="0dp"
-    app:contentInsetStart="0dp">
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/red_700">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+
+    <ImageButton
+        android:id="@+id/imgToolbarIcon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_left_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtToolbarTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/space_small_2">
+        android:layout_marginHorizontal="@dimen/space_small"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/imgRightIcon"
+        app:layout_constraintStart_toEndOf="@+id/imgToolbarIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Başlık" />
 
 
-        <ImageView
-            android:id="@+id/imgToolbarIcon"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtToolbarTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/space_small"
-            android:ellipsize="end"
-            android:fontFamily="@font/poppins_medium"
-            android:maxLines="1"
-            android:textAlignment="center"
-            android:textColor="@color/dark_gry"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/imgRightIcon"
-            app:layout_constraintStart_toEndOf="@+id/imgToolbarIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Başlık" />
+    <ImageButton
+        android:id="@+id/imgRightIcon"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent "
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/imgRightIcon"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent "
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.appcompat.widget.Toolbar>
+</androidx.constraintlayout.widget.ConstraintLayout>

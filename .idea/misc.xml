@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/edittext_radius_bg.xml" value="0.18425925925925926" />
         <entry key="app/src/main/res/drawable/ic_analysis.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.20625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_blood.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_date.xml" value="0.15925925925925927" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/drawable/ic_user.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_user_red.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/layout_radius_bg.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/drawable/ripple_round_effect.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/drawable/splash_image.xml" value="0.18981481481481483" />
         <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.18981481481481483" />
@@ -39,6 +41,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_actionbar.xml" value="0.6760752688172043" />
+        <entry key="app/src/main/res/layout/custom_actionbar_normal.xml" value="0.5905947441217151" />
         <entry key="app/src/main/res/layout/custom_block_layout.xml" value="0.75" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_button.xml" value="0.6487935656836461" />
