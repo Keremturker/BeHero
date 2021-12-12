@@ -9,6 +9,7 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseActivity
 import com.keremturker.behero.databinding.ActivityMainScreenBinding
 import com.keremturker.behero.model.NavigateFragmentParams
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -111,7 +112,7 @@ class MainScreenActivity : BaseActivity<ActivityMainScreenBinding, MainScreenVM>
 
     fun setNormalToolbar(
         isBackIcon: Boolean = false,
-        title: String = "",
+        title: String =emptyText(),
         rightIcon: Int = 0,
         rightIconFunction: (() -> Unit)? = null
     ) {

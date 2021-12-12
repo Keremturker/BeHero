@@ -13,12 +13,13 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseUser
 import com.keremturker.behero.R
 import com.keremturker.behero.commons.CustomEdittext
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.extension.getDateSplit
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
 import java.util.*
 
-fun Context.showDatePicker(date: String = "", function: (String) -> Unit) {
+fun Context.showDatePicker(date: String = emptyText(), function: (String) -> Unit) {
     val dates = date.getDateSplit()
     val year = dates[2]
     val month = dates[1]

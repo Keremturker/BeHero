@@ -10,6 +10,7 @@ import com.keremturker.behero.model.Address
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.*
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.extension.getNavigationResultLiveData
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +21,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
     override val viewModel: ProfileEditVM by viewModels()
 
     override fun getViewBinding() = FragmentProfileEditBinding.inflate(layoutInflater)
-    var birthDay = ""
+    var birthDay = emptyText()
     var selectedAddress: Address? = null
     override var toolbarType: ToolbarType = ToolbarType.Normal
 
@@ -141,7 +142,7 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
             binding.txtAddress.text = it.description
         }
 
-        if (birthDay != "") {
+        if (birthDay !=emptyText()) {
             binding.txtBirthday.text = birthDay
         }
     }

@@ -17,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.addTextChangedListener
 import com.keremturker.behero.R
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.extension.restoreChildViewStates
 import com.keremturker.behero.utils.extension.saveChildViewStates
 import com.keremturker.behero.utils.extension.visibleIf
@@ -100,7 +101,7 @@ class CustomEdittext(context: Context, attributeSet: AttributeSet? = null) :
 
     fun getText() = inputText.text.toString()
     fun setText(text: String) = inputText.setText(text)
-    fun clearText() = inputText.setText("")
+    fun clearText() = inputText.setText(emptyText())
     fun showError(isShow: Boolean) = underLine.visibleIf(isShow)
 
 

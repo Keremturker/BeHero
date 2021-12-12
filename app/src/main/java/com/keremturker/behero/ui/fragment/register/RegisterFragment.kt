@@ -29,7 +29,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
     override val viewModel: RegisterVM by viewModels()
     override fun getViewBinding() = FragmentRegisterBinding.inflate(layoutInflater)
 
-    private var birthDay = ""
+    private var birthDay = emptyText()
     var selectedAddress = Address()
     override fun onFragmentCreated() {
         binding.txtTitle.makeClickableText(
@@ -155,7 +155,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             selectedAddress = it
             binding.txtAddress.text = it.description
         }
-        if (birthDay != "") {
+        if (birthDay !=emptyText()) {
             binding.txtBirthday.text = birthDay
 
         }

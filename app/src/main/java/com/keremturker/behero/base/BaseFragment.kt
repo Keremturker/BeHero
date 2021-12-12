@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.keremturker.behero.ui.activity.MainScreenActivity
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.ToolbarType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -97,7 +98,7 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
 
     fun setNormalToolbar(
         isBackIcon: Boolean = false,
-        title: String = "",
+        title: String = emptyText(),
         rightIcon: Int = 0,
         rightIconFunction: (() -> Unit)? = null
     ) {

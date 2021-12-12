@@ -11,6 +11,7 @@ import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.Constants
 import com.keremturker.behero.utils.Constants.DONATION
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.getNavigationResultLiveData
@@ -134,8 +135,8 @@ class CreateUpdateDonationFragment :
         val createTime = donation?.createTime ?: FieldValue.serverTimestamp()
 
         return Donations(
-            documentId = donation?.documentId ?: "",
-            uuid = sharedHelper.syncUsers?.uuid ?: "",
+            documentId = donation?.documentId ?: emptyText(),
+            uuid = sharedHelper.syncUsers?.uuid ?:emptyText(),
             hospitalName = hospital,
             patientName = patient,
             phone = phone,

@@ -8,6 +8,7 @@ import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.keremturker.behero.model.Users
+import com.keremturker.behero.utils.Constants.emptyText
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -118,7 +119,7 @@ class SharedHelper @Inject constructor(@ApplicationContext private val context: 
      */
     fun <T> addData(key: String, data: T?) {
         if (data == null) {
-            putStringData(key, "")
+            putStringData(key, emptyText())
         } else {
             val json = gson.toJson(data)
             if (json != null) {
@@ -160,7 +161,7 @@ class SharedHelper @Inject constructor(@ApplicationContext private val context: 
 
     private fun putLongArrayList(key: String, list: ArrayList<Long>?) {
         sharedPref.edit().apply {
-            putString(key, list?.joinToString(",") ?: "")
+            putString(key, list?.joinToString(",") ?: emptyText())
             apply()
         }
     }

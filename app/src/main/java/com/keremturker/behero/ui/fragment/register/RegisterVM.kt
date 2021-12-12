@@ -12,6 +12,7 @@ import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.repository.AuthRepository
 import com.keremturker.behero.repository.ProfileRepository
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.SingleLiveEvent
 import com.keremturker.behero.utils.extension.isValidEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -90,7 +91,7 @@ class RegisterVM @Inject constructor(
             if (it.isSuccessful) {
                 _activationMail.postValue(Response.Success(true))
             } else {
-                _activationMail.postValue(Response.Failure(it.exception?.message ?: ""))
+                _activationMail.postValue(Response.Failure(it.exception?.message ?: emptyText()))
             }
         }
     }

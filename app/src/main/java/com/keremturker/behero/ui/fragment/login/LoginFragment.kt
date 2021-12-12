@@ -6,6 +6,7 @@ import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentLoginBinding
 import com.keremturker.behero.model.Response
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
@@ -94,7 +95,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 is Response.Success -> {
                     viewModel.loadingDetection.postValue(false)
                     binding.edtMail.clearText()
-                    binding.clPassword.edtPassword.setText("")
+                    binding.clPassword.edtPassword.setText(emptyText())
                     sharedHelper.syncUsers = response.data
                     viewModel.goToMainScreen()
                 }
