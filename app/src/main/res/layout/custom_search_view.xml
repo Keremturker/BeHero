@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/edittext_radius_bg"
+    android:paddingVertical="@dimen/space_small">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/leftImage"
+            android:layout_width="@dimen/space_large_1"
+            android:layout_height="@dimen/space_large_1"
+            android:layout_marginHorizontal="@dimen/space_small"
+            android:src="@drawable/ic_baseline_search_32"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/space_small"
+            android:background="@null"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="@string/search_hint"
+            android:maxLines="1"
+            android:paddingVertical="@dimen/space_small_3"
+            android:singleLine="true"
+            android:textColor="@color/dark_gry"
+            android:textCursorDrawable="@drawable/edittext_custom_cursor"
+            app:layout_constraintEnd_toStartOf="@id/imgFilter"
+            app:layout_constraintStart_toEndOf="@id/leftImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="@dimen/space_large_1"
+            android:layout_height="@dimen/space_large_1"
+            android:layout_marginHorizontal="@dimen/space_small"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

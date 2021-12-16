@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_blood.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_date.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_find_donation.xml" value="0.20625" />
         <entry key="app/src/main/res/drawable/ic_gender.xml" value="0.15925925925925927" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.35885416666666664" />
@@ -45,10 +46,11 @@
         <entry key="app/src/main/res/layout/custom_block_layout.xml" value="0.75" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_button.xml" value="0.6487935656836461" />
-        <entry key="app/src/main/res/layout/custom_edittext.xml" value="2.0" />
+        <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.4970344009489917" />
         <entry key="app/src/main/res/layout/custom_gender_layout.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/custom_mail_verified_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/layout/custom_password_change_dialog.xml" value="0.3138586956521739" />
+        <entry key="app/src/main/res/layout/custom_search_view.xml" value="0.4382845188284519" />
         <entry key="app/src/main/res/layout/edittext.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/edittext_password.xml" value="1.0" />
         <entry key="app/src/main/res/layout/fragment_create_donation.xml" value="0.5" />
@@ -64,10 +66,11 @@
         <entry key="app/src/main/res/layout/fragment_profile_edit.xml" value="0.5116640746500778" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_search_donations.xml" value="0.3161231884057971" />
-        <entry key="app/src/main/res/layout/fragment_search_donor.xml" value="0.34270833333333334" />
+        <entry key="app/src/main/res/layout/fragment_search_donor.xml" value="0.5859305431878896" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.661042944785276" />
         <entry key="app/src/main/res/layout/list_item_donation.xml" value="0.6201438848920864" />
+        <entry key="app/src/main/res/layout/list_item_donor.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_row.xml" value="0.17980072463768115" />

@@ -1,13 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:paddingHorizontal="@dimen/space_med">
 
 
-    <TextView
+    <include
+        android:id="@+id/searchLayout"
+        layout="@layout/custom_search_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDonor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_small"
+        app:layout_constraintBottom_toTopOf="@id/btnSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        style="@style/Button.Main"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/space_med"
+        android:text="@string/search_button_text"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clFilter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="SEARCH DONATION FRAGMENT" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout">
 
-</FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/space_small"
+            android:background="@drawable/edittext_radius_bg"
+            android:paddingVertical="@dimen/space_small"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/leftImageGender"
+                android:layout_width="@dimen/space_large"
+                android:layout_height="@dimen/space_large"
+                android:layout_marginHorizontal="@dimen/space_small"
+                android:background="@drawable/ic_gender"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/verticalLineGender"
+                android:layout_width="@dimen/space_small_3"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/space_small_2"
+                android:background="@color/lineColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/leftImageGender"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/genderLayout"
+                layout="@layout/custom_gender_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/verticalLineGender"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBloodGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/space_small"
+            android:background="@drawable/edittext_radius_bg"
+            android:paddingVertical="@dimen/space_small"
+            app:layout_constraintTop_toBottomOf="@id/clGender">
+
+
+            <ImageView
+                android:id="@+id/leftImage"
+                android:layout_width="@dimen/space_large"
+                android:layout_height="@dimen/space_large"
+                android:layout_marginHorizontal="@dimen/space_small"
+                android:background="@drawable/ic_blood"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/verticalLine"
+                android:layout_width="@dimen/space_small_3"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/space_small_2"
+                android:background="@color/lineColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/leftImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <include
+                android:id="@+id/bloodLayout"
+                layout="@layout/custom_blood_group_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/verticalLine"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/btnApply"
+            style="@style/Button.Main"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/space_med"
+            android:text="@string/apply_button_text"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clBloodGroup" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
