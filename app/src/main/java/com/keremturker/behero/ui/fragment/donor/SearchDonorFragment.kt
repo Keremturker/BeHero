@@ -8,6 +8,7 @@ import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentSearchDonorBinding
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
+import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
@@ -27,6 +28,11 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
     override fun onFragmentCreated() {
         setNormalToolbar(title = getString(R.string.find_donor_title))
         prepareRecyclerView()
+        binding.bloodLayout.bloodGroup.clearCheck()
+        binding.genderLayout.genderGroup.clearCheck()
+
+        binding.genderLayout.genderGroup.isUncheckedAllow = true
+
         binding.searchLayout.imgFilter.setOnClickListener {
             val isShow = !binding.clFilter.isVisible
             binding.clFilter.visibleIf(isShow)
@@ -36,9 +42,17 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
 
         binding.btnApply.setOnClickListener {
             binding.clFilter.visibleIf(false)
+            binding.rvDonor.visibleIf(true)
+            binding.btnSearch.visibleIf(true)
         }
         binding.btnSearch.setOnClickListener {
-            viewModel.getDonor()
+            val gender =
+                binding.genderLayout.genderGroup.checkedRadioButtonText?.toString() ?: emptyText()
+
+            val bloodGroup =
+                binding.bloodLayout.bloodGroup.checkedRadioButtonText?.toString() ?: emptyText()
+
+            viewModel.getDonor(gender = gender, bloodGroup = bloodGroup)
         }
     }
 

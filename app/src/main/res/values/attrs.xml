@@ -26,6 +26,7 @@
 
 
     <declare-styleable name="multi_line_radio_group">
+        <attr name="selected_index" format="integer" />
         <attr name="max_in_row" format="integer" />
         <attr name="radio_buttons" format="reference" />
         <attr name="default_button" format="string" />

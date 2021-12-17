@@ -71,6 +71,8 @@ public class MultiLineRadioGroup extends RadioGroup {
     // the checked button
     private RadioButton mCheckedButton;
 
+    public Boolean isUncheckedAllow = false;
+
     /**
      * Creates a new MultiLineRadioGroup for the given context.
      *
@@ -120,6 +122,8 @@ public class MultiLineRadioGroup extends RadioGroup {
             CharSequence[] radioButtonStrings = typedArray.getTextArray(
                     R.styleable.multi_line_radio_group_radio_buttons);
             addButtons(color, radioButtonStrings);
+
+            int selectedIndex = typedArray.getInt(R.styleable.multi_line_radio_group_selected_index, -1);
 
             checkAt(0);
 
@@ -775,7 +779,10 @@ public class MultiLineRadioGroup extends RadioGroup {
      * @return true if check state changed, false otherwise.
      */
     private boolean checkButton(RadioButton button) {
-        if (button == null || button == mCheckedButton) {
+        if (button == null || (button == mCheckedButton && !isUncheckedAllow)) {
+            return false;
+        }else if (button == mCheckedButton && isUncheckedAllow){
+            clearCheck();
             return false;
         }
 
@@ -785,8 +792,10 @@ public class MultiLineRadioGroup extends RadioGroup {
             mCheckedButton.setChecked(false);
         }
 
+
         button.setChecked(true);
         mCheckedButton = button;
+
         return true;
     }
 

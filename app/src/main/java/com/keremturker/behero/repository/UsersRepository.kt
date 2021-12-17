@@ -1,5 +1,6 @@
 package com.keremturker.behero.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.keremturker.behero.model.Response
@@ -18,15 +19,28 @@ class UsersRepository @Inject constructor(
     @Named(USERS_REF) private val usersRef: CollectionReference
 ) {
 
-    suspend fun getDonationsFromFirestore() = flow {
+    suspend fun getDonationsFromFirestore(gender: String, bloodGroup: String) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                val donations = usersRef/*.whereNotEqualTo("uuid", this.uid)*/.get().await()
-                    .toObjects(Users::class.java)
+
+
+                var query = usersRef.whereNotEqualTo("uuid", this.uid)
+
+                if (gender.isNotEmpty()) {
+                    query = query.whereEqualTo("gender", gender)
+                }
+
+                if (bloodGroup.isNotEmpty()) {
+                    query = query.whereEqualTo("bloodGroup", bloodGroup)
+                }
+
+                val donations = query.get().await().toObjects(Users::class.java)
+
                 emit(Response.Success(donations))
             }
         } catch (e: Exception) {
+            Log.d("test123", e.localizedMessage);
             emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
         }
     }
