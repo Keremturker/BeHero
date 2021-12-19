@@ -59,11 +59,13 @@ class DonationRepository @Inject constructor(
         }
     }
 
-    suspend fun getDonationCount() = flow {
+    suspend fun getDonationCount(uuid: String? = auth.uid) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                val donations = donationsRef.whereEqualTo("uuid", this.uid).get().await()
+                val donations =
+                    donationsRef.whereEqualTo("uuid", uuid).whereEqualTo("enable", true).get()
+                        .await()
                 emit(Response.Success(donations.documents.size))
             }
         } catch (e: Exception) {

@@ -12,6 +12,7 @@ data class Donations(
     var description: String = "",
     var phone: String = "",
     var bloodGroup: String = "",
+    var enable: Boolean = true,
     var address: Address = Address(),
     val createTime: Any? = null,
     var updateTime: Any? = null,

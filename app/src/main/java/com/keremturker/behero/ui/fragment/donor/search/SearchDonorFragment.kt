@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donor
+package com.keremturker.behero.ui.fragment.donor.search
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -23,10 +23,9 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
 
     override var toolbarType = ToolbarType.Normal
     private val donorAdapter = SearchDonorListAdapter(::onClickAction)
-
+    private val defaultUsersCount = 10L
 
     override fun onFragmentCreated() {
-
         setView()
         prepareRecyclerView()
 
@@ -45,6 +44,11 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
         binding.btnSearch.setOnClickListener {
             callFindDonor()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getDonor(gender = "", bloodGroup = "", address = "", limit = defaultUsersCount)
     }
 
 
@@ -106,7 +110,9 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
         }
     }
 
-    private fun onClickAction(item: Users) {}
+    private fun onClickAction(item: Users) {
+        viewModel.goToDetailDonor(item)
+    }
 
     private fun visibleListControl() {
         if (donorAdapter.itemCount > 0) {

@@ -43,8 +43,10 @@ abstract class BaseFragment<BindingType : ViewBinding, ViewModelType : BaseViewM
         infoToolbarType(toolbarType)
         observe()
         observeActions()
+        viewModel.loadingDetection.postValue(false)
         return binding.root
     }
+
 
     private fun infoToolbarType(type: ToolbarType) {
         GlobalScope.launch(Dispatchers.Main) {

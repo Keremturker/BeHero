@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donor
+package com.keremturker.behero.ui.fragment.donor.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ class SearchDonorListAdapter(private val onClickAction: ((Users) -> Unit)) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SearchDonorListAdapter.SearchDonorListHolder {
+    ): SearchDonorListHolder {
         return SearchDonorListHolder(
             ListItemDonorBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onClickAction

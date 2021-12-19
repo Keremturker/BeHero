@@ -55,7 +55,7 @@ class UserVM @Inject constructor(
         }
     }
 
-      fun getDonationCount() {
+    fun getDonationCount() {
         viewModelScope.launch {
             donationRepository.getDonationCount().collect {
                 _countDonation.postValue(it)

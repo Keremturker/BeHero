@@ -1,5 +1,7 @@
 package com.keremturker.behero.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import java.io.Serializable
 
 data class Users(
@@ -14,4 +16,43 @@ data class Users(
     var availableDonate: Boolean = false,
     val createTime: Any? = null,
     var updateTime: Any? = null
-) : Serializable
+) : Serializable, Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readParcelable(Address::class.java.classLoader),
+        parcel.readByte() != 0.toByte()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(uuid)
+        parcel.writeString(name)
+        parcel.writeString(mail)
+        parcel.writeString(phone)
+        parcel.writeString(birthDay)
+        parcel.writeString(gender)
+        parcel.writeString(bloodGroup)
+        parcel.writeParcelable(address, flags)
+        parcel.writeByte(if (availableDonate) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Users> {
+        override fun createFromParcel(parcel: Parcel): Users {
+            return Users(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Users?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}

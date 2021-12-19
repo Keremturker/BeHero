@@ -136,9 +136,10 @@ class CreateUpdateDonationFragment :
 
         return Donations(
             documentId = donation?.documentId ?: emptyText(),
-            uuid = sharedHelper.syncUsers?.uuid ?:emptyText(),
+            uuid = sharedHelper.syncUsers?.uuid ?: emptyText(),
             hospitalName = hospital,
             patientName = patient,
+            enable = true,
             phone = phone,
             bloodGroup = bloodGroup,
             address = selectedAddress,

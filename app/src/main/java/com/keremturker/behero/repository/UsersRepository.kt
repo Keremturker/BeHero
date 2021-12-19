@@ -19,7 +19,12 @@ class UsersRepository @Inject constructor(
     @Named(USERS_REF) private val usersRef: CollectionReference
 ) {
 
-    suspend fun getDonationsFromFirestore(gender: String, bloodGroup: String, address: String) =
+    suspend fun getDonationsFromFirestore(
+        gender: String,
+        bloodGroup: String,
+        address: String,
+        limit: Long? = null
+    ) =
         flow {
             try {
                 emit(Response.Loading)
@@ -36,13 +41,18 @@ class UsersRepository @Inject constructor(
                         query = query.whereEqualTo("bloodGroup", bloodGroup)
                     }
 
+                    limit?.let {
+                        query = query.limit(it)
+                    }
+
 
                     val donations = query.get().await().toObjects(Users::class.java)
-
                     if (address.isNotEmpty()) {
                         val newList = arrayListOf<Users>()
                         donations.forEach {
-                            if (it.address?.description?.lowercase()?.contains(address.lowercase()) == true) {
+                            if (it.address?.description?.lowercase()
+                                    ?.contains(address.lowercase()) == true
+                            ) {
                                 newList.add(it)
                             }
                         }

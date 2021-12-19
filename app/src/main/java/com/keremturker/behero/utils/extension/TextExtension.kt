@@ -1,7 +1,10 @@
 package com.keremturker.behero.utils.extension
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextPaint
@@ -14,6 +17,7 @@ import android.widget.TextView
 import com.keremturker.behero.R
 import com.keremturker.behero.model.Address
 import java.util.*
+
 
 fun TextView.makeClickableText(
     fullText: String,
@@ -156,3 +160,8 @@ fun Address?.getAddress(): String {
     }
 }
 
+fun Context.callPhone(phone: String) {
+    val intent = Intent(Intent.ACTION_DIAL)
+    intent.data = Uri.parse("tel:$phone")
+    startActivity(intent)
+}

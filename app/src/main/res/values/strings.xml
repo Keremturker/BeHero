@@ -69,6 +69,7 @@
     <string name="update_request_title">Update Request</string>
     <string name="donation_detail_title">Donation Detail</string>
     <string name="find_donor_title">Find Donor</string>
+    <string name="find_donor_detail_title">Donor Detail</string>
 
     <string-array name="blood_group">
         <item>A+</item>

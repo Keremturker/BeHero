@@ -67,9 +67,16 @@
 
     <fragment
         android:id="@+id/searchDonorFragment"
-        android:name="com.keremturker.behero.ui.fragment.donor.SearchDonorFragment"
+        android:name="com.keremturker.behero.ui.fragment.donor.search.SearchDonorFragment"
         android:label="SearchDonorFragment"
         tools:layout="@layout/fragment_search_donor" />
+
+    <fragment
+        android:id="@+id/detailDonorFragment"
+        android:name="com.keremturker.behero.ui.fragment.donor.detail.DetailDonorFragment"
+        android:label="DetailDonorFragment"
+        tools:layout="@layout/fragment_detail_donor" />
+
 
     <action
         android:id="@+id/nav_action_RemoveLoginFragment_global"
@@ -147,7 +154,7 @@
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@animator/nav_default_pop_exit_anim"/>
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
 
     <action
         android:id="@+id/nav_action_userFragment_global_removeAll"
@@ -177,7 +184,7 @@
 
     <action
         android:id="@+id/nav_action_createUpdateDonationFragment_global_remove"
-         app:enterAnim="@anim/nav_default_enter_anim"
+        app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
@@ -199,7 +206,14 @@
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@animator/nav_default_pop_exit_anim"
         app:popUpTo="@+id/navigation"
-        app:popUpToInclusive="true"/>
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/nav_action_detailDonorFragment_global"
+        app:destination="@id/detailDonorFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
 
 
 </navigation>
