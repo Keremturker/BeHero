@@ -24,9 +24,13 @@ class SearchDonorVM @Inject constructor(
     val users: LiveData<Response<List<Users>>> = _users
 
 
-    fun getDonor( gender: String,bloodGroup: String) {
+    fun getDonor(gender: String, bloodGroup: String, address: String) {
         viewModelScope.launch {
-            usersRepository.getDonationsFromFirestore(gender = gender, bloodGroup =  bloodGroup).collect {
+            usersRepository.getDonationsFromFirestore(
+                gender = gender,
+                bloodGroup = bloodGroup,
+                address = address
+            ).collect {
                 _users.postValue(it)
             }
         }

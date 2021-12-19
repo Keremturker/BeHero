@@ -19,29 +19,43 @@ class UsersRepository @Inject constructor(
     @Named(USERS_REF) private val usersRef: CollectionReference
 ) {
 
-    suspend fun getDonationsFromFirestore(gender: String, bloodGroup: String) = flow {
-        try {
-            emit(Response.Loading)
-            auth.currentUser?.apply {
+    suspend fun getDonationsFromFirestore(gender: String, bloodGroup: String, address: String) =
+        flow {
+            try {
+                emit(Response.Loading)
+                auth.currentUser?.apply {
 
 
-                var query = usersRef.whereNotEqualTo("uuid", this.uid)
+                    var query = usersRef.whereNotEqualTo("uuid", this.uid)
 
-                if (gender.isNotEmpty()) {
-                    query = query.whereEqualTo("gender", gender)
+                    if (gender.isNotEmpty()) {
+                        query = query.whereEqualTo("gender", gender)
+                    }
+
+                    if (bloodGroup.isNotEmpty()) {
+                        query = query.whereEqualTo("bloodGroup", bloodGroup)
+                    }
+
+
+                    val donations = query.get().await().toObjects(Users::class.java)
+
+                    if (address.isNotEmpty()) {
+                        val newList = arrayListOf<Users>()
+                        donations.forEach {
+                            if (it.address?.description?.lowercase()?.contains(address.lowercase()) == true) {
+                                newList.add(it)
+                            }
+                        }
+                        emit(Response.Success(newList))
+
+                    } else {
+                        emit(Response.Success(donations))
+                    }
+
                 }
-
-                if (bloodGroup.isNotEmpty()) {
-                    query = query.whereEqualTo("bloodGroup", bloodGroup)
-                }
-
-                val donations = query.get().await().toObjects(Users::class.java)
-
-                emit(Response.Success(donations))
+            } catch (e: Exception) {
+                Log.d("test123", e.localizedMessage);
+                emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
             }
-        } catch (e: Exception) {
-            Log.d("test123", e.localizedMessage);
-            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
         }
-    }
 }

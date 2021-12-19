@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semi_bold"
         android:text="@string/no_records"
+        android:visibility="gone"
         android:textAlignment="center"
         android:textColor="@color/dark_gry"
         android:textSize="20sp"

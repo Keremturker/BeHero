@@ -26,35 +26,27 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
 
 
     override fun onFragmentCreated() {
-        setNormalToolbar(title = getString(R.string.find_donor_title))
+
+        setView()
         prepareRecyclerView()
-        binding.bloodLayout.bloodGroup.clearCheck()
-        binding.genderLayout.genderGroup.clearCheck()
 
-        binding.genderLayout.genderGroup.isUncheckedAllow = true
-
-        binding.searchLayout.imgFilter.setOnClickListener {
-            val isShow = !binding.clFilter.isVisible
-            binding.clFilter.visibleIf(isShow)
-            binding.rvDonor.visibleIf(!isShow)
-            binding.btnSearch.visibleIf(!isShow)
+        binding.txtClearFilter.setOnClickListener {
+            binding.bloodLayout.bloodGroup.clearCheck()
+            binding.genderLayout.genderGroup.clearCheck()
+            binding.edtAddress.clearText()
         }
 
         binding.btnApply.setOnClickListener {
             binding.clFilter.visibleIf(false)
-            binding.rvDonor.visibleIf(true)
             binding.btnSearch.visibleIf(true)
+            callFindDonor()
         }
+
         binding.btnSearch.setOnClickListener {
-            val gender =
-                binding.genderLayout.genderGroup.checkedRadioButtonText?.toString() ?: emptyText()
-
-            val bloodGroup =
-                binding.bloodLayout.bloodGroup.checkedRadioButtonText?.toString() ?: emptyText()
-
-            viewModel.getDonor(gender = gender, bloodGroup = bloodGroup)
+            callFindDonor()
         }
     }
+
 
     override fun observe() {
 
@@ -66,12 +58,12 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
                     viewModel.loadingDetection.postValue(false)
                     if (response.data.isNotEmpty()) {
                         donorAdapter.replaceData(response.data)
-                        /*     binding.txtNoRecords.visibleIf(false)
-                             binding.rvDonations.visibleIf(true)*/
+                        binding.txtNoRecords.visibleIf(false)
+                        binding.rvDonor.visibleIf(true)
                     } else {
                         donorAdapter.replaceData(arrayListOf())
-                        /*   binding.rvDonations.visibleIf(false)
-                           binding.txtNoRecords.visibleIf(true)*/
+                        binding.rvDonor.visibleIf(false)
+                        binding.txtNoRecords.visibleIf(true)
                     }
                 }
                 is Response.Failure -> {
@@ -83,6 +75,29 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
 
     }
 
+    private fun setView() {
+        setNormalToolbar(
+            title = getString(R.string.find_donor_title),
+            rightIcon = R.drawable.ic_baseline_filter_list_32
+        ) {
+            val isShow = binding.clFilter.isVisible
+            binding.clFilter.visibleIf(!isShow)
+            binding.btnSearch.visibleIf(isShow)
+
+            if (isShow) {
+                visibleListControl()
+            } else {
+                binding.rvDonor.visibleIf(false)
+                binding.txtNoRecords.visibleIf(false)
+            }
+        }
+
+        binding.bloodLayout.bloodGroup.clearCheck()
+        binding.genderLayout.genderGroup.clearCheck()
+
+        binding.genderLayout.genderGroup.isUncheckedAllow = true
+        binding.bloodLayout.bloodGroup.isUncheckedAllow = true
+    }
 
     private fun prepareRecyclerView() {
         binding.rvDonor.apply {
@@ -92,4 +107,26 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
     }
 
     private fun onClickAction(item: Users) {}
+
+    private fun visibleListControl() {
+        if (donorAdapter.itemCount > 0) {
+            binding.txtNoRecords.visibleIf(false)
+            binding.rvDonor.visibleIf(true)
+        } else {
+            binding.rvDonor.visibleIf(false)
+            binding.txtNoRecords.visibleIf(true)
+        }
+    }
+
+    private fun callFindDonor() {
+        val gender =
+            binding.genderLayout.genderGroup.checkedRadioButtonText?.toString() ?: emptyText()
+
+        val bloodGroup =
+            binding.bloodLayout.bloodGroup.checkedRadioButtonText?.toString() ?: emptyText()
+
+        val address = binding.edtAddress.getText()
+
+        viewModel.getDonor(gender = gender, bloodGroup = bloodGroup, address = address)
+    }
 }

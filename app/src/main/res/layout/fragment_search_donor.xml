@@ -7,16 +7,6 @@
     android:paddingHorizontal="@dimen/space_med">
 
 
-    <include
-        android:id="@+id/searchLayout"
-        layout="@layout/custom_search_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDonor"
         android:layout_width="0dp"
@@ -25,7 +15,22 @@
         app:layout_constraintBottom_toTopOf="@id/btnSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchLayout" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNoRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/no_records"
+        android:textAlignment="center"
+        android:textColor="@color/dark_gry"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnSearch"
@@ -47,7 +52,28 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchLayout">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtClearFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/clear_filter"
+            android:textAlignment="center"
+            android:textColor="@color/red_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.keremturker.behero.commons.CustomEdittext
+            android:id="@+id/edtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/space_small"
+            android:hint="@string/address"
+            android:inputType="textEmailAddress"
+            app:layout_constraintTop_toBottomOf="@id/txtClearFilter"
+            app:leftImage="@drawable/ic_location" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -57,7 +83,7 @@
             android:layout_marginVertical="@dimen/space_small"
             android:background="@drawable/edittext_radius_bg"
             android:paddingVertical="@dimen/space_small"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/edtAddress">
 
 
             <ImageView
