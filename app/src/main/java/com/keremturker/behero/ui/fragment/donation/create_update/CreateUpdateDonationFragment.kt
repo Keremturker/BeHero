@@ -86,13 +86,13 @@ class CreateUpdateDonationFragment :
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
                 is Response.Success -> {
                     viewModel.loadingDetection.postValue(false)
-                    getString(R.string.donation_created_request_text).showAsDialog(requireContext()) {
+                    getString(R.string.donation_created_request_text).showAsDialog(requireActivity()) {
                         viewModel.goToBack()
                     }
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }
@@ -102,14 +102,14 @@ class CreateUpdateDonationFragment :
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
                 is Response.Success -> {
                     viewModel.loadingDetection.postValue(false)
-                    getString(R.string.donation_updated_request_text).showAsDialog(requireContext()) {
+                    getString(R.string.donation_updated_request_text).showAsDialog(requireActivity()) {
                         this.setNavigationResult(newDonation, DONATION)
                         findNavController().navigateUp()
                     }
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }

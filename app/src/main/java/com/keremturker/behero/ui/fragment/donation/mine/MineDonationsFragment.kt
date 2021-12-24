@@ -49,7 +49,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }

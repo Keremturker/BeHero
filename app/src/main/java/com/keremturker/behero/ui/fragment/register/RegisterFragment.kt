@@ -93,7 +93,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }
@@ -107,7 +107,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }
@@ -118,13 +118,13 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
                 is Success -> {
                     viewModel.loadingDetection.postValue(false)
                     clearView()
-                    getString(R.string.account_activation).showAsDialog(requireContext()) {
+                    getString(R.string.account_activation).showAsDialog(requireActivity()) {
                         viewModel.goToLogin()
                     }
                 }
                 is Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }

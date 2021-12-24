@@ -83,7 +83,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }
@@ -102,7 +102,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
                     viewModel.singOut()
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }

@@ -40,12 +40,12 @@ class ProfileEditFragment : BaseFragment<FragmentProfileEditBinding, ProfileEdit
                 is Response.Success -> {
 
                     viewModel.loadingDetection.postValue(false)
-                    getString(R.string.update_information).showAsDialog(requireContext()) {
+                    getString(R.string.update_information).showAsDialog(requireActivity()) {
                     }
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }

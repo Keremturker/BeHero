@@ -11,6 +11,7 @@ import com.keremturker.behero.utils.SharedHelper
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.visibleIf
+import com.keremturker.behero.utils.showAsDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -35,8 +36,13 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
         setView()
 
         binding.clSignOut.setOnClickListener {
-            viewModel.signOut()
-            reloadActivity()
+            getString(R.string.are_you_sure_exit).showAsDialog(
+                context = requireActivity(),
+                cancelButtonState = true
+            ) {
+                viewModel.signOut()
+                reloadActivity()
+            }
         }
         binding.scDonate.setOnCheckedChangeListener { _, isChecked ->
             sharedHelper.syncUsers?.let {

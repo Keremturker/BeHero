@@ -1,5 +1,6 @@
 package com.keremturker.behero.utils
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
@@ -17,6 +18,7 @@ import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.extension.getDateSplit
 import com.keremturker.behero.utils.extension.isValidEmail
 import com.keremturker.behero.utils.extension.makeClickableText
+import com.keremturker.behero.utils.extension.setGone
 import java.util.*
 
 fun Context.showDatePicker(date: String = emptyText(), function: (String) -> Unit) {
@@ -35,7 +37,10 @@ fun Context.showDatePicker(date: String = emptyText(), function: (String) -> Uni
 }
 
 fun String.showAsDialog(
-    context: Context,
+    context: Activity,
+    buttonOkTitle: String? = null,
+    buttonCancelTitle: String? = null,
+    cancelButtonState: Boolean = false,
     function: (() -> Unit)? = null
 ) {
     val dialog = Dialog(context)
@@ -45,11 +50,26 @@ fun String.showAsDialog(
     dialog.setCanceledOnTouchOutside(true)
     val t: TextView = dialog.findViewById(R.id.txtMessage)
     t.text = this
-    val btnAction: Button = dialog.findViewById(R.id.btnAction)
+    val btnApply: Button = dialog.findViewById(R.id.btnApply)
+    val txtCancel: TextView = dialog.findViewById(R.id.txtCancel)
 
-    btnAction.setOnClickListener {
+    btnApply.text = buttonOkTitle ?: context.getString(R.string.ok)
+    txtCancel.text = buttonCancelTitle ?: context.getString(R.string.cancel)
+
+
+    if (!cancelButtonState) {
+        txtCancel.setGone()
+    }
+
+    btnApply.setOnClickListener {
         dialog.dismiss()
         function?.invoke()
+    }
+
+    txtCancel.setOnClickListener {
+        if (!context.isFinishing) {
+            dialog.dismiss()
+        }
     }
     dialog.setCancelable(false)
     dialog.show()

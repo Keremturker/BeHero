@@ -10,6 +10,7 @@ import com.keremturker.behero.model.Response
 import com.keremturker.behero.model.Users
 import com.keremturker.behero.utils.Constants.emptyText
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.hideKeyboard
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,15 +31,20 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
         prepareRecyclerView()
 
         binding.txtClearFilter.setOnClickListener {
-            binding.bloodLayout.bloodGroup.clearCheck()
-            binding.genderLayout.genderGroup.clearCheck()
-            binding.edtAddress.clearText()
+            binding.apply {
+                clearView()
+                btnApply.performClick()
+            }
         }
 
         binding.btnApply.setOnClickListener {
-            binding.clFilter.visibleIf(false)
-            binding.btnSearch.visibleIf(true)
-            callFindDonor()
+            binding.apply {
+                clFilter.visibleIf(false)
+                btnSearch.visibleIf(true)
+                callFindDonor()
+                clearView()
+                hideKeyboard()
+            }
         }
 
         binding.btnSearch.setOnClickListener {
@@ -72,7 +78,7 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
-                    response.errorMessage.showAsDialog(requireContext())
+                    response.errorMessage.showAsDialog(requireActivity())
                 }
             }
         }
@@ -134,5 +140,13 @@ class SearchDonorFragment : BaseFragment<FragmentSearchDonorBinding, SearchDonor
         val address = binding.edtAddress.getText()
 
         viewModel.getDonor(gender = gender, bloodGroup = bloodGroup, address = address)
+    }
+
+    private fun clearView(){
+       binding.apply {
+           bloodLayout.bloodGroup.clearCheck()
+           genderLayout.genderGroup.clearCheck()
+           edtAddress.clearText()
+       }
     }
 }

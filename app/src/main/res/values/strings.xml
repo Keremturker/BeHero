@@ -43,6 +43,7 @@
     <string name="search_hint">Search</string>
     <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>
     <string name="update_information">Successfully updated your personal information</string>
+    <string name="are_you_sure_exit">Are you sure you want to exit?</string>
 
 
     <!-- Button Text-->
@@ -51,7 +52,8 @@
     <string name="update_button_text">Update</string>
     <string name="send_button_text">Send</string>
     <string name="pick_button_text">Pick</string>
-    <string name="ok">Okey</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string name="call_now">Call Now</string>
     <string name="request">Request</string>
     <string name="apply_button_text">Apply</string>
