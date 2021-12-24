@@ -19,7 +19,7 @@ class UsersRepository @Inject constructor(
     @Named(USERS_REF) private val usersRef: CollectionReference
 ) {
 
-    suspend fun getDonationsFromFirestore(
+    suspend fun getDonorsFromFirestore(
         gender: String,
         bloodGroup: String,
         address: String,

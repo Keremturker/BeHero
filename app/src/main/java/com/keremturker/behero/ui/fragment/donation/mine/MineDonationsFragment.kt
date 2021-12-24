@@ -7,6 +7,7 @@ import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentMineDonationsBinding
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
+import com.keremturker.behero.ui.fragment.donation.DonationsListAdapter
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
@@ -20,7 +21,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
     override var onNavigationViewShow = true
     override var toolbarType = ToolbarType.Normal
 
-    private val donationAdapter = MineDonationsListAdapter(::onClickAction)
+    private val donationAdapter = DonationsListAdapter(::onClickAction)
     override fun onFragmentCreated() {
         setNormalToolbar(isBackIcon = true, title = getString(R.string.mine_request_title))
         prepareRecyclerView()

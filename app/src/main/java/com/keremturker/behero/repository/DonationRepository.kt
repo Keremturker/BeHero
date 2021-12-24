@@ -1,5 +1,6 @@
 package com.keremturker.behero.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.keremturker.behero.model.Donations
@@ -46,11 +47,11 @@ class DonationRepository @Inject constructor(
     }
 
 
-    suspend fun getDonationsFromFirestore() = flow {
+    suspend fun getDonationsFromFirestore(uuid: String? = auth.uid) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                val donations = donationsRef.whereEqualTo("uuid", this.uid).get().await()
+                val donations = donationsRef.whereEqualTo("uuid", uuid).get().await()
                     .toObjects(Donations::class.java)
                 emit(Response.Success(donations))
             }
@@ -72,5 +73,52 @@ class DonationRepository @Inject constructor(
             emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
         }
     }
+
+
+    suspend fun getDonationsFromFirestore(
+        bloodGroup: String,
+        address: String,
+        limit: Long? = null
+    ) =
+        flow {
+            try {
+                emit(Response.Loading)
+                auth.currentUser?.apply {
+
+
+                    var query = donationsRef.whereNotEqualTo("uuid", this.uid)
+                    query = query.whereEqualTo("enable", true)
+
+                    if (bloodGroup.isNotEmpty()) {
+                        query = query.whereEqualTo("bloodGroup", bloodGroup)
+                    }
+
+                    limit?.let {
+                        query = query.limit(it)
+                    }
+
+
+                    val donations = query.get().await().toObjects(Donations::class.java)
+                    if (address.isNotEmpty()) {
+                        val newList = arrayListOf<Donations>()
+                        donations.forEach {
+                            if (it.address.description?.lowercase()
+                                    ?.contains(address.lowercase()) == true
+                            ) {
+                                newList.add(it)
+                            }
+                        }
+                        emit(Response.Success(newList))
+
+                    } else {
+                        emit(Response.Success(donations))
+                    }
+
+                }
+            } catch (e: Exception) {
+                Log.d("test123", e.localizedMessage);
+                emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+            }
+        }
 
 }

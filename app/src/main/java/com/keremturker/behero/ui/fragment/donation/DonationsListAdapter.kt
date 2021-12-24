@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donation.mine
+package com.keremturker.behero.ui.fragment.donation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +9,8 @@ import com.keremturker.behero.model.Donations
 import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.getBloodImage
 
-class MineDonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
-    BaseAdapter<Donations, ListItemDonationBinding, MineDonationsListAdapter.MineDonationsListHolder>() {
+class DonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
+    BaseAdapter<Donations, ListItemDonationBinding, DonationsListAdapter.MineDonationsListHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MineDonationsListHolder {
         return MineDonationsListHolder(

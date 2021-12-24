@@ -39,7 +39,7 @@ class SearchDonorVM @Inject constructor(
 
     fun getDonor(gender: String, bloodGroup: String, address: String, limit: Long? = null) {
         viewModelScope.launch {
-            usersRepository.getDonationsFromFirestore(
+            usersRepository.getDonorsFromFirestore(
                 gender = gender,
                 bloodGroup = bloodGroup,
                 address = address,
