@@ -7,10 +7,11 @@
     android:background="@color/background">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space_small"
-        app:cardCornerRadius="@dimen/space_small_1"
+        android:layout_marginVertical="@dimen/space_small"
+        android:layout_marginHorizontal="@dimen/space_med"        app:cardCornerRadius="@dimen/space_small_1"
         app:contentPadding="@dimen/space_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,5 +138,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <include
+        android:id="@+id/cvMaps"
+        layout="@layout/layout_map"
+        android:layout_marginVertical="@dimen/space_small"
+        android:layout_marginHorizontal="@dimen/space_med"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

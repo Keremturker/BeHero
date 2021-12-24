@@ -71,6 +71,7 @@
         <entry key="app/src/main/res/layout/fragment_search_donor.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/layout_map.xml" value="0.32563405797101447" />
         <entry key="app/src/main/res/layout/list_item_donation.xml" value="0.6201438848920864" />
         <entry key="app/src/main/res/layout/list_item_donor.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
