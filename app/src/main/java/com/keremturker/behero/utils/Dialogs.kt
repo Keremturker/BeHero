@@ -41,7 +41,8 @@ fun String.showAsDialog(
     buttonOkTitle: String? = null,
     buttonCancelTitle: String? = null,
     cancelButtonState: Boolean = false,
-    function: (() -> Unit)? = null
+    cancelFunction: (() -> Unit)? = null,
+    okFunction: (() -> Unit)? = null
 ) {
     val dialog = Dialog(context)
     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -63,10 +64,11 @@ fun String.showAsDialog(
 
     btnApply.setOnClickListener {
         dialog.dismiss()
-        function?.invoke()
+        okFunction?.invoke()
     }
 
     txtCancel.setOnClickListener {
+        cancelFunction?.invoke()
         if (!context.isFinishing) {
             dialog.dismiss()
         }

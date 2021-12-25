@@ -51,8 +51,10 @@ class DonationRepository @Inject constructor(
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                val donations = donationsRef.whereEqualTo("uuid", uuid).get().await()
-                    .toObjects(Donations::class.java)
+                val donations =
+                    donationsRef.whereEqualTo("uuid", uuid).whereEqualTo("enable", true).get()
+                        .await()
+                        .toObjects(Donations::class.java)
                 emit(Response.Success(donations))
             }
         } catch (e: Exception) {
@@ -94,7 +96,7 @@ class DonationRepository @Inject constructor(
             auth.currentUser?.apply {
                 val donations =
                     donationsRef.whereNotEqualTo("uuid", auth.uid).whereEqualTo("enable", true)
-                        .limit(1)//.orderBy("createTime", Query.Direction.DESCENDING)
+                        .limit(1)
                         .get()
                         .await().toObjects(Donations::class.java)
                 if (donations.isNotEmpty()) {

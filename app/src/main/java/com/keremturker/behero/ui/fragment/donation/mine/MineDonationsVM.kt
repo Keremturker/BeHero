@@ -25,6 +25,9 @@ class MineDonationsVM @Inject constructor(
     private val _mineDonations = SingleLiveEvent<Response<List<Donations>>>()
     val mineDonations: LiveData<Response<List<Donations>>> = _mineDonations
 
+    private val _deleteDonation = SingleLiveEvent<Response<Void>>()
+    val deleteDonation: LiveData<Response<Void>> = _deleteDonation
+
 
     fun goToCreateDonation() {
         navigateFragment(navAction = R.id.nav_action_createUpdateDonationFragment_global)
@@ -45,6 +48,17 @@ class MineDonationsVM @Inject constructor(
         viewModelScope.launch {
             donationRepository.getDonationsFromFirestore().collect { response ->
                 _mineDonations.postValue(response)
+            }
+        }
+    }
+
+    fun deleteDonation(donation: Donations) {
+        donation.apply {
+            this.enable = false
+        }
+        viewModelScope.launch {
+            donationRepository.updateDonationInFirestore(donation).collect {
+                _deleteDonation.postValue(it)
             }
         }
     }

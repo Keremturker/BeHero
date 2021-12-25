@@ -11,7 +11,10 @@ import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.getBloodImage
 import com.keremturker.behero.utils.extension.visibleIf
 
-class DonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
+class DonationsListAdapter(
+    private val onClickAction: ((Donations) -> Unit),
+    private val onDeleteAction: ((Donations) -> Unit)
+) :
     BaseAdapter<Donations, ListItemDonationBinding, DonationsListAdapter.MineDonationsListHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MineDonationsListHolder {
@@ -44,6 +47,13 @@ class DonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
                 }
             } ?: return
         }
+
+
+    }
+
+    fun deleteItem(position: Int) {
+        val selectedItem = getData()[position]
+        onDeleteAction.invoke(selectedItem)
     }
 }
 

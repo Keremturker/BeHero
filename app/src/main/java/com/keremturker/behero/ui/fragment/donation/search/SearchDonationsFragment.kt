@@ -1,5 +1,6 @@
 package com.keremturker.behero.ui.fragment.donation.search
 
+import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +26,7 @@ class SearchDonationsFragment : BaseFragment<FragmentSearchDonationsBinding, Sea
     override var toolbarType = ToolbarType.Normal
     private val defaultDonationCount = 10L
 
-    private val donationAdapter = DonationsListAdapter(::onClickAction)
+    private val donationAdapter = DonationsListAdapter(::onClickAction,::onDeleteAction)
 
     override fun onFragmentCreated() {
         setView()
@@ -114,6 +115,10 @@ class SearchDonationsFragment : BaseFragment<FragmentSearchDonationsBinding, Sea
 
     private fun onClickAction(item: Donations) {
         viewModel.goToDetailDonation(item)
+    }
+
+    private fun onDeleteAction(item: Donations) {
+        Log.d("test123",item.hospitalName)
     }
 
     private fun visibleListControl() {

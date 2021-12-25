@@ -45,6 +45,7 @@
     <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>
     <string name="update_information">Successfully updated your personal information</string>
     <string name="are_you_sure_exit">Are you sure you want to exit?</string>
+    <string name="are_you_sure_delete_donation">Are you sure you want to delete this donation?</string>
     <string name="donors">Donor\'s</string>
 
 
