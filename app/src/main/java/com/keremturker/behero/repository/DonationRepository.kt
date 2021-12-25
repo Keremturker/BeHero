@@ -88,6 +88,25 @@ class DonationRepository @Inject constructor(
         }
     }
 
+    suspend fun getLastDonation() = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                val donations =
+                    donationsRef.whereNotEqualTo("uuid", auth.uid).whereEqualTo("enable", true)
+                        .limit(1)//.orderBy("createTime", Query.Direction.DESCENDING)
+                        .get()
+                        .await().toObjects(Donations::class.java)
+                if (donations.isNotEmpty()) {
+                    emit(Response.Success(donations))
+                } else {
+                    emit(Response.Failure(""))
+                }
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
 
 
     suspend fun getDonationsFromFirestore(

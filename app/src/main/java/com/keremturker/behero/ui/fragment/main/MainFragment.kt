@@ -6,6 +6,8 @@ import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.databinding.FragmentMainBinding
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.getAddress
+import com.keremturker.behero.utils.extension.getBloodImage
 import com.keremturker.behero.utils.extension.visibleIf
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +21,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
 
     override fun onFragmentCreated() {
         setNormalToolbar(
-            title = "",
-            rightIcon = R.drawable.ic_notification
+            title = getString(R.string.be_hero),
         )
     }
 
@@ -49,6 +50,24 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
                 is Response.Failure -> {
                     binding.pbDonorCount.visibleIf(false)
                     binding.txtDonorContent.text = "0"
+                }
+            }
+        }
+
+        viewModel.lastDonation.observe(this) { response ->
+            when (response) {
+                is Response.Loading -> {}
+                is Response.Success -> {
+                    val donation = response.data[0]
+                    binding.cvLastDonation.visibleIf(true)
+
+                    binding.txtName.text = donation.patientName
+                    binding.txtLocation.text = donation.address.getAddress()
+                    binding.imgBloodGroup.setBackgroundResource(donation.bloodGroup.getBloodImage())
+
+                }
+                is Response.Failure -> {
+                    binding.cvLastDonation.visibleIf(false)
                 }
             }
         }

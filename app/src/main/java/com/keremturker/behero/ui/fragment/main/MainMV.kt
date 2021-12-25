@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.keremturker.behero.base.BaseViewModel
+import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
 import com.keremturker.behero.repository.DonationRepository
 import com.keremturker.behero.repository.UsersRepository
@@ -28,10 +29,14 @@ class MainMV
     private val _countDonor = SingleLiveEvent<Response<Int>>()
     val countDonor: LiveData<Response<Int>> = _countDonor
 
+    private val _lastDonation = SingleLiveEvent<Response<List<Donations>>>()
+    val lastDonation: LiveData<Response<List<Donations>>> = _lastDonation
+
 
     init {
         getAllDonationCount()
         getAllDonorCount()
+        getLastDonation()
     }
 
     private fun getAllDonationCount() {
@@ -50,5 +55,11 @@ class MainMV
         }
     }
 
-
+    private fun getLastDonation() {
+        viewModelScope.launch {
+            donationRepository.getLastDonation().collect {
+                _lastDonation.postValue(it)
+            }
+        }
+    }
 }

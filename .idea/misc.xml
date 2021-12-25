@@ -9,8 +9,11 @@
         <entry key="app/src/main/res/drawable/custom_dialog_bg.xml" value="0.21944444444444444" />
         <entry key="app/src/main/res/drawable/edittext_custom_cursor.xml" value="0.2703125" />
         <entry key="app/src/main/res/drawable/edittext_radius_bg.xml" value="0.18425925925925926" />
+        <entry key="app/src/main/res/drawable/ic_a_negative.xml" value="0.35333333333333333" />
         <entry key="app/src/main/res/drawable/ic_analysis.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.20625" />
+        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.20572916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_filter_list_24.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_filter_list_32.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_my_location_24.xml" value="0.23333333333333334" />
@@ -62,8 +65,8 @@
         <entry key="app/src/main/res/layout/fragment_detail_donor.xml" value="0.33106884057971014" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.45" />
-        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.4894932014833127" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_mine_donations.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile_edit.xml" value="0.5116640746500778" />
@@ -73,7 +76,7 @@
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/layout_map.xml" value="0.32563405797101447" />
-        <entry key="app/src/main/res/layout/list_item_donation.xml" value="0.6201438848920864" />
+        <entry key="app/src/main/res/layout/list_item_donation.xml" value="0.5753012048192772" />
         <entry key="app/src/main/res/layout/list_item_donor.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/radio_button.xml" value="0.17980072463768115" />
         <entry key="app/src/main/res/layout/table_layout.xml" value="0.17980072463768115" />

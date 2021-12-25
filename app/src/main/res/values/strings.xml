@@ -1,6 +1,7 @@
 <resources>
 
     <string name="name">Name</string>
+    <string name="be_hero">Be Hero</string>
     <string name="location">Location</string>
 
     <string name="splash_screen_text">Dear To Donate</string>
