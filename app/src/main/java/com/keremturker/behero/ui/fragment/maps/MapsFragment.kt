@@ -36,7 +36,7 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     private lateinit var mMap: GoogleMap
     private var currentLocation: Location? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
-    override var toolbarType: ToolbarType = ToolbarType.Empty
+    override var toolbarType: ToolbarType = ToolbarType.Normal
     private val zoomRatio = 18f
 
     override val viewModel: MapsVM by viewModels()
@@ -47,21 +47,21 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     private val longitude: Double? get() = arguments?.getDouble("longitude", 0.0)
 
     override fun onFragmentCreated() {
+        setNormalToolbar(isBackIcon = true, title = getString(R.string.select_location_text), rightIcon = R.drawable.ic_baseline_my_location_24){
+            fetchLocation(true)
+
+        }
+
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireContext())
 
         requestPermission(PERMISSION_LOCATION, *permissionLocation)
-        binding.imgCurrentLocation.setOnClickListener {
-            fetchLocation(true)
-        }
 
         binding.btnPick.setOnClickListener {
             this.setNavigationResult(currentAddress, ADDRESS)
             findNavController().navigateUp()
         }
-        binding.imgBack.setOnClickListener {
-            onBackPress()
-        }
+
     }
 
 
