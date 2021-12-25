@@ -68,4 +68,19 @@ class UsersRepository @Inject constructor(
                 emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
             }
         }
+
+
+    suspend fun getAllDonorCount() = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                val users =
+                    usersRef.get()
+                        .await()
+                emit(Response.Success(users.documents.size))
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
 }

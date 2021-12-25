@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_my_request.xml" value="0.35885416666666664" />
+        <entry key="app/src/main/res/drawable/ic_notification.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_password.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_phone.xml" value="0.35885416666666664" />
         <entry key="app/src/main/res/drawable/ic_request.xml" value="0.35885416666666664" />
@@ -44,7 +45,7 @@
         <entry key="app/src/main/res/layout/activity_main_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/custom_actionbar.xml" value="0.6760752688172043" />
         <entry key="app/src/main/res/layout/custom_actionbar_normal.xml" value="0.5905947441217151" />
-        <entry key="app/src/main/res/layout/custom_block_layout.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/custom_block_layout.xml" value="0.55" />
         <entry key="app/src/main/res/layout/custom_blood_group_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_button.xml" value="0.6487935656836461" />
         <entry key="app/src/main/res/layout/custom_edittext.xml" value="0.4970344009489917" />
@@ -61,7 +62,7 @@
         <entry key="app/src/main/res/layout/fragment_detail_donor.xml" value="0.33106884057971014" />
         <entry key="app/src/main/res/layout/fragment_donation_search.xml" value="0.2930253623188406" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.2930253623188406" />
+        <entry key="app/src/main/res/layout/fragment_main.xml" value="0.45" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.4894932014833127" />
         <entry key="app/src/main/res/layout/fragment_mine_donations.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_my_donations.xml" value="0.33" />

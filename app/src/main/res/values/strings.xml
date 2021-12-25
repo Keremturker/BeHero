@@ -44,6 +44,7 @@
     <string name="account_activation">An email has been sent to your email address containing an activation link. Please click on the link to activate your account.</string>
     <string name="update_information">Successfully updated your personal information</string>
     <string name="are_you_sure_exit">Are you sure you want to exit?</string>
+    <string name="donors">Donor\'s</string>
 
 
     <!-- Button Text-->
@@ -69,6 +70,7 @@
     <string name="mine_request_title">My Request</string>
     <string name="create_a_request_title">Create A Request</string>
     <string name="update_request_title">Update Request</string>
+    <string name="find_donation_title">Find Donation</string>
     <string name="donation_detail_title">Donation Detail</string>
     <string name="find_donor_title">Find Donor</string>
     <string name="find_donor_detail_title">Donor Detail</string>

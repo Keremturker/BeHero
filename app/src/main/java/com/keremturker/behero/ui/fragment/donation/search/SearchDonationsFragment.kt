@@ -85,7 +85,7 @@ class SearchDonationsFragment : BaseFragment<FragmentSearchDonationsBinding, Sea
 
     private fun setView() {
         setNormalToolbar(
-            title = getString(R.string.find_donor_title),
+            title = getString(R.string.find_donation_title),
             rightIcon = R.drawable.ic_baseline_filter_list_32
         ) {
             val isShow = binding.clFilter.isVisible

@@ -74,6 +74,21 @@ class DonationRepository @Inject constructor(
         }
     }
 
+    suspend fun getAllDonationCount() = flow {
+        try {
+            emit(Response.Loading)
+            auth.currentUser?.apply {
+                val donations =
+                    donationsRef.whereEqualTo("enable", true).get()
+                        .await()
+                emit(Response.Success(donations.documents.size))
+            }
+        } catch (e: Exception) {
+            emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))
+        }
+    }
+
+
 
     suspend fun getDonationsFromFirestore(
         bloodGroup: String,
