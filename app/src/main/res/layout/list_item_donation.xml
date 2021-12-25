@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/space_small"
     android:layout_marginHorizontal="@dimen/space_small_3"
+    android:layout_marginVertical="@dimen/space_small"
     android:background="@color/background"
     app:cardCornerRadius="@dimen/space_small">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/space_small">
 
@@ -62,6 +62,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtLocationTitle"
                 tools:text="Kocaeli Türkiye" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="8sp"
+                android:fontFamily="@font/poppins_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLocation"
+                tools:text="12-10-21 22:10"
+                tools:ignore="SmallSp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

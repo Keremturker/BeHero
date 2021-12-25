@@ -6,8 +6,10 @@ import com.keremturker.behero.base.BaseAdapter
 import com.keremturker.behero.base.BaseHolder
 import com.keremturker.behero.databinding.ListItemDonationBinding
 import com.keremturker.behero.model.Donations
+import com.keremturker.behero.utils.extension.formatDate
 import com.keremturker.behero.utils.extension.getAddress
 import com.keremturker.behero.utils.extension.getBloodImage
+import com.keremturker.behero.utils.extension.visibleIf
 
 class DonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
     BaseAdapter<Donations, ListItemDonationBinding, DonationsListAdapter.MineDonationsListHolder>() {
@@ -26,10 +28,15 @@ class DonationsListAdapter(private val onClickAction: ((Donations) -> Unit)) :
         BaseHolder<Donations, ListItemDonationBinding>(viewBinding) {
         override fun bind(binding: ListItemDonationBinding, item: Donations?) {
 
-            item?.let {donation->
+            item?.let { donation ->
                 binding.apply {
                     txtName.text = donation.patientName
                     txtLocation.text = donation.address.getAddress()
+
+                    donation.createTime.formatDate()?.let {
+                        txtTime.text = it
+                    } ?: txtTime.visibleIf(false)
+
                     parentLayout.setOnClickListener {
                         onClickAction.invoke(donation)
                     }

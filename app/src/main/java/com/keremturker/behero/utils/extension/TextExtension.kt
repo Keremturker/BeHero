@@ -1,5 +1,6 @@
 package com.keremturker.behero.utils.extension
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -14,8 +15,11 @@ import android.text.style.ForegroundColorSpan
 import android.util.Patterns
 import android.view.View
 import android.widget.TextView
+import com.google.firebase.Timestamp
 import com.keremturker.behero.R
 import com.keremturker.behero.model.Address
+import com.keremturker.behero.utils.Constants.DATE_FORMAT
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -164,4 +168,14 @@ fun Context.callPhone(phone: String) {
     val intent = Intent(Intent.ACTION_DIAL)
     intent.data = Uri.parse("tel:$phone")
     startActivity(intent)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun Any?.formatDate(): String? {
+    return try {
+        val date = (this as Timestamp).toDate()
+        SimpleDateFormat(DATE_FORMAT).format(date) ?: null
+    } catch (e: java.lang.Exception) {
+        null
+    }
 }
