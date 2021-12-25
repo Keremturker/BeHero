@@ -1,8 +1,10 @@
 package com.keremturker.behero.ui.fragment.main
 
 import android.app.Application
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseViewModel
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
@@ -12,6 +14,7 @@ import com.keremturker.behero.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.Serializable
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,13 +36,7 @@ class MainMV
     val lastDonation: LiveData<Response<List<Donations>>> = _lastDonation
 
 
-    init {
-        getAllDonationCount()
-        getAllDonorCount()
-        getLastDonation()
-    }
-
-    private fun getAllDonationCount() {
+    fun getAllDonationCount() {
         viewModelScope.launch {
             donationRepository.getAllDonationCount().collect {
                 _countDonation.postValue(it)
@@ -47,7 +44,7 @@ class MainMV
         }
     }
 
-    private fun getAllDonorCount() {
+    fun getAllDonorCount() {
         viewModelScope.launch {
             usersRepository.getAllDonorCount().collect {
                 _countDonor.postValue(it)
@@ -55,11 +52,21 @@ class MainMV
         }
     }
 
-    private fun getLastDonation() {
+    fun getLastDonation() {
         viewModelScope.launch {
             donationRepository.getLastDonation().collect {
                 _lastDonation.postValue(it)
             }
+        }
+    }
+
+    fun goToDetailDonation(donation: Donations) {
+        Bundle().apply {
+            putSerializable("donation", donation as Serializable)
+            navigateFragment(
+                navAction = R.id.nav_action_detailDonationFragment_global,
+                bundle = this
+            )
         }
     }
 }

@@ -145,9 +145,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space_small"
         android:visibility="gone"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
         android:background="@color/background"
         app:cardCornerRadius="@dimen/space_small"
-        app:layout_constraintTop_toBottomOf="@id/cvDonorCount">
+        app:layout_constraintTop_toBottomOf="@id/cvDonorCount"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/parentLayout"

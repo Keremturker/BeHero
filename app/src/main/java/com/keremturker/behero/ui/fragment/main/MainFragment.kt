@@ -65,11 +65,22 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainMV>() {
                     binding.txtLocation.text = donation.address.getAddress()
                     binding.imgBloodGroup.setBackgroundResource(donation.bloodGroup.getBloodImage())
 
+                    binding.cvLastDonation.setOnClickListener {
+                        viewModel.goToDetailDonation(donation)
+                    }
+
                 }
                 is Response.Failure -> {
                     binding.cvLastDonation.visibleIf(false)
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllDonationCount()
+        viewModel.getAllDonorCount()
+        viewModel.getLastDonation()
     }
 }
