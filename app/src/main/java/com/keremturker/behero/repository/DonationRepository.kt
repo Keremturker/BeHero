@@ -47,7 +47,7 @@ class DonationRepository @Inject constructor(
     }
 
 
-    suspend fun getDonationsFromFirestore(uuid: String? = auth.uid) = flow {
+    suspend fun getDonationsFromFirestore(uuid: String?) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
@@ -69,7 +69,11 @@ class DonationRepository @Inject constructor(
                 val donations =
                     donationsRef.whereEqualTo("uuid", uuid).whereEqualTo("enable", true).get()
                         .await()
-                emit(Response.Success(donations.documents.size))
+                if (donations.documents.isNotEmpty()) {
+                    emit(Response.Success(donations.documents.size))
+                } else {
+                    emit(Response.Failure(""))
+                }
             }
         } catch (e: Exception) {
             emit(Response.Failure(e.message ?: Constants.ERROR_MESSAGE))

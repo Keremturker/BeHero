@@ -1,55 +1,78 @@
-package com.keremturker.behero.ui.fragment.donation.mine
+package com.keremturker.behero.ui.fragment.donation.list
 
 import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
 import com.keremturker.behero.base.SwipeToDeleteCallback
-import com.keremturker.behero.databinding.FragmentMineDonationsBinding
+import com.keremturker.behero.databinding.FragmentDonationsBinding
 import com.keremturker.behero.model.Donations
 import com.keremturker.behero.model.Response
+import com.keremturker.behero.model.Users
 import com.keremturker.behero.ui.fragment.donation.DonationsListAdapter
 import com.keremturker.behero.utils.ToolbarType
 import com.keremturker.behero.utils.extension.visibleIf
 import com.keremturker.behero.utils.showAsDialog
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDonationsVM>() {
-    override val viewModel: MineDonationsVM by viewModels()
+class DonationsFragment : BaseFragment<FragmentDonationsBinding, DonationsVM>() {
+    override val viewModel: DonationsVM by viewModels()
 
-    override fun getViewBinding() = FragmentMineDonationsBinding.inflate(layoutInflater)
+    override fun getViewBinding() = FragmentDonationsBinding.inflate(layoutInflater)
     override var onNavigationViewShow = true
     override var toolbarType = ToolbarType.Normal
+    private var user: Users? = null
 
     private val donationAdapter = DonationsListAdapter(::onClickAction, ::onDeleteAction)
+
+    @Inject
+    lateinit var auth: FirebaseAuth
+
     override fun onFragmentCreated() {
-        setNormalToolbar(isBackIcon = true, title = getString(R.string.mine_request_title))
-        prepareRecyclerView()
-        binding.fabCreateDonation.setOnClickListener {
-            viewModel.goToCreateDonation()
-        }
+        user = arguments?.getSerializable("users") as Users?
 
-        val swipeDelete = object : SwipeToDeleteCallback(requireContext()) {
+        if (user?.uuid == auth.uid) {
+            setNormalToolbar(isBackIcon = true, title = getString(R.string.mine_request_title))
+            binding.fabCreateDonation.visibleIf(true)
 
-            override fun onSwiped(
-                viewHolder: RecyclerView.ViewHolder,
-                direction: Int
-            ) {
-                donationAdapter.deleteItem(viewHolder.adapterPosition)
+
+            binding.fabCreateDonation.setOnClickListener {
+                viewModel.goToCreateDonation()
             }
+
+            val swipeDelete = object : SwipeToDeleteCallback(requireContext()) {
+
+                override fun onSwiped(
+                    viewHolder: RecyclerView.ViewHolder,
+                    direction: Int
+                ) {
+                    donationAdapter.deleteItem(viewHolder.adapterPosition)
+                }
+            }
+
+            val touchHelper = ItemTouchHelper(swipeDelete)
+            touchHelper.attachToRecyclerView(binding.rvDonations)
+
+        } else {
+            setNormalToolbar(isBackIcon = true, title = user?.name ?: "")
+            binding.fabCreateDonation.visibleIf(false)
         }
 
-        val touchHelper = ItemTouchHelper(swipeDelete)
-        touchHelper.attachToRecyclerView(binding.rvDonations)
+
+        prepareRecyclerView()
+
+
     }
 
     override fun observe() {
 
-        viewModel.mineDonations.observe(viewLifecycleOwner) { response ->
+        viewModel.donations.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
 
@@ -77,7 +100,7 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
                 is Response.Loading -> viewModel.loadingDetection.postValue(true)
 
                 is Response.Success -> {
-                    viewModel.getMineDonation()
+                    viewModel.getDonation(user?.uuid)
                 }
                 is Response.Failure -> {
                     viewModel.loadingDetection.postValue(false)
@@ -115,6 +138,6 @@ class MineDonationsFragment : BaseFragment<FragmentMineDonationsBinding, MineDon
 
     override fun onResume() {
         super.onResume()
-        viewModel.getMineDonation()
+        viewModel.getDonation(user?.uuid)
     }
 }

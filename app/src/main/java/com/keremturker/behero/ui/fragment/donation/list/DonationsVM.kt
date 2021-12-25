@@ -1,4 +1,4 @@
-package com.keremturker.behero.ui.fragment.donation.mine
+package com.keremturker.behero.ui.fragment.donation.list
 
 import android.app.Application
 import android.os.Bundle
@@ -17,13 +17,13 @@ import java.io.Serializable
 import javax.inject.Inject
 
 @HiltViewModel
-class MineDonationsVM @Inject constructor(
+class DonationsVM @Inject constructor(
     app: Application,
     private val donationRepository: DonationRepository
 ) : BaseViewModel(app) {
 
-    private val _mineDonations = SingleLiveEvent<Response<List<Donations>>>()
-    val mineDonations: LiveData<Response<List<Donations>>> = _mineDonations
+    private val _donations = SingleLiveEvent<Response<List<Donations>>>()
+    val donations: LiveData<Response<List<Donations>>> = _donations
 
     private val _deleteDonation = SingleLiveEvent<Response<Void>>()
     val deleteDonation: LiveData<Response<Void>> = _deleteDonation
@@ -44,10 +44,10 @@ class MineDonationsVM @Inject constructor(
     }
 
 
-    fun getMineDonation() {
+    fun getDonation(uuid: String?) {
         viewModelScope.launch {
-            donationRepository.getDonationsFromFirestore().collect { response ->
-                _mineDonations.postValue(response)
+            donationRepository.getDonationsFromFirestore(uuid).collect { response ->
+                _donations.postValue(response)
             }
         }
     }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:paddingHorizontal="@dimen/space_med"
-    tools:context=".ui.fragment.donation.mine.MineDonationsFragment">
+    tools:context=".ui.fragment.donation.list.DonationsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDonations"

@@ -54,6 +54,11 @@ class DetailDonorFragment :
                 is Response.Success -> {
                     binding.layoutRequest.pbCount.visibleIf(false)
                     binding.layoutRequest.txtContent.text = response.data.toString()
+                    binding.layoutRequest.cvParent.setOnClickListener {
+                        user?.let {
+                            viewModel.goToDonationList(it)
+                        }
+                    }
                 }
                 is Response.Failure -> {
                     binding.layoutRequest.pbCount.visibleIf(false)

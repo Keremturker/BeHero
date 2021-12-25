@@ -15,16 +15,16 @@ class DonationsListAdapter(
     private val onClickAction: ((Donations) -> Unit),
     private val onDeleteAction: ((Donations) -> Unit)
 ) :
-    BaseAdapter<Donations, ListItemDonationBinding, DonationsListAdapter.MineDonationsListHolder>() {
+    BaseAdapter<Donations, ListItemDonationBinding, DonationsListAdapter.DonationsListHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MineDonationsListHolder {
-        return MineDonationsListHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DonationsListHolder {
+        return DonationsListHolder(
             ListItemDonationBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             onClickAction
         )
     }
 
-    inner class MineDonationsListHolder(
+    inner class DonationsListHolder(
         viewBinding: ListItemDonationBinding,
         private val onClickAction: ((Donations) -> Unit)
     ) :

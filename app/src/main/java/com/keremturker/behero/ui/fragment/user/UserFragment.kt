@@ -52,7 +52,7 @@ class UserFragment : BaseFragment<FragmentUserBinding, UserVM>() {
             }
         }
         binding.clMyDonation.setOnClickListener {
-            viewModel.goToMineDonation()
+            viewModel.goToDonation()
         }
     }
 

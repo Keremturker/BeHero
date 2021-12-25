@@ -36,10 +36,10 @@
         tools:layout="@layout/fragment_search_donations" />
 
     <fragment
-        android:id="@+id/mineDonationsFragment"
-        android:name="com.keremturker.behero.ui.fragment.donation.mine.MineDonationsFragment"
+        android:id="@+id/DonationsFragment"
+        android:name="com.keremturker.behero.ui.fragment.donation.list.DonationsFragment"
         android:label="fragment_my_donations"
-        tools:layout="@layout/fragment_mine_donations" />
+        tools:layout="@layout/fragment_donations" />
 
     <fragment
         android:id="@+id/userFragment"
@@ -139,6 +139,14 @@
         app:popUpToInclusive="true" />
 
     <action
+        android:id="@+id/nav_action_searchDonationsFragment_global"
+        app:destination="@id/searchDonationsFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+
+    <action
         android:id="@+id/nav_action_mainFragment_global_removeAll"
         app:destination="@id/mainFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
@@ -149,8 +157,8 @@
         app:popUpToInclusive="true" />
 
     <action
-        android:id="@+id/nav_action_mineDonationsFragment_global"
-        app:destination="@id/mineDonationsFragment"
+        android:id="@+id/nav_action_donationsFragment_global"
+        app:destination="@id/DonationsFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
