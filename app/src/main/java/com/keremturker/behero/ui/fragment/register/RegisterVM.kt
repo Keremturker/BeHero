@@ -75,9 +75,10 @@ class RegisterVM @Inject constructor(
     }
 
 
+
     fun createUserInFirestore(user: Users) {
         viewModelScope.launch {
-            profileRepository.createUserInFirestore(user).collect {
+            profileRepository.createOrUpdateUserInFirestore(user).collect {
                 _createUser.postValue(it)
             }
         }
@@ -106,4 +107,6 @@ class RegisterVM @Inject constructor(
             R.string.birthday_hint_text
         ))
     }
+
+
 }

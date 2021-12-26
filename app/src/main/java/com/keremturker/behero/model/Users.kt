@@ -14,6 +14,7 @@ data class Users(
     var bloodGroup: String = "",
     var address: Address? = null,
     var availableDonate: Boolean = false,
+    var mailVerified: Boolean = false,
     val createTime: Any? = null,
     var updateTime: Any? = null
 ) : Serializable, Parcelable {

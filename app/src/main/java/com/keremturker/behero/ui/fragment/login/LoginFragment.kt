@@ -97,6 +97,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginVM>() {
                     binding.edtMail.clearText()
                     binding.clPassword.edtPassword.setText(emptyText())
                     sharedHelper.syncUsers = response.data
+                    viewModel.createOrUpdateUserInFirestore(response.data)
                     viewModel.goToMainScreen()
                 }
                 is Response.Failure -> {

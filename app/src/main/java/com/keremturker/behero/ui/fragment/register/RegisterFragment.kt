@@ -153,7 +153,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             selectedAddress = it
             binding.txtAddress.text = it.description
         }
-        if (birthDay !=emptyText()) {
+        if (birthDay != emptyText()) {
             binding.txtBirthday.text = birthDay
 
         }
@@ -179,7 +179,8 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             phone = phone,
             createTime = FieldValue.serverTimestamp(),
             updateTime = FieldValue.serverTimestamp(),
-            availableDonate = true
+            availableDonate = true,
+            mailVerified = false
         )
     }
 

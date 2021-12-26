@@ -52,7 +52,7 @@ class UserVM @Inject constructor(
 
     fun setAvailableDonation(user: Users) {
         viewModelScope.launch {
-            profileRepository.createUserInFirestore(user).collect {
+            profileRepository.createOrUpdateUserInFirestore(user).collect {
                 if (it is Response.Success) {
                     sharedHelper.syncUsers = user
                 }

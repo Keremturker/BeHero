@@ -32,6 +32,7 @@ class UsersRepository @Inject constructor(
 
 
                     var query = usersRef.whereNotEqualTo("uuid", this.uid)
+                    query = query.whereEqualTo("mailVerified", true)
 
                     if (gender.isNotEmpty()) {
                         query = query.whereEqualTo("gender", gender)
@@ -74,8 +75,7 @@ class UsersRepository @Inject constructor(
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {
-                val users =
-                    usersRef.get()
+                val users = usersRef.whereEqualTo("mailVerified",true).get()
                         .await()
                 emit(Response.Success(users.documents.size))
             }

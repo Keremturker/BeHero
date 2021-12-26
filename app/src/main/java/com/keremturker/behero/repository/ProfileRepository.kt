@@ -32,7 +32,7 @@ class ProfileRepository @Inject constructor(
         }
     }
 
-    suspend fun createUserInFirestore(user: Users) = flow {
+    suspend fun createOrUpdateUserInFirestore(user: Users) = flow {
         try {
             emit(Response.Loading)
             auth.currentUser?.apply {

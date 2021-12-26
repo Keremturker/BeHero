@@ -43,7 +43,7 @@ class ProfileEditVM @Inject constructor(
         ) {
 
             viewModelScope.launch {
-                profileRepository.createUserInFirestore(user).collect {
+                profileRepository.createOrUpdateUserInFirestore(user).collect {
                     if (it is Response.Success) {
                         sharedHelper.syncUsers = user
                     }

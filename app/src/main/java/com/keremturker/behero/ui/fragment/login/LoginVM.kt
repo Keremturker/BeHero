@@ -63,6 +63,12 @@ class LoginVM @Inject constructor(
         }
     }
 
+    fun createOrUpdateUserInFirestore(user: Users) {
+        viewModelScope.launch {
+            profileRepository.createOrUpdateUserInFirestore(user).collect { }
+        }
+    }
+
     fun sendMailVerified(user: FirebaseUser) {
         user.sendEmailVerification().addOnCompleteListener {
             if (it.isSuccessful) {
