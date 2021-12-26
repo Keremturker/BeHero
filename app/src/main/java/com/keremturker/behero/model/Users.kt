@@ -27,6 +27,7 @@ data class Users(
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readParcelable(Address::class.java.classLoader),
+        parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte()
     )
 
@@ -40,6 +41,7 @@ data class Users(
         parcel.writeString(bloodGroup)
         parcel.writeParcelable(address, flags)
         parcel.writeByte(if (availableDonate) 1 else 0)
+        parcel.writeByte(if (mailVerified) 1 else 0)
     }
 
     override fun describeContents(): Int {
