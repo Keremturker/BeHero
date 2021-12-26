@@ -47,7 +47,11 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     private val longitude: Double? get() = arguments?.getDouble("longitude", 0.0)
 
     override fun onFragmentCreated() {
-        setNormalToolbar(isBackIcon = true, title = getString(R.string.select_location_text), rightIcon = R.drawable.ic_baseline_my_location_24){
+        setNormalToolbar(
+            isBackIcon = true,
+            title = getString(R.string.select_location_text),
+            rightIcon = R.drawable.ic_baseline_my_location_24
+        ) {
             fetchLocation(true)
 
         }
@@ -154,6 +158,9 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
                 subCityName = it.subAdminArea
             )
             binding.txtCurrentAddress.text = currentAddress.description
+        } ?: run {
+            currentAddress = Address()
+            binding.txtCurrentAddress.text = ""
         }
         val markerOptions = MarkerOptions().position(latLng)/*.title("I am here")
             .snippet(address)*/.draggable(true)
@@ -167,7 +174,11 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
         return try {
             val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-            addresses[0]
+            if (addresses.isNotEmpty()) {
+                addresses[0]
+            } else {
+                null
+            }
         } catch (e: IOException) {
             null
         }

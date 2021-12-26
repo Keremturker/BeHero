@@ -46,8 +46,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding, RegisterVM>() {
             multiColorArray = arrayOf(getString(R.string.login_title_clickable_text))
         )
 
-        //  binding.bloodLayout.bloodGroup.setOnCheckedChangeListener(MultiLineRadioGroup.OnCheckedChangeListener { group, button -> })
-
         binding.btnRegister.setOnClickListener {
             val name = binding.edtName.getText()
             val mail = binding.edtMail.getText()
