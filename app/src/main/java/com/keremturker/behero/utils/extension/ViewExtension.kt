@@ -1,6 +1,7 @@
 package com.keremturker.behero.utils.extension
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Parcelable
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.keremturker.behero.R
 import com.keremturker.behero.base.BaseFragment
+import java.util.*
 
 fun View.setVisible(visible: Boolean) {
     visibility = if (visible) VISIBLE else INVISIBLE
@@ -26,7 +28,7 @@ fun View.setGone() {
 }
 
 fun View.setInvisible() {
-    visibility =INVISIBLE
+    visibility = INVISIBLE
 }
 
 fun View.visibleIf(visible: Boolean) {
@@ -75,5 +77,16 @@ fun BaseFragment<*, *>?.hideKeyboard() {
             ContextCompat.getSystemService(it.requireContext(), InputMethodManager::class.java)
         imm?.hideSoftInputFromWindow(binding.root.rootView?.windowToken, 0)
     }
+}
+
+fun Context.setLocalMap() {
+    val language = "en"
+
+    val locale = Locale(language)
+    Locale.setDefault(locale)
+    val config = Configuration()
+
+    config.setLocale(locale)
+    createConfigurationContext(config)
 }
 

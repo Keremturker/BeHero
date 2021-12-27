@@ -24,9 +24,11 @@ import com.keremturker.behero.utils.Constants.ADDRESS
 import com.keremturker.behero.utils.Constants.PERMISSION_LOCATION
 import com.keremturker.behero.utils.Constants.permissionLocation
 import com.keremturker.behero.utils.ToolbarType
+import com.keremturker.behero.utils.extension.setLocalMap
 import com.keremturker.behero.utils.extension.setNavigationResult
 import java.io.IOException
 import java.util.*
+
 
 class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCallback {
 
@@ -47,6 +49,9 @@ class MapsFragment : BaseFragment<FragmentMapsBinding, MapsVM>(), OnMapReadyCall
     private val longitude: Double? get() = arguments?.getDouble("longitude", 0.0)
 
     override fun onFragmentCreated() {
+
+        requireContext().setLocalMap()
+
         setNormalToolbar(
             isBackIcon = true,
             title = getString(R.string.select_location_text),
